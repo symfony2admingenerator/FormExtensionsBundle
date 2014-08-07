@@ -1,0 +1,38 @@
+{
+    "name": "symfony2admingenerator/form-extensions-bundle",
+    "type": "symfony-bundle",
+    "description": "Add additional form types to symfony2",
+    "license": "MIT and Apache-2.0",
+    "authors": [
+        {
+            "name": "Piotr Gołębiewski",
+            "email": "loostro@gmail.com",
+            "role": "Symfony2 bundle author"
+        },
+        {
+            "name": "Symfony community",
+            "homepage": "https://github.com/symfony2admingenerator/FormExtensions/graphs/contributors"
+        }
+    ],
+    "require": {
+        "symfony/symfony": ">= 2.2.0",
+        "twig/twig": ">= 1.9.0",
+        "twig/extensions": "~1.0",
+        "robloach/component-installer": "~0.0.11",
+        "afarkas/html5shiv": "~3.7",
+        "components/jquery": "1.9.1",
+        "components/jqueryui": "1.11.0",
+        "components/bootstrap": "~3.0",
+        "components/font-awesome": "~4.0"
+    },
+    "suggest": {
+        "symfony2admingenerator/admingenerator-generator-bundle": "The missing symfony2 admin generator",
+        "liip/imagine-bundle": "Apply filters on preview images"
+    },
+    "autoload": {
+        "psr-0": {
+            "Admingenerator\\FormExtensionsBundle": ""
+        }
+    },
+    "target-dir": "Admingenerator/FormExtensionsBundle"
+}

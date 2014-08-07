@@ -1,0 +1,45 @@
+s2a_bootstrap_collection:
+    add:          Hinzufügen
+    delete:       Löschen
+    confirm:
+        delete:           Wollen Sie wirklich dieses Element löschen?
+        batchDelete:      Wollen Sie wirklich alle ausgewählten Elemente löschen?
+
+s2a_collection_upload:
+    file.add:     "Dateien hinzufügen..."
+    stat:         Hochladen beginnen
+    error:        Fehler
+    cancel:       Abbrechen
+    remove:       Entfernen
+    download:     Herunterladen
+    confirm:
+        batchDelete:      Wollen Sie wirklich alle ausgewählten Elemente löschen?
+    errors:
+        maxNumberOfFiles: Maximale Anzahl von Elementen erreicht
+        acceptFileTypes:  Dateityp ist nicht erlaubt
+        maxFileSize:      Datei ist zu groß
+        minFileSize:      Datei ist zu klein
+
+s2a_double_list:
+    selected:           Ausgewählt
+    unselected:         Abgewählt
+
+s2a_single_upload:
+    button:
+        add:              Datei hochladen
+        replace:          Datei ersetzen
+        cancel:           Abbrechen
+        delete:           Löschen
+    type:
+        inexistent:       "Keine<br />Datei"
+        audio:            Audio
+        archive:          Archiv
+        html:             HTML
+        image:            Bild
+        pdf-document:     "PDF-<br />Dokument"
+        plain-text:       "normaler<br />Text"
+        presentation:     Präsentation
+        spreadsheet:      "Tabellen-<br />dokument"
+        text-document:    "Text-<br />dokument"
+        unknown:          "Unbekannter<br />Dateityp"
+        video:            Video

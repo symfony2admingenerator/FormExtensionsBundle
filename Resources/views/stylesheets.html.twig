@@ -1,0 +1,18 @@
+{% block admingenerator_form_stylesheets %}
+
+    {% stylesheets package='formextensions_css' filter='cssrewrite,?uglifycss' 
+        output='assetic/css/compiled/admingeneratorformextensions/form-extensions.min.css'
+        'bundles/admingeneratorformextensions/bootstrap-collection/css/bootstrap-collection.css'
+        'bundles/admingeneratorformextensions/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css'
+        'bundles/admingeneratorformextensions/bootstrap-select/css/bootstrap-select.css'
+        'bundles/admingeneratorformextensions/collection-upload/css/collection-upload.css'
+        'bundles/admingeneratorformextensions/double-list/css/double-list.css'
+        'bundles/admingeneratorformextensions/minicolors/css/jquery.minicolors.css'
+        'bundles/admingeneratorformextensions/select2/css/select2.css'
+        'bundles/admingeneratorformextensions/single-upload/css/single-upload.css'
+        'bundles/admingeneratorformextensions/single-upload/css/filetypeicons.css'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
+    {% endstylesheets %}
+
+{% endblock admingenerator_form_stylesheets %}

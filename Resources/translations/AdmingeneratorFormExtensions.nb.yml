@@ -1,0 +1,44 @@
+s2a_bootstrap_collection:
+    add:          Legg til
+    delete:       Slett
+    confirm:
+        delete:           Er du sikker på at du vil slette dette elementet?
+        batchDelete:      Er du sikker på at du vil slette alle merkede elementer?
+
+s2a_collection_upload:
+    file.add:     "Legg til fil..."
+    error:        Feil
+    cancel:       Avbryt
+    delete:       Slett
+    download:     Last ned
+    confirm:
+        batchDelete:      Er du sikker på at du vil slette alle merkede elementer?
+    errors:
+        maxNumberOfFiles: Du har valgt for mange filer
+        acceptFileTypes:  Filtype ikke tillatt
+        maxFileSize:      Filen er for stor
+        minFileSize:      Filen er for liten
+        
+s2a_double_list:
+    selected:           Valgt
+    unselected:         Ikke valgt
+        
+s2a_single_upload:
+    button:
+        add:              Last opp fil
+        replace:          Erstatt fil
+        cancel:           Avbryt
+        delete:           Slett
+    type:
+        inexistent:       "Ingen<br />Fil"
+        audio:            Lyd
+        archive:          Arkiv
+        html:             HTML
+        image:            Bilde
+        pdf-document:     "PDF<br />Dokument"
+        plain-text:       "Ren<br />Tekt"
+        presentation:     Presentasjon
+        spreadsheet:      Regneark
+        text-document:    "Tekst<br />Dokument"
+        unknown:          "Ukjent<br />Filtype"
+        video:            Video

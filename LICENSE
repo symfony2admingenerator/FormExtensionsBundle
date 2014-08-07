@@ -1,0 +1,79 @@
+AdmingeneratorFormExtensionsBundle
+-------------------------------------------------
+This bundle includes various third-party software assets each distributed 
+under it's own license. Bundle files which are not subject to any of these 
+licenses are released under MIT license included in file: 
+/Resources/meta/MIT-LICENSE
+
+List of third-party software and their licenses
+=================================================
+
+Note: all files in Location directory are subject to corresonding License.
+
+Bootstrap Collection
+---------------------
+Location: /Resources/public/bootstrap-collection
+License:  /Resources/public/bootstrap-collection/LICENSE
+
+Bootstrap Collection is licensed under the MIT license.
+
+Collection Upload
+---------------------
+Location: /Resources/public/collection-upload
+License:  /Resources/public/collection-upload/LICENSE
+
+Collection Upload is licensed under the MIT license and uses 
+third party software also licensed under MIT license.
+
+For more information read 
+/Resources/public/collection-upload/LICENSE-NOTICE
+
+Bootstrap Datetimepicker
+---------------------
+Version:  3.0.0
+Location: /Resources/public/bootstrap-datetimepicker
+License:  /Resources/public/bootstrap-datetimepicker/LICENSE
+
+Bootstrap Datetimepicker is licensed under the MIT license.
+
+Knob
+---------------------
+Version:  adf93321422c67b949b95cc28e374c00c2adf252
+Location: /Resources/public/knob
+License:  /Resources/public/knob/LICENSE
+
+Knob is licensed under the MIT license.
+
+Mini Colors
+---------------------
+Location: /Resources/public/minicolors
+License:  /Resources/public/minicolors/LICENSE
+
+Dual licensed under the MIT and GPL licenses.
+
+Select2
+---------------------
+Version:  3.4.0
+Location: /Resources/public/select2
+License:  /Resources/public/select2/LICENSE
+
+Select2 is licensed under the Apache Software Foundation License Version 2.0 
+and GPL Version 2.0.
+
+Single Upload
+---------------------
+Location: /Resources/public/single-upload
+License:  /Resources/public/single-upload/LICENSE
+
+Single Upload is licensed under the MIT license and uses 
+third party assets licensed under Creative Commons Attribution-ShareAlike 3.0 Hong Kong License.
+
+For more information read 
+/Resources/public/single-upload/LICENSE-NOTICE
+
+Elastic Textarea
+---------------------
+Location: /Resources/public/elastic
+License:  /Resources/public/elastic/LICENSE
+
+Elastic is licensed under the MIT license.

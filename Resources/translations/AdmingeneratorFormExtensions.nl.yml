@@ -1,0 +1,44 @@
+s2a_bootstrap_collection:
+    add:          Toevoegen
+    delete:       Verwijderen
+    confirm:
+        delete:           Weet U zeker dat U dit element wilt verwijderen?
+        batchDelete:      Weet U zeker dat U alle geselecteerde elementen wilt verwijderen?
+
+s2a_collection_upload:
+    file.add:     "Bestand toevoegen..."
+    error:        Fout
+    cancel:       Annuleer
+    delete:       Verwijder
+    download:     Download
+    confirm:
+        batchDelete:      Weet U zeker dat U alle geselecteerde elementen wilt wissen?
+    errors:
+        maxNumberOfFiles: Maximum aantal bestanden overschreden
+        acceptFileTypes:  Bestandstype is niet toegestaan
+        maxFileSize:      Bestand is te groot
+        minFileSize:      Bestand is te klein
+        
+s2a_double_list:
+    selected:           Geselecteerd
+    unselected:         Gedeselecteerd
+        
+s2a_single_upload:
+    button:
+        add:              Upload bestand
+        replace:          Vervang bestand
+        cancel:           Annuleer
+        delete:           Verwijder
+    type:
+        inexistent:       "Geen<br />bestand"
+        audio:            Audio
+        archive:          Archief
+        html:             HTML
+        image:            Afbeelding
+        pdf-document:     "PDF<br />bestand"
+        plain-text:       "Platte<br />tekst"
+        presentation:     Presentatie
+        spreadsheet:      Spreadsheet
+        text-document:    "Text<br />document"
+        unknown:          "Onbekend<br />bestandstype"
+        video:            Video

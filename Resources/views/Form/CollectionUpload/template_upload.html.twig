@@ -1,0 +1,51 @@
+<script id="{{ id ~ '_upload_template' }}" type="text/x-tmpl">
+{% raw %}
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+{% endraw %}
+    <tr class="template-upload fade">
+        {% if sortable %}
+        <td class="sort"></td>
+        {% endif %}
+        <td class="preview"><span class="fade"></span></td>
+        <td class="name"><span>{% raw %}{%=file.name%}{% endraw %}</span></td>
+        <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
+        {% raw %}
+        {% if (file.error) { %}
+        {% endraw %}
+            <td class="error" colspan="2">
+                <span class="label label-important">
+                {{- 's2a_collection_upload.error'|trans({}, 'AdmingeneratorFormExtensions') -}}
+                </span> {% raw %}{%=file.error%}{% endraw %}
+            </td>
+        {% raw %}
+        {% } else { %}
+        {% endraw %}
+            <td colspan="2"></td>
+        {% raw %}
+        {% } %}
+        {% endraw %}
+        <td class="actions">
+        {% raw %}
+        {% if (!i) { %}
+        {% endraw %}
+            <div class="btn-toolbar">
+                {% if not autoUpload and uploadRouteName is not empty %}
+                <button class="btn btn-primary start">
+                    <i class="fa fa-upload"></i>
+                    <span> {{ 's2a_collection_upload.start'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                </button>
+                {% endif %}
+                <button class="btn btn-warning cancel"{% if not autoUpload and uploadRouteName is empty %}style="visibility:hidden;"{% endif %}>
+                    <i class="fa fa-ban"></i>
+                    <span> {{ 's2a_collection_upload.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                </button>
+            </div>
+        {% raw %}
+        {% } %}
+        {% endraw %}
+        </td>
+    </tr>
+{% raw %}
+{% } %}
+{% endraw %}
+</script>

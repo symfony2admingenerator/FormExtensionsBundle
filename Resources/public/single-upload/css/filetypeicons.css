@@ -1,0 +1,37 @@
+/* Filetype icon styles
+ * ------------------------------------------------------------------------- */
+
+.fileicon {
+    /* Block styles */
+    display:  inline-block;
+    overflow: hidden;
+    width:    128px;
+    height:   128px;
+    /* Box model */
+	-webkit-box-sizing:   border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing:      border-box; /* Firefox, other Gecko */
+	box-sizing:           border-box; /* Opera/IE 8+ */
+    /* Font positioning */
+    text-align:   center;
+    padding-top:  86px;
+    line-height:  13px;    
+    /* Font styles */
+    font-size:    13px;
+    color:        #aaa;
+    font-weight:  bold;
+    font-family:  Arial, sans-serif;
+    text-shadow:  1px 1px 0px #fff;
+}
+
+.fileicon.inexistent      { background: url('../img/inexistent.png') no-repeat top center; }
+.fileicon.audio           { background: url('../img/audio.png') no-repeat top center; }
+.fileicon.archive         { background: url('../img/archive.png') no-repeat top center; }
+.fileicon.html            { background: url('../img/html.png') no-repeat top center; }
+.fileicon.image           { background: url('../img/image.png') no-repeat top center; }
+.fileicon.pdf-document    { background: url('../img/pdf-document.png') no-repeat top center; }
+.fileicon.plain-text      { background: url('../img/plain-text.png') no-repeat top center; }
+.fileicon.presentation    { background: url('../img/presentation.png') no-repeat top center; }
+.fileicon.spreadsheet     { background: url('../img/spreadsheet.png') no-repeat top center; }
+.fileicon.text-document   { background: url('../img/text-document.png') no-repeat top center; }
+.fileicon.unknown         { background: url('../img/unknown.png') no-repeat top center; }
+.fileicon.video           { background: url('../img/video.png') no-repeat top center; }

@@ -1,0 +1,13 @@
+<div class="double-list-label">{{ 's2a_double_list.selected'|trans({}, 'AdmingeneratorFormExtensions') }}</div>
+
+<ul id="{{ id }}_selected" class="double-list-dropdown dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+{% for choice in choices %}
+    {% if choice is selectedchoice(value) %}
+    <li data-value="{{ choice.value }}">
+        <a tabindex="-1" href="#">
+            <i class="icon-ok"></i> {{ choice.label }}
+        </a>
+    </li>
+    {% endif %}
+{% endfor %}
+</ul>

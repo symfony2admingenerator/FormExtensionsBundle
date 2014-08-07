@@ -1,0 +1,17 @@
+<div class="singleupload-controls-wrapper">
+    <div class="btn-wrapper">
+        <button type="reset" class="btn btn-warning cancel" style="display: none;">
+            <i class="fa fa-ban"></i>
+            <span> {{ 's2a_single_upload.button.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+        </button>
+    </div>
+{% if deleteable is not empty %}
+    <div class="btn-wrapper">
+        <button type="button" class="btn btn-danger delete" style="display: none;">
+            <i class="fa fa-trash-o"></i>
+            <span> {{ 's2a_single_upload.button.delete'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+        </button>
+    </div>
+    <input type="hidden" id="{{ id ~ '_delete' }}" name="{{ form.parent.vars.full_name ~ '['~name~'][delete]' }}" value="0">
+{% endif %}
+</div>

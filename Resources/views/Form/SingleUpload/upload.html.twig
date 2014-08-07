@@ -1,0 +1,6 @@
+<span class="add" {% if form.vars.data|default is not empty %}style="display: none;"{% endif %}>
+    <i class="fa fa-plus"></i> {{ 's2a_single_upload.button.add'|trans({}, 'AdmingeneratorFormExtensions') }}
+</span>
+<span class="replace" {% if form.vars.data|default is empty %}style="display: none;"{% endif %}>
+    <i class="fa fa-refresh"></i> {{ 's2a_single_upload.button.replace'|trans({}, 'AdmingeneratorFormExtensions') }}
+</span>

@@ -1,0 +1,44 @@
+s2a_bootstrap_collection:
+    add:          Dodaj
+    delete:       Usuń
+    confirm:
+        delete:           Czy potwierdzasz usunięcie elementu?
+        batchDelete:      Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
+
+s2a_collection_upload:
+    file.add:     "Dodaj plik..."
+    error:        Błąd
+    cancel:       Anuluj
+    delete:       Usuń
+    download:     Ściągnij
+    confirm:
+        batchDelete:      Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
+    errors:
+        maxNumberOfFiles: Maksymalna liczba plików przekroczona
+        acceptFileTypes:  Niedozwolony typ pliku
+        maxFileSize:      Plik jest za duży
+        minFileSize:      Plik jest za mały
+        
+s2a_double_list:
+    selected:           Wybrane
+    unselected:         Nie wybrane
+        
+s2a_single_upload:
+    button:
+        add:              Wgraj plik
+        replace:          Zamień plik
+        cancel:           Anuluj
+        delete:           Usuń
+    type:
+        inexistent:       "Brak<br />Pliku"
+        audio:            Audio
+        archive:          Archiwum
+        html:             HTML
+        image:            Obraz
+        pdf-document:     "Dokument<br />PDF"
+        plain-text:       "Tekst"
+        presentation:     Prezentacja
+        spreadsheet:      "Arkusz<br />Kalkulacyjny"
+        text-document:    "Dokument<br />Tekstowy"
+        unknown:          "Nieznany<br />Typ Pliku"
+        video:            Wideo
