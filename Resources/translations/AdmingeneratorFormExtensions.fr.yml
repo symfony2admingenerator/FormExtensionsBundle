@@ -1,6 +1,7 @@
 s2a_bootstrap_collection:
     add:          Ajouter
     delete:       Retirer
+    new_label:    Item
     confirm:
         delete:           Êtes-vous sûr de vouloir retirer cet élément ?
         batchDelete:      Êtes-vous sûr de vouloir retirer tous ces éléments ?

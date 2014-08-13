@@ -66,20 +66,20 @@
 <tr class="collection-item">
 {% if item.vars.compound %}
     <td class="collection-item-compound" id="{{ item.vars.id }}">
-        <div class="accordion" id="{{ 'accordion_' ~ item.vars.id }}">
-            <div class="accordion-group">
-                <div class="accordion-heading">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="{{ '#accordion_' ~ item.vars.id }}" href="{{ '#accordion_body_' ~ item.vars.id }}">
-                        <i class="icon-chevron-down"></i>
-                        <i class="icon-chevron-right"></i>
+        <div class="panel-group" id="{{ 'panel_group_' ~ item.vars.id }}">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a class="panel-toggle" data-toggle="collapse" data-parent="{{ '#panel_group_' ~ item.vars.id }}" href="{{ '#panel_collapse_' ~ item.vars.id }}">
+                        <i class="fa fa-chevron-down"></i>
+                        <i class="fa fa-chevron-right"></i>
                         {{- form_label(item) -}}
                     </a>
                     {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
                 </div>
-                <div id="{{ 'accordion_body_' ~ item.vars.id }}" class="accordion-body collapse in">
-                    <div class="accordion-inner">
+                <div id="{{ 'panel_collapse_' ~ item.vars.id }}" class="panel-collapse collapse in">
+                    <div class="panel-body">
                     {{ form_errors(item) }}
-                    {{ form_widget(item, { 'attr': {'class': 'form-horizontal'} }) }}
+                    {{ form_widget(item) }}
                     </div>
                 </div>
             </div>
@@ -186,7 +186,6 @@
 {% spaceless %}
     <div class="control-group {{ name }}{% if errors|length > 0 %} has-error{% endif %}">
         {{ form_label(form) }}
-        <div class="controls">
         {{ form_widget(form) }}
         {% if not compound %}
             {{ form_errors(form) }}

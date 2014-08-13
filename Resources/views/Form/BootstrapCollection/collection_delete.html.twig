@@ -1,7 +1,7 @@
 {% if allow_delete %}
 {% spaceless %}
 <div class="collection-item-actions {{ id ~ '_actions' }}">
-    <label class="btn btn-toggle disabled input-append">
+    <label class="btn btn-link btn-toggle input-append">
         <input type="checkbox" name="delete" value="1">
     </label>
     <a class="btn btn-danger delete" title="{{ 's2a_bootstrap_collection.delete'|trans({}, 'AdmingeneratorFormExtensions') }}">

@@ -40,7 +40,7 @@ class BootstrapCollectionType extends AbstractType
         $resolver->setDefaults(array(
             'sortable'        => false,
             'sortable_field'  => 'position',
-            'new_label'       => 's2a_collection.new_label'
+            'new_label'       => 's2a_bootstrap_collection.new_label'
         ));
 
         $resolver->setAllowedTypes(array(

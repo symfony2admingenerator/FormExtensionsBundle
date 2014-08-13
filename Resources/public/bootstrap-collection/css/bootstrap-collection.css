@@ -44,47 +44,47 @@ td.collection-item-compound {
     display: block;
 }
 
-tr.collection-item > td .accordion {
+tr.collection-item > td .panel {
     margin: 0;
 }
 
-tr.collection-item .accordion-heading {
+tr.collection-item .panel-heading {
     position: relative;
 }
 
-tr.collection-item .accordion-heading label.control-label {
+tr.collection-item .panel-heading label.control-label {
     margin: 0;
     display: inline;
     margin-left: 5px;
 }
 
-tr.collection-item .accordion-heading .accordion-toggle:hover,
-tr.collection-item .accordion-heading .accordion-toggle:hover,
-tr.collection-item .accordion-heading .accordion-toggle:focus,
-tr.collection-item .accordion-heading .accordion-toggle:focus {
+tr.collection-item .panel-heading .panel-toggle:hover,
+tr.collection-item .panel-heading .panel-toggle:hover,
+tr.collection-item .panel-heading .panel-toggle:focus,
+tr.collection-item .panel-heading .panel-toggle:focus {
     text-decoration: none;
 }
 
-tr.collection-item .accordion-heading .accordion-toggle:hover label.control-label,
-tr.collection-item .accordion-heading .accordion-toggle:hover label.control-label,
-tr.collection-item .accordion-heading .accordion-toggle:focus label.control-label,
-tr.collection-item .accordion-heading .accordion-toggle:focus label.control-label {
+tr.collection-item .panel-heading .panel-toggle:hover label.control-label,
+tr.collection-item .panel-heading .panel-toggle:hover label.control-label,
+tr.collection-item .panel-heading .panel-toggle:focus label.control-label,
+tr.collection-item .panel-heading .panel-toggle:focus label.control-label {
     text-decoration: underline;
 }
 
-tr.collection-item .accordion-heading .accordion-toggle .icon-chevron-right {
+tr.collection-item .panel-heading .panel-toggle .fa.fa-chevron-right {
     display: none;
 }
 
-tr.collection-item .accordion-heading .accordion-toggle .icon-chevron-down {
+tr.collection-item .panel-heading .panel-toggle .fa.fa-chevron-down {
     display: inline;
 }
 
-tr.collection-item .accordion-heading .accordion-toggle.collapsed .icon-chevron-down {
+tr.collection-item .panel-heading .panel-toggle.collapsed .fa.fa-chevron-down {
     display: none;
 }
 
-tr.collection-item .accordion-heading .accordion-toggle.collapsed .icon-chevron-right {
+tr.collection-item .panel-heading .panel-toggle.collapsed .fa.fa-chevron-right {
     display: inline;
 }
 
@@ -96,14 +96,14 @@ tr.collection-item .collection-item-compound .collection-item-actions {
 }
 
 tr.collection-item .collection-item-actions > .delete {
-    padding: 3px 6px;
+    padding: 3px 7px;
     -webkit-border-radius: 40px;
        -moz-border-radius: 40px;
             border-radius: 40px;
 }
 
 tr.collection-item .collection-item-actions > .delete {
-    margin-left: 5px;
+    margin-left: 0px;
 }
 
 tr.collection-item .collection-item-actions > .btn-toggle {

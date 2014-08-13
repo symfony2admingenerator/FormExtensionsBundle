@@ -148,7 +148,7 @@
         _onAdd: function() {
             var new_item = $('#'+ this.element.id).data('prototype');
             var new_id = this.nextId;
-            new_item = new_item.replace(new RegExp('label__', 'g'), this.options.trans.new_label);
+            new_item = new_item.replace(new RegExp('__name__label__', 'g'), this.options.trans.new_label);
             new_item = new_item.replace(new RegExp(this.options.prototype_name, 'g'), new_id);
             $new_item = $(new_item);
 

@@ -1,6 +1,7 @@
 s2a_bootstrap_collection:
     add:          Додати
     delete:       Видалити
+    new_label:    Item
     confirm:
         delete:           "Ви впевнені, що хочете видалити обраний елемент?"
         batchDelete:      "Ви впевнені, що хочете видалити всі обрані елементи?"
