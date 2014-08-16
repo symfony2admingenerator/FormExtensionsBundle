@@ -138,7 +138,7 @@ Admingenerator basic configuration:
 ```yaml
 cover:
     label:            Avatar
-    formType:         afe_single_upload
+    formType:         s2a_single_upload
     addFormOptions:
         nameable:       avatar_name
         deleteable:     avatar_path

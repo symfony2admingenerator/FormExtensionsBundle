@@ -30,6 +30,7 @@ class BootstrapCollectionType extends AbstractType
         $view->vars['sortable_field'] = $options['sortable_field'];
         $view->vars['new_label']      = $options['new_label'];
         $view->vars['prototype_name'] = $options['prototype_name'];
+        $view->vars['fieldset_class'] = $options['fieldset_class'];
     }
 
     /**
@@ -40,13 +41,15 @@ class BootstrapCollectionType extends AbstractType
         $resolver->setDefaults(array(
             'sortable'        => false,
             'sortable_field'  => 'position',
-            'new_label'       => 's2a_bootstrap_collection.new_label'
+            'new_label'       => 's2a_bootstrap_collection.new_label',
+            'fieldset_class'  => 'col-md-4',
         ));
 
         $resolver->setAllowedTypes(array(
             'sortable'        => array('bool'),
             'sortable_field'  => array('string'),
             'new_label'       => array('string'),
+            'fieldset_class'  => array('string'),
         ));
     }
 

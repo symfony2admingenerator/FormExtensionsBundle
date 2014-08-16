@@ -71,7 +71,7 @@ Specify the file storage handler for saving and retrieving asynchronous uploaded
         {
             $builder->add(
                 'my_field',
-                'afe_collection_upload',
+                's2a_collection_upload',
                 array(
                     'required' => false,
                     'nameable' => false,

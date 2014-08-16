@@ -39,6 +39,12 @@ hold sortable position.
 
 ##### new_label
 
-**type**: `string`, **default**: `afe_collection.new_label`
+**type**: `string`, **default**: `s2a_collection.new_label`
 
 New item label.
+
+##### fieldset_class
+
+**type**: `string`, **default**: `col-md-4`
+
+Class added to fieldset. Allows to control fieldset size via bootstrap column classes.

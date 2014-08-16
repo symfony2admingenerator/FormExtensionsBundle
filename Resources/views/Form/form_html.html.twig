@@ -13,7 +13,7 @@
         {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_add.html.twig" -%}
         {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_batch_delete.html.twig" -%}
     </div>
-    <div class="collection">
+    <div class="collection row-fluid">
         {% for item in form %}
             {{ block('s2a_collection_fieldset_item') }}
         {% endfor %}
@@ -24,12 +24,14 @@
 {% endblock s2a_collection_fieldset_widget %}
 
 {% block s2a_collection_fieldset_item %}
-<fieldset class="collection-item {{ id ~ '_actions' }}">
-    <legend><label class="control-label">{{ new_label|trans({}, translation_domain) }}</label></legend>
-    {{ form_widget(item) }}
-    {{ form_errors(item) }}
-    {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
-</fieldset>
+<div class="{{ fieldset_class }}">
+    <fieldset class="collection-item {{ id ~ '_actions' }}">
+        <legend><label class="control-label">{{ new_label|trans({}, translation_domain) }}</label></legend>
+        {{ form_widget(item) }}
+        {{ form_errors(item) }}
+        {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
+    </fieldset>
+</div>
 {% endblock s2a_collection_fieldset_item %}
 
 {% block s2a_collection_table_widget %}

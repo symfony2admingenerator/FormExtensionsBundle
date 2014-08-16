@@ -15,8 +15,8 @@ project.
 
 **Changed twig block names**: The twig extension block names have changed, you need to update your templates:
 
-* `afe_form_stylesheet` was renamed to `form_css`
-* `afe_form_javascript` was renamed to `form_js`
+* `s2a_form_stylesheet` was renamed to `form_css`
+* `s2a_form_javascript` was renamed to `form_js`
 
 **Changed form type prefix**: The FormExtensions have been moved under `symfony2admingenerator` github organization. As such, all form types will be prefixed with `s2a_`.
 
@@ -139,22 +139,3 @@ assetic:
         uglifyjs2:
             bin: /usr/bin/uglifyjs  # replace this with your path to uglifyjs
 ```
-
-## Commit [#be706a6][cobe706a6] Remove annotations autoloading
-
-[cobe706a6]: https://github.com/symfony2admingenerator/FormExtensions/commit/be706a6
-
-#### Description:
-
-This changed data type returned by `afe_daterange_picker`. Before this commit, it returned a string if you don't use the model DateRange. Now, if you still don't use the DateRange model, it returns an associative array:
-
-```php
-<?php
-    array('from' => from_value_string, 'to' => to_value_string)
-?>
-```
-
-#### BC Break:
-
-If you previously use `afe_daterange_picker` and set a default value through a string, you have to change
-it by an array.
