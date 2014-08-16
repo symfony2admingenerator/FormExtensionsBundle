@@ -1,5 +1,5 @@
 /*
- *  Project:        AvocodeFormExtensionsBundle
+ *  Project:        AdmingeneratorFormExtensionsBundle
  *  Description:    jQuery plugin for Upload collection
  *  Author:         loostro <loostro@gmail.com>
  *  License:        MIT

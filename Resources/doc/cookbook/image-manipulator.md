@@ -39,10 +39,10 @@ Enable the selected bundle in your `AppKernel.php`:
 ?>
 ```
 
-Lastly, configure AvocodeFormExtensionsBundle to use your image manipulator:
+Lastly, configure AdmingeneratorFormExtensionsBundle to use your image manipulator:
 
 ```yaml
-avocode_form_extensions:
+admingenerator_form_extensions:
     image_manipulator:        liip_imagine
 ```
 

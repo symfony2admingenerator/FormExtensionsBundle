@@ -111,7 +111,7 @@ class ImageAssetsExtension extends \Twig_Extension
      */
     public function getUploadManager()
     {
-        return $this->container->getParameter('avocode.form.upload_manager');
+        return $this->container->getParameter('admingenerator.form.upload_manager');
     }
 
     /**
@@ -121,7 +121,7 @@ class ImageAssetsExtension extends \Twig_Extension
      */
     public function getImageManipulator()
     {
-        return $this->container->getParameter('avocode.form.image_manipulator');
+        return $this->container->getParameter('admingenerator.form.image_manipulator');
     }
 
     /**
@@ -131,6 +131,6 @@ class ImageAssetsExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'avocode.twig.extension.image_filter';
+        return 'admingenerator.twig.extension.image_filter';
     }
 }

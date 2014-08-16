@@ -8,6 +8,7 @@ s2a_bootstrap_collection:
 
 s2a_collection_upload:
     file.add:     "Dodaj plik..."
+    start:        Wgraj
     error:        Błąd
     cancel:       Anuluj
     delete:       Usuń

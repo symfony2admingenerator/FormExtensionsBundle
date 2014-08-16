@@ -18,19 +18,29 @@
  Thanks to a listener, all process is managed by Avocode. You just have to activate it and configure your fields.
  
  
-### 2. Activat async mode
+### 2. Activate async mode
 
 #### Configuration
 
  To activate asynchronous mode you first need to enable the listener. Here is an example of configuration:
  
- ```yaml
-    avocode_form_extensions:
+```yaml
+    admingenerator_form_extensions:
         collection_upload:
             async_listener_enabled: true
-            async_route_name: my_upload_route
-            file_storage: avocode.form.file_storage.local
- ```
+            async_route_name: admingenerator_async_upload # see note below
+            file_storage: admingenerator.form.file_storage.local
+```
+
+ For this config to work, you have to import the `admingenerator_async_upload` route, by adding to your `routing.yml`:
+
+```yaml
+s2a_formextensions:
+  resource: "@AdmingeneratorFormExtensionsBundle/Resources/config/routing.yml"
+  prefix: /my_async_upload_prefix
+```
+
+> **Note:** if for any reason you want to use diffrent route name, create your own route instead of importing the default and change the `admingenerator_form_extensions.collection_upload.async_route_name` parameter accordingly.
  
 ##### async_listener_enabled
 
@@ -48,7 +58,7 @@ Specify the route name used for asynchronous upload.
 
 ##### file_storage
 
-**type:** `string` **default:** `avocode.form.file_storage.local`
+**type:** `string` **default:** `admingenerator.form.file_storage.local`
 
 Specify the file storage handler for saving and retrieving asynchronous uploaded files (see below).
 
@@ -84,7 +94,7 @@ Specify the file storage handler for saving and retrieving asynchronous uploaded
                     'allow_add' => true,
                     'allow_delete' => true,
                     'error_bubbling' => false,
-                    'uploadRouteName' => 'my_upload_route', // must be the same as in the configuration
+                    'uploadRouteName' => 'admingenerator_async_upload', // must be the same as in the configuration
                     'autoUpload' => true
                 );
         }
@@ -103,17 +113,17 @@ Specify the file storage handler for saving and retrieving asynchronous uploaded
 #### 3. Customize upload file handler
 
  By default, the bundle provides a simple local storage system for asynchronous uploaded files. This is handled by 
- `Storage\LocalFileStorage` class (service `avocode.form.file_storage.local`). This class uses the session to keep
+ `Storage\LocalFileStorage` class (service `admingenerator.form.file_storage.local`). This class uses the session to keep
  a list of uploaded files and store them on the default file system temporary directory. This handler has some known 
  limitations (like load balancing issues, eventually requires a cron to clean unused files).
  
  If you want to create your own file handler you have to proceed in two steps
  
  - create your own service (class) implementing the interface `Avocode\FormExtensionsBundle\Storage\FileStorageInterface`
- - update `avocode_form_extensions` configuration with your new service:
+ - update `admingenerator_form_extensions` configuration with your new service:
     
 ```yaml
-    avocode_form_extensions:
+    admingenerator_form_extensions:
         collection_upload:
             async_listener_enabled: true
             async_route_name: my_upload_route

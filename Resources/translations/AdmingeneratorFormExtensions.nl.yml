@@ -8,6 +8,7 @@ s2a_bootstrap_collection:
 
 s2a_collection_upload:
     file.add:     "Bestand toevoegen..."
+    start:        Start upload
     error:        Fout
     cancel:       Annuleer
     delete:       Verwijder

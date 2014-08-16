@@ -38,10 +38,10 @@ Enable the selected bundle in your `AppKernel.php`:
 ?>
 ```
 
-Lastly, configure AvocodeFormExtensionsBundle to use your upload manager:
+Lastly, configure AdmingeneratorFormExtensionsBundle to use your upload manager:
 
 ```yaml
-avocode_form_extensions:
+admingenerator_form_extensions:
     upload_manager:        vich_uploader
 ```
 

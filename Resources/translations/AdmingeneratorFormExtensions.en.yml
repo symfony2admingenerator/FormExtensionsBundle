@@ -8,7 +8,7 @@ s2a_bootstrap_collection:
 
 s2a_collection_upload:
     file.add:     "Add files..."
-    stat:         Start upload
+    start:        Start upload
     error:        Error
     cancel:       Cancel
     remove:       Remove

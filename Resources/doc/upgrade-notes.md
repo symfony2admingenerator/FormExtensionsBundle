@@ -42,7 +42,7 @@ public function registerBundles()
         new Admingenerator\FormBundle\AdmingeneratorFormBundle(),
         new Admingenerator\FormExtensionsBundle\AdmingeneratorFormExtensionsBundle(),
         // remove this:
-        // new Avocode\FormExtensionsBundle\AvocodeFormExtensionsBundle(),
+        // new Avocode\FormExtensionsBundle\AdmingeneratorFormExtensionsBundle(),
     );
 }
 ?>

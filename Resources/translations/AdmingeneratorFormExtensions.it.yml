@@ -8,6 +8,7 @@ s2a_bootstrap_collection:
 
 s2a_collection_upload:
     file.add:     "Aggiungi file..."
+    start:        Start upload
     error:        Errore
     cancel:       Cancella
     delete:       Elimina

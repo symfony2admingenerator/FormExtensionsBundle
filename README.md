@@ -37,7 +37,7 @@ public function registerBundles()
         new Admingenerator\FormBundle\AdmingeneratorFormBundle(),
         new Admingenerator\FormExtensionsBundle\AdmingeneratorFormExtensionsBundle(),
         // AdmingeneratorGeneratorBundle is optional, however if you're useing it
-        // make sure it is loaded AFTER AvocodeFormExtensionsBundle
+        // make sure it is loaded AFTER AdmingeneratorFormExtensionsBundle
         new Admingenerator\GeneratorBundle\AdmingeneratorGeneratorBundle(),
     );
 }

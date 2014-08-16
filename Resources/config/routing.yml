@@ -1,0 +1,4 @@
+admingenerator_async_upload:
+    pattern: /upload
+    requirements:
+        _method: POST
