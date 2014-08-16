@@ -59,7 +59,6 @@ class Select2Type extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $defaults = array(
-            'placeholder'        => '',
             'allowClear'         => false,
             'minimumInputLength' => 0,
             'width'              => 'element',
