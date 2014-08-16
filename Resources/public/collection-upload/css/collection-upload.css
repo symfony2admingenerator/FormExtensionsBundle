@@ -65,11 +65,6 @@ tbody.files > tr > td {
     padding-bottom: 10px;
 }
 
-tbody.files > tr > td.actions {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
 /* Set fallback background for files_list item */
 tbody.files > tr {
     background-color: #fff;
@@ -119,4 +114,9 @@ tr.sortable-placeholder {
 tr.sortable-placeholder td {
     background: none transparent !important;
     border: none transparent !important;
+}
+
+/* BS3 fix */
+.fileupload-buttonbar.btn-toolbar {
+    margin-left: 0px;
 }
