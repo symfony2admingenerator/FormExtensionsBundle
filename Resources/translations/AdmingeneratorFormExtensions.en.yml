@@ -11,7 +11,7 @@ s2a_collection_upload:
     start:        Start upload
     error:        Error
     cancel:       Cancel
-    remove:       Remove
+    delete:       Delete
     download:     Download
     confirm:
         batchDelete:      Are you sure you want to delete all selected elements?
