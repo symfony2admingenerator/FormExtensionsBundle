@@ -265,7 +265,7 @@
 {% spaceless %}
 <input id="{{ id }}" name="{{ full_name }}" type="hidden" value="{{ value }}" />
 <div id="{{ id ~ '_widget' }}" class="input-group date">
-    <input id="{{ id ~ '_display' }}" type="text" class="form-control" />
+    <input id="{{ id ~ '_display' }}" type="text" class="form-control" value="{{ value }}" />
     <span class="input-group-addon">
         <span class="{{ widgetIcon }}"></span>
     </span>

@@ -348,9 +348,9 @@
     })|e4js|raw }};
 
     $widget.datetimepicker(config);
-    {% if widget_value is defined %}
-        $widget.data("DateTimePicker").setDate("{{ widget_value }}");
-    {% endif %}
+{% if widget_value is defined %}
+    $widget.data("DateTimePicker").setDate("{{ widget_value }}");
+{% endif %}
 
     var copyValue = function() {
         var date = $widget.data("DateTimePicker").getDate();
