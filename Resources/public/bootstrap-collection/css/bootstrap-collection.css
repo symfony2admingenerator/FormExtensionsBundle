@@ -162,27 +162,32 @@ fieldset.collection-item > legend > label {
     line-height: inherit;
 }
 
-fieldset.collection-item > .delete {
+fieldset.collection-item > .collection-item-actions {
     position: absolute;
-    top: 5px;
-    right: -15px;
-    padding: 3px 6px;
+    top: 1px;
+    right: 10px;
+    white-space: nowrap;
+}
+
+fieldset.collection-item > .collection-item-actions > .delete {
+    padding: 3px 7px;
+    margin-left: 7px;
     -webkit-border-radius: 40px;
        -moz-border-radius: 40px;
             border-radius: 40px;
 }
 
-fieldset.collection-item > .btn-toggle {
-    position: absolute;
-    top: 5px;
-    right: 20px;
-    padding: 3px 6px;
+fieldset.collection-item > .collection-item-actions > .btn-toggle {
+    padding: 3px 7px;
     opacity: 1;
     background-color: #efefef;
     border-color: #d9d9d9;
+    -webkit-border-radius: 40px;
+       -moz-border-radius: 40px;
+            border-radius: 40px;
 }
 
-fieldset.collection-item > .btn-toggle > input[type="checkbox"] {
+fieldset.collection-item > .collection-item-actions > .btn-toggle > input[type="checkbox"] {
     opacity: 0.65;
 }
 
