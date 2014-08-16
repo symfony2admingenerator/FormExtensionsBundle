@@ -5,8 +5,8 @@
 
 [go back to CollectionUploadType documentation][back-to-collectionupload-type]
 
-[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
-[back-to-collectionupload-type]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/collection-upload/overview.md 
+[back-to-index]: https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/documentation.md
+[back-to-collectionupload-type]: https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/collection-upload/overview.md 
 
 ### 1. Description
 

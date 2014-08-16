@@ -3,7 +3,7 @@
 
 [go back to Table of contents][back-to-index]
 
-[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
+[back-to-index]: https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/documentation.md
 
 [jquery-elastic]: http://unwrongest.com/projects/elastic/
 [symfony-textareatype]: http://symfony.com/doc/current/reference/forms/types/textarea.html

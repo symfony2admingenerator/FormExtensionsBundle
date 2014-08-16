@@ -3,7 +3,7 @@
 
 [go back to Table of contents][back-to-index]
 
-[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
+[back-to-index]: https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/documentation.md
 
 [symfony-filetype]: http://symfony.com/doc/current/reference/forms/types/file.html
 
@@ -88,7 +88,7 @@ class User
 
 To use VichUploaderBundle you have to configure the `upload_manager` option. Read more in
 cookbook entry [How to use upload manager with this bundle?]
-(https://github.com/avocode/FormExtensions/blob/master/Resources/doc/cookbook/upload-manager.md) 
+(https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/cookbook/upload-manager.md) 
 
 #### Without dependencies
 
@@ -209,7 +209,7 @@ If set, given filter will be applied on uploaded file to generate a thumbnail.
 
 > **Note:** Requires instaling and configureing image manipulator. See 
 [How to use image manipulator with this bundle?]
-(https://github.com/avocode/FormExtensions/blob/master/Resources/doc/cookbook/image-manipulator.md) 
+(https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/cookbook/image-manipulator.md) 
 cookbook entry.
 
 ### 4. Special thanks

@@ -25,7 +25,7 @@
 
 {% block s2a_collection_fieldset_item %}
 <fieldset class="collection-item {{ id ~ '_actions' }}">
-    <legend>{{ form_label(item) }}</legend>
+    <legend><label class="control-label">{{ new_label|trans({}, translation_domain) }}</label></legend>
     {{ form_widget(item) }}
     {{ form_errors(item) }}
     {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
@@ -72,7 +72,7 @@
                     <a class="panel-toggle" data-toggle="collapse" data-parent="{{ '#panel_group_' ~ item.vars.id }}" href="{{ '#panel_collapse_' ~ item.vars.id }}">
                         <i class="fa fa-chevron-down"></i>
                         <i class="fa fa-chevron-right"></i>
-                        {{- form_label(item) -}}
+                        <label class="control-label">{{ new_label|trans({}, translation_domain) }}</label>
                     </a>
                     {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
                 </div>
@@ -90,7 +90,7 @@
         <div class="form-horizontal">
             {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
             <div class="control-group">
-                {{ form_label(item) }}
+                <label class="control-label">{{ new_label|trans({}, translation_domain) }}</label>
                 <div class="controls">
                     {{ form_widget(item) }}
                 </div>
@@ -294,3 +294,11 @@
 {% endspaceless %}
 {% endblock s2a_time_picker_widget %}
 
+{% block s2a_money_widget %}
+{% spaceless %}
+<div class="input-group">
+  <span class="input-group-addon">{{ money_pattern|replace({ '{{ widget }}': '' })|raw }}</span>
+  {{ block('form_widget_simple')|raw }}
+</div>
+{% endspaceless %}
+{% endblock %}

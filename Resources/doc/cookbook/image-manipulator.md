@@ -3,7 +3,7 @@
 
 [go back to Table of contents][back-to-index]
 
-[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
+[back-to-index]: https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/documentation.md
 
 ### 1. Overview
 
@@ -61,5 +61,5 @@ To enable generateing thumbnails in form types simply add `previewFilter` option
 to your form with the name of the filter you want to apply. Read more about avaliable 
 options here:
 
-* [Collection Upload](https://github.com/avocode/FormExtensions/blob/master/Resources/doc/collection-upload/overview.md)
-* [Single Upload](https://github.com/avocode/FormExtensions/blob/master/Resources/doc/single-upload/overview.md)
+* [Collection Upload](https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/collection-upload/overview.md)
+* [Single Upload](https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/single-upload/overview.md)

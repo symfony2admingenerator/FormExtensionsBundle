@@ -10,6 +10,10 @@
     <services>
         <!-- Form types -->
         <service id="admingenerator.form.extensions.type.bootstrap_collection" class="Admingenerator\FormExtensionsBundle\Form\Type\BootstrapCollectionType" abstract="true" />
+        
+        <service id="admingenerator.form.extensions.type.bootstrap_money" class="Admingenerator\FormExtensionsBundle\Form\Type\MoneyType">
+            <tag name="form.type" alias="s2a_money" />
+        </service>
 
         <service id="admingenerator.form.extensions.type.collection_upload" class="Admingenerator\FormExtensionsBundle\Form\Type\CollectionUploadType">
             <tag name="form.type" alias="s2a_collection_upload" />

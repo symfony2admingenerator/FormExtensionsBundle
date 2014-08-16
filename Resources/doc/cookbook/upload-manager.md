@@ -3,7 +3,7 @@
 
 [go back to Table of contents][back-to-index]
 
-[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
+[back-to-index]: https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/documentation.md
 
 ### 1. Overview
 
@@ -58,5 +58,5 @@ You can read how to create upload configuration in selected bundle's docs:
 To use selected upload configuration you'll have to modify the entity that holds 
 uploadable property. Read more about that in form type docs:
 
-* [Collection Upload](https://github.com/avocode/FormExtensions/blob/master/Resources/doc/collection-upload/overview.md)
-* [Single Upload](https://github.com/avocode/FormExtensions/blob/master/Resources/doc/single-upload/overview.md)
+* [Collection Upload](https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/collection-upload/overview.md)
+* [Single Upload](https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/single-upload/overview.md)

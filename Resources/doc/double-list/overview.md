@@ -3,7 +3,7 @@
 
 [go back to Table of contents][back-to-index]
 
-[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
+[back-to-index]: https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/documentation.md
 
 [symfony-documenttype]: http://github.com/doctrine/DoctrineMongoDBBundle/blob/master/Form/Type/DocumentType.php
 [symfony-entitytype]: http://symfony.com/doc/current/reference/forms/types/entity.html

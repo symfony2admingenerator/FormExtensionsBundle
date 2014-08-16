@@ -3,7 +3,7 @@
 
 [go back to Table of contents][back-to-index]
 
-[back-to-index]: https://github.com/avocode/FormExtensions/blob/master/Resources/doc/documentation.md
+[back-to-index]: https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/documentation.md
 
 [jquery-minicolors]: http://labs.abeautifulsite.net/jquery-miniColors/
 [symfony-texttype]: http://symfony.com/doc/current/reference/forms/types/text.html
