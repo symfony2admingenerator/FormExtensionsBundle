@@ -49,7 +49,7 @@ class Select2Type extends AbstractType
             $view->vars['block_prefixes'],
             array_search($this->getName(), $view->vars['block_prefixes']),
             0,
-            'afe_select2'
+            's2a_select2'
         );
     }
 
@@ -59,7 +59,7 @@ class Select2Type extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $defaults = array(
-            'placeholder'        => 'Select a value',
+            'placeholder'        => '',
             'allowClear'         => false,
             'minimumInputLength' => 0,
             'width'              => 'element',
