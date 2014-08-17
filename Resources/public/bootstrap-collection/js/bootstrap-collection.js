@@ -156,7 +156,7 @@
                 var that = this;
                 $new_item.find('.delete').click(function(){
                 	var deletingEvent = $.Event('deleting');
-                    var $targetedElement = $(this).closest('.collection-item');
+                    var $targetedElement = $(this).closest('.collection-item-wrapper');
                     that.$element.trigger(deletingEvent, [ $targetedElement ]);
                     if (!deletingEvent.isDefaultPrevented()) {
                     	that._onDelete(this);
@@ -173,11 +173,13 @@
             if (this.options.sortable) {
                 this._onChange();
             }
+
+            return $new_item;
         },
                 
         _onDelete: function(button) {
             if (confirm(this.options.trans.confirm)) {
-                $(button).closest('.collection-item').remove();
+                $(button).closest('.collection-item-wrapper').remove();
                 
                 if (this.options.sortable) {
                     this._onChange();
@@ -205,7 +207,7 @@
         _onDeleteAll: function() {
             if (confirm(this.options.trans.confirm_batch)) {
                 $('.'+ this.element.id +'_actions > .btn-toggle > input[name="delete"]:checked').each(function(){
-                      $(this).closest('.collection-item').remove();
+                      $(this).closest('.collection-item-wrapper').remove();
                 });
 
                 if (this.options.sortable) {
@@ -214,8 +216,23 @@
 
                 this.$toggleAll.prop('checked', false);
             }
+        },
+
+        _clear: function() {
+            this.$element.find('.collection > .collection-item-wrapper').remove();
+        },
+
+        add: function() {
+            if (this.options.allow_add) {
+                return this._onAdd();
+            }
+        },
+
+        clear: function() {
+            if (this.options.allow_delete) {
+                this._clear();
+            }
         }
-        
     };
 
     // You don't need to change something below:
