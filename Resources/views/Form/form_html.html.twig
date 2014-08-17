@@ -89,17 +89,15 @@
     </td>
 {% else %}
     <td class="collection-item-simple">
-        <div class="form-horizontal">
-            {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
-            <div class="control-group">
-                <label class="control-label">{{ new_label|trans({}, translation_domain) }}</label>
-                <div class="controls">
-                    {{ form_widget(item) }}
-                </div>
-                <span class="help-inline">
-                    {{ form_errors(item) }}
-                </span>
+        {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
+        <div class="control-group">
+            <label class="control-label">{{ new_label|trans({}, translation_domain) }}</label>
+            <div class="controls">
+                {{ form_widget(item) }}
             </div>
+            <span class="help-inline">
+                {{ form_errors(item) }}
+            </span>
         </div>
     </td>
 {% endif %}
