@@ -120,9 +120,9 @@ class SingleUploadType extends AbstractType
      * @param $file
      * @return bool
      */
-    public function _doesFileExist($file) {
-        if(is_null($file)) return false;
-        return file_exists($file->getPathName());
+    public function _doesFileExist($file)
+    {
+        return is_null($file) ? false : file_exists($file->getPathName()) && !is_dir($file->getPathName());
     }
 
     /**
