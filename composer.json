@@ -23,10 +23,11 @@
         "components/jquery": "1.9.1",
         "components/jqueryui": "1.11.0",
         "components/bootstrap": "~3.0",
-        "components/font-awesome": "~4.0"
+        "components/font-awesome": "~4.0",
+        "symfony2admingenerator/form-bundle": "@stable"
     },
     "suggest": {
-        "symfony2admingenerator/admingenerator-generator-bundle": "The missing symfony2 admin generator",
+        "symfony2admingenerator/generator-bundle": "The missing symfony2 admin generator",
         "liip/imagine-bundle": "Apply filters on preview images",
         "vich/uploader-bundle": "(>= 0.10.0) Bundle to ease file uploads with ORM entities and ODM documents"
     },
