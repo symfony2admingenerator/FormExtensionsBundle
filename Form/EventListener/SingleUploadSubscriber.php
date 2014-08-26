@@ -6,6 +6,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\ResolvedFormTypeInterface;
+use Vich\UploaderBundle\Event\Events;
 
 /**
  * @author Piotr Gołębiewski <loostro@gmail.com>
@@ -22,10 +23,10 @@ class SingleUploadSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
+            FormEvents::PRE_SET_DATA => array('preSetData', 0),
             FormEvents::PRE_SUBMIT => array('preSubmit', 0),
             FormEvents::SUBMIT => array('onSubmit', 0),
-            FormEvents::POST_SUBMIT => array('postSubmit', 0),
-            FormEvents::PRE_SET_DATA => array('preSetData', 0),
+            FormEvents::POST_SUBMIT => array('postSubmit', 0)
         );
     }
     

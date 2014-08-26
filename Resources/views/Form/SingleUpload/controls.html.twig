@@ -5,7 +5,18 @@
             <span> {{ 's2a_single_upload.button.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
         </button>
     </div>
-{% if deleteable is not empty %}
+{% if downloadable %}
+    <div class="btn-wrapper">
+        {% set object = form.parent.vars.value %}
+        {% set field = form.vars.name %}
+        {% set src = image_asset(object, field) %}
+        <a href="{{ src|raw }}" class="btn btn-info download" {% if form.vars.data|default is empty %}style="display: none;"{% endif %}>
+            <i class="fa fa-download"></i> {{ 's2a_collection_upload.download'|trans({}, 'AdmingeneratorFormExtensions') }}
+        </a>
+    </div>
+{% endif %}
+
+{% if deleteable %}
     <div class="btn-wrapper">
         <button type="button" class="btn btn-danger delete" style="display: none;">
             <i class="fa fa-trash-o"></i>

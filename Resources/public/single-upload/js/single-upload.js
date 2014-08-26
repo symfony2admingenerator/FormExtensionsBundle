@@ -34,6 +34,7 @@
             isEmpty:          true,
             nameable:         false,
             deleteable:       false,
+            downloadable:     true, 
             widget_name:      null,
             filetypes:  {
                 'audio':            "Audio",
@@ -77,20 +78,27 @@
             this.$addButton       = this.$widgetContainer.find('.singleupload-buttonbar .add');
             this.$replaceButton   = this.$widgetContainer.find('.singleupload-buttonbar .replace');
             this.$cancelButton    = this.$widgetContainer.find('.singleupload-buttonbar .cancel');
+            this.$downloadButton  = this.$widgetContainer.find('.singleupload-buttonbar .download');
             this.$deleteButton    = this.$widgetContainer.find('.singleupload-buttonbar .delete');
                         
-            // Set isDeletable
+            // Set isDeletable and isDownloadable
             this.isDeletable = (!this.options.isEmpty && this.options.deleteable);
+            this.isDownloadable = (!this.options.isEmpty && this.options.downloadable);
             
             // Add deletable behaviour
             if (this.options.deleteable) {
                 this.$deleteFlag = $('#'+this.element.id+'_delete');
             }
             
+            // Show download button
+            if (this.isDownloadable) {
+                this.$downloadButton.show();
+            }
+            
             // Show delete button
             if (this.isDeletable) {
                 this.$deleteButton.show();
-            }            
+            }
             
             // Make sure upload input is empty (prevent cached form data)
             this._resetInput();
@@ -129,6 +137,13 @@
                 this.$replaceButton.show();
             }
               
+            // hide download button
+            if (this.isDownloadable) {
+                this.$downloadButton.addClass('disabled').hide(
+                  'slide', { direction: 'right' }, 'slow'
+                );
+            }
+              
             // hide delete button
             if (this.isDeletable) {
                 this.$deleteButton.addClass('disabled').hide(
@@ -152,6 +167,13 @@
                 // show add button/hide replace button
                 this.$replaceButton.hide();
                 this.$addButton.show();
+            }
+              
+            // show download button
+            if (this.isDownloadable && !this.isEmpty) {
+                this.$downloadButton.removeClass('disabled').show(
+                    'slide', { direction: 'right' }, 'slow'
+                );
             }
             
             // show delete button

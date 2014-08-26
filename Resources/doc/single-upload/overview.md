@@ -126,6 +126,7 @@ class User
         return $this->getWebPath();
     }
 }
+?>
 ```
 
 > **Note:** The name the second method must be `get FIELD WebPath`, in this example 
@@ -162,6 +163,12 @@ If specified, will set this property to `null` on delete action.
 > **Note:** The file will not be physically removed, unless you customize the 
 setter. Hovever if you're useing VichUploaderBundle with `vich_uploader.namer_uniqid` 
 namer then the file will be overwriten upon uploading another one. 
+
+#### downloadable
+
+**type:** `boolean` **default:** `true`
+
+If true, renders download button.
 
 #### maxWidth
 

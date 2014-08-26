@@ -39,12 +39,14 @@ class SingleUploadType extends AbstractType
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $data = array_key_exists('data', $view->vars) ? $view->vars['data'] : null;
+        $view->vars['data'] = $this->_is_file($data) ? $data : null;
 
         $view->vars = array_merge(
             $view->vars,
             array(
                 'nameable'        => $options['nameable'],
                 'deleteable'      => $options['deleteable'],
+                'downloadable'    => $options['downloadable'],
                 'minWidth'        => $options['minWidth'],
                 'minHeight'       => $options['minHeight'],
                 'maxWidth'        => $options['maxWidth'],
@@ -71,6 +73,7 @@ class SingleUploadType extends AbstractType
         $resolver->setDefaults(array(
             'nameable'          => false,
             'deleteable'        => false,
+            'downloadable'      => true,
             'maxWidth'          => 320,
             'maxHeight'         => 180,
             'minWidth'          => 16,
@@ -92,6 +95,7 @@ class SingleUploadType extends AbstractType
         $resolver->setAllowedTypes(array(
             'nameable'          => array('string', 'bool'),
             'deleteable'        => array('string', 'bool'),
+            'downloadable'      => array('bool'),
             'maxWidth'          => array('integer'),
             'maxHeight'         => array('integer'),
             'minWidth'          => array('integer'),
