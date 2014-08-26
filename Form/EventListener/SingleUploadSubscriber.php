@@ -35,7 +35,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         $obj = $event->getData();
         
         //can be null if prototype in collection
-        if($obj == null) {
+        if ($obj == null) {
             return;
         }
         
@@ -110,11 +110,14 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                     // remove file
                     $data->$setterPath(null);
                 }
-                if(!array_key_exists('delete', $config) || $config['delete'] == false){
+
+                if (!array_key_exists('delete', $config) || $config['delete'] == false) {
                     $setter = 'set'.ucfirst($field);
                     $getter = 'get'.ucfirst($field);
-                    if($data->$getter() === null)
+
+                    if ($data->$getter() === null) {
                         $data->$setter($this->files[$field]);
+                    }
                 }
             }
 
@@ -150,8 +153,8 @@ class SingleUploadSubscriber implements EventSubscriberInterface
     
     private function isFieldSingleUpload(ResolvedFormTypeInterface $formTypeInterface = null)
     {
-        if($formTypeInterface == null) return false;
-        if($formTypeInterface->getName() == 's2a_single_upload') return true;
+        if ($formTypeInterface == null) return false;
+        if ($formTypeInterface->getName() == 's2a_single_upload') return true;
 
         return $this->isFieldSingleUpload($formTypeInterface->getParent());
     }

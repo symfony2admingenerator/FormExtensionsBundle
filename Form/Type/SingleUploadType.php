@@ -39,7 +39,6 @@ class SingleUploadType extends AbstractType
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $data = array_key_exists('data', $view->vars) ? $view->vars['data'] : null;
-        $view->vars['data'] = $this->_is_file($data) ? $data : null;
 
         $view->vars = array_merge(
             $view->vars,
@@ -56,6 +55,7 @@ class SingleUploadType extends AbstractType
                 'fileType'        => $this->_checkFileType($view->vars['data']),
                 'novalidate'      => $options['novalidate'],
                 'multipart'       => $options['multipart'],
+                'is_file'         => $this->_is_file($view->vars['data']),
                 'required'        => $options['required']
             )
         );
