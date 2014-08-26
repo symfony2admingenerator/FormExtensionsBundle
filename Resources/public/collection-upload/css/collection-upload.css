@@ -24,7 +24,7 @@
 }
 
 /* Tool bar actions */
-.fileupload-progressbar{
+.fileupload-progressbar {
 	display:none;
 	width: 25%;
 	float:right;
@@ -119,4 +119,5 @@ tr.sortable-placeholder td {
 /* BS3 fix */
 .fileupload-buttonbar.btn-toolbar {
     margin-left: 0px;
+    margin-bottom: 0px;
 }

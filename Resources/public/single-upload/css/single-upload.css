@@ -35,7 +35,6 @@
     border-top: 1px solid #DDDDDD; 
     border-radius: 0px 0px 8px 8px; 
     padding: 15px;
-    margin-top: -10px;
     margin-left: -5px;
 }
 
@@ -51,7 +50,7 @@
 /* Single upload buttonbar styles */
 .singleupload-buttonbar {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 0px !important;
     background-color: #f5f5f5;
     border-top: 1px solid #e5e5e5;
     padding: 5px 10px;
