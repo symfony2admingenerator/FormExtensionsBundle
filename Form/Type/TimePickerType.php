@@ -27,21 +27,16 @@ class TimePickerType extends AbstractType
             'useSeconds'    => $options['with_seconds'],
         ));
 
-        // widget requires value in format d-M-y H:i:s
-        if ($options['with_minutes'] && $options['with_seconds']) {            
-            $widgetValue = '01-01-0000 ' . $view->vars['value'];
+        if ($options['with_minutes'] && $options['with_seconds']) {
             $widgetFormat = 'HH:mm:ss';
         } else if ($options['with_minutes']) {            
-            $widgetValue = '01-01-0000 ' . $view->vars['value'] . ':00';
             $widgetFormat = 'HH:mm';
         } else {
-            $widgetValue = '01-01-0000 ' . $view->vars['value'] . ':00:00';
             $widgetFormat = 'HH';
         }
 
         if ($view->vars['value']) {
-            // the d-M-y part will always be 01-01-0000
-            $view->vars['widget_value'] = $widgetValue;
+            $view->vars['widget_value'] = $view->vars['value'];
         }
         
         $view->vars['widget_format'] = $widgetFormat;

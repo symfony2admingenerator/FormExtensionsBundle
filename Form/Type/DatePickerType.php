@@ -25,15 +25,8 @@ class DatePickerType extends AbstractType
             'pickTime'  => false
         ));
 
-
         if ($view->vars['value']) {
-            // widget requires value in format d-M-y H:i:s
-            $widgetValue = implode('-', array_reverse(
-                explode('-', $view->vars['value'])
-            )) . ' 00:00:00';
-
-            // the H:i:s part will always be 00:00:00
-            $view->vars['widget_value'] = $widgetValue;
+            $view->vars['widget_value'] = $view->vars['value'];
         }
 
         $view->vars['widget_format'] = 'YYYY-MM-DD';
