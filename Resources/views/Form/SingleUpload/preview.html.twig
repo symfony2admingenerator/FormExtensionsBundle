@@ -1,34 +1,32 @@
 {% import "AdmingeneratorFormExtensionsBundle:Form/SingleUpload:macros.html.twig" as macros %}
 
-{% if form.vars.is_file and form.vars.data is not null %}
-    {% set file = form.vars.data %}
-    {% set object = form.parent.vars.value %}
-    {% set field = form.vars.name %}
-    <div class="{{ id ~ '_preview_image' }} download active">
-    {% if file|default is not empty %}
-        {% if previewImages and fileType == 'image' %}
-            {% set src = image_asset(object, field)|image_filter(previewFilter) %}
-            <img class="img-polaroid"
-                 src="{{ src }}"
-                 style="{{- 'max-width:'  ~ maxWidth   ~'px;' -}}
-                        {{- 'max-height:' ~ maxHeight  ~'px;' -}}
-                        {{- 'min-width:'  ~ minWidth   ~'px;' -}}
-                        {{- 'min-height:' ~ minHeight  ~'px;' -}}" />
-        {% else %}
-            <div class="fileicon {{ fileType }}">{{ ('s2a_single_upload.type.'~fileType)|trans({}, 'AdmingeneratorFormExtensions')|raw }}</div>
-        {% endif %}
-        {% if nameable is not empty %}
-            <div class="row-fluid">
-                {% set nName = form.parent.vars.full_name ~ '_'~name~'[name]' %}
-                {% set nValue = attribute(object, nameable) %}
-                <input type="text" class="nameable" name="{{ nName }}" value="{{ nValue }}" />
-            </div>
-        {% else %}
-            <div class="row-fluid">{{ file.filename }}</div>
-        {% endif %}
-        {% if fileType != "inexistent" %}
-            <div class="row-fluid">{{ macros.bytesToSize(file.size) }}</div>
-        {% endif %}
+{% set file = form.vars.data %}
+{% set object = form.parent.vars.value %}
+{% set field = form.vars.name %}
+<div class="{{ id ~ '_preview_image' }} download active">
+{% if file|default is not empty %}
+    {% if previewImages and fileType == 'image' %}
+        {% set src = image_asset(object, field)|image_filter(previewFilter) %}
+        <img class="img-polaroid"
+             src="{{ src }}"
+             style="{{- 'max-width:'  ~ maxWidth   ~'px;' -}}
+                    {{- 'max-height:' ~ maxHeight  ~'px;' -}}
+                    {{- 'min-width:'  ~ minWidth   ~'px;' -}}
+                    {{- 'min-height:' ~ minHeight  ~'px;' -}}" />
+    {% else %}
+        <div class="fileicon {{ fileType }}">{{ ('s2a_single_upload.type.'~fileType)|trans({}, 'AdmingeneratorFormExtensions')|raw }}</div>
     {% endif %}
-    </div>
+    {% if nameable is not empty %}
+        <div class="row-fluid">
+            {% set nName = form.parent.vars.full_name ~ '_'~name~'[name]' %}
+            {% set nValue = attribute(object, nameable) %}
+            <input type="text" class="nameable" name="{{ nName }}" value="{{ nValue }}" />
+        </div>
+    {% else %}
+        <div class="row-fluid">{{ file.filename }}</div>
+    {% endif %}
+    {% if fileType != "inexistent" %}
+        <div class="row-fluid">{{ macros.bytesToSize(file.size) }}</div>
+    {% endif %}
 {% endif %}
+</div>
