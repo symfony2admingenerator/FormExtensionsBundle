@@ -345,7 +345,7 @@
 {% block s2a_datetime_family_js_prototype_template %}
 {% autoescape false %}
 {% spaceless %}
-    var $widget = $($field.attr('id')+'_widget');
+    var $widget = $('#'+$field.attr('id')+'_widget');
     var config = {{ config|merge({
         'language': app.request.locale
     })|e4js|raw }};
