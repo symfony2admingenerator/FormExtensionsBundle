@@ -1,0 +1,11 @@
+.has-success .form-control.select2-container > a {
+	border-color: #3c763d;
+}
+
+.has-warning .form-control.select2-container > a {
+	border-color: #8a6d3b;
+}
+
+.has-error .form-control.select2-container > a {
+	border-color: #a94442;
+}
