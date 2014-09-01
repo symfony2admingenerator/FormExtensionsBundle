@@ -81,7 +81,18 @@ class User
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $avatar_path;
+
+    protected function setAvatar($file)
+    {
+        $this->avatar = $file;
+        // IMPORTANT NOTE!
+        // Since "avatar" is not persistent, you HAVE TO change any other field
+        // (preferably updatedAt) in order to trigger the lifecycle events that
+        // save the file!
+        $this->updatedAt = new \DateTime("now");
+    }
 }
+?>
 ```
 
 > **Note:** In this example we use Doctrine ORM, replace it's mappings with your ORM.
