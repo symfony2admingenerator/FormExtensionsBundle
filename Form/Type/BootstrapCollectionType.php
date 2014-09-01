@@ -2,7 +2,9 @@
 
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
+use Admingenerator\FormExtensionsBundle\Form\EventListener\ReorderCollectionSubscriber;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -19,6 +21,13 @@ class BootstrapCollectionType extends AbstractType
     public function __construct($widget)
     {
         $this->widget = $widget;
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->addEventSubscriber(new ReorderCollectionSubscriber());
+
+        parent::buildForm($builder, $options);
     }
 
     /**
@@ -39,7 +48,6 @@ class BootstrapCollectionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'delete_empty'      => true,
             'sortable'          => false,
             'sortable_field'    => 'position',
             'new_label'         => 's2a_bootstrap_collection.new_label',
@@ -51,10 +59,6 @@ class BootstrapCollectionType extends AbstractType
             'sortable_field'  => array('string'),
             'new_label'       => array('string'),
             'fieldset_class'  => array('string'),
-        ));
-
-        $resolver->setAllowedValues(array(
-            'delete_empty'      => true,
         ));
     }
 
