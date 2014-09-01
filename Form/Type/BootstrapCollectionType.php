@@ -39,6 +39,7 @@ class BootstrapCollectionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'delete_empty'      => true,
             'sortable'          => false,
             'sortable_field'    => 'position',
             'new_label'         => 's2a_bootstrap_collection.new_label',
@@ -50,6 +51,10 @@ class BootstrapCollectionType extends AbstractType
             'sortable_field'  => array('string'),
             'new_label'       => array('string'),
             'fieldset_class'  => array('string'),
+        ));
+
+        $resolver->setAllowedValues(array(
+            'delete_empty'      => true,
         ));
     }
 
