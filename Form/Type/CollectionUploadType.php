@@ -3,7 +3,6 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Admingenerator\FormExtensionsBundle\Form\EventListener\CollectionUploadSubscriber;
-use Admingenerator\FormExtensionsBundle\Form\EventListener\ReorderCollectionSubscriber;
 use Admingenerator\FormExtensionsBundle\Storage\FileStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
@@ -43,8 +42,6 @@ class CollectionUploadType extends AbstractType
             $options,
             $this->storage
         ));
-        
-        $builder->addEventSubscriber(new ReorderCollectionSubscriber());
 
         if (!$builder->hasAttribute('prototype')) {
             $prototype = $builder->create($options['prototype_name'], $options['type'], array_replace(array(
