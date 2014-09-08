@@ -36,5 +36,10 @@
             "Admingenerator\\FormExtensionsBundle": ""
         }
     },
-    "target-dir": "Admingenerator/FormExtensionsBundle"
+    "target-dir": "Admingenerator/FormExtensionsBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
 }
