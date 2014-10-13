@@ -31,12 +31,12 @@
             <div class="btn-toolbar">
                 {% if not autoUpload and uploadRouteName is not empty %}
                 <button class="btn btn-primary start">
-                    <i class="fa fa-upload"></i>
+                    <i class="fa fa-fw fa-upload"></i>
                     <span> {{ 's2a_collection_upload.start'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                 </button>
                 {% endif %}
                 <button class="btn btn-warning cancel"{% if not autoUpload and uploadRouteName is empty %}style="visibility:hidden;"{% endif %}>
-                    <i class="fa fa-ban"></i>
+                    <i class="fa fa-fw fa-ban"></i>
                     <span> {{ 's2a_collection_upload.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                 </button>
             </div>
