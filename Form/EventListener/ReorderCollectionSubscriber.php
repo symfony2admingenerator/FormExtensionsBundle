@@ -21,8 +21,6 @@ class ReorderCollectionSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Flattens payments of the same source.
-     * 
      * @param FormEvent $event
      */
     public function preSubmit(FormEvent $event)
@@ -30,6 +28,8 @@ class ReorderCollectionSubscriber implements EventSubscriberInterface
         $data = $event->getData();
         $form = $event->getForm();
 
-        $event->setData(array_values($data));
+        if (is_array($data)) {
+            $event->setData(array_values($data));
+        }
     }
 }

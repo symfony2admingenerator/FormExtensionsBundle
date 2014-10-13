@@ -30,7 +30,7 @@ class LocalFileStorage implements FileStorageInterface
     public function __construct(SessionInterface $session, $tempDir = null)
     {
         $this->session = $session;
-        $this->temporaryDirectory = $tempDir ?: sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'ave' . DIRECTORY_SEPARATOR . 'collectionupload';
+        $this->temporaryDirectory = $tempDir ?: sys_get_temp_dir() . DIRECTORY_SEPARATOR . 's2a' . DIRECTORY_SEPARATOR . 'collectionupload';
     }
 
     /**
@@ -86,12 +86,12 @@ class LocalFileStorage implements FileStorageInterface
         $file = null;
         if (file_exists($filePath)) {
             $file = new UploadedFile(
-                    $filePath,
-                    $fileDescriptor->originalName,
-                    $fileDescriptor->type,
-                    $fileDescriptor->size,
-                    null,
-                    true
+                $filePath,
+                $fileDescriptor->originalName,
+                $fileDescriptor->type,
+                $fileDescriptor->size,
+                null,
+                true
             );
         }
         unset($files[$fileId]);

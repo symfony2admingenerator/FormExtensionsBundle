@@ -2,6 +2,12 @@
 {% raw %}
 {% for (var i=0, file; file=o.files[i]; i++) { %}
 {% endraw %}
+
+{% set editables = {} %}
+{% for field in editable %}
+    {% set editables = editables|merge({ (field): form_row(prototype[field],{'value': '__value__'}) }) %}
+{% endfor %}
+
     <tr class="template-download fade">
         {% raw %}
         {% if (file.error) { %}
@@ -31,6 +37,11 @@
                 <td class="form">
                     <input type="hidden" name="{{ full_name }}" value="{% raw %}{%=file.uid%}{% endraw %}" />
                     <input type="checkbox" name="{{ original_full_name ~ '[delete_uploads][]'}}" value="{% raw %}{%=file.uid%}{% endraw %}" class="remove"/>
+                    {% if editable %}
+                    {% for field,row in editables %}
+                        {{ row|replace({'__value__': '', '[__name__]': '[editable][{%=file.uid%}]', '__name__': 'editable_{%=file.uid%}'})|raw }}
+                    {% endfor %}
+                    {% endif %}
                 </td>
             {% raw %}
             {% } else { %}
@@ -64,8 +75,8 @@
                     {{ form_row(prototype[sortable_field],{'value': '{%=file.'~sortable_field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
                 {% endif %}
                 {% if editable %}
-                {% for field in editable %}
-                    {{ form_row(prototype[field],{'value': '{%=file.'~field~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
+                {% for field,row in editables %}
+                    {{ row|replace({'__value__': '{%=file.'~field~'%}', '__name__': '{%=file.count%}'})|raw }}
                 {% endfor %}
                 {% endif %}
                 </td>
@@ -89,16 +100,18 @@
                 {% raw %}
                 {% } else { %}
                 {% endraw %}
+                    {% if displayDownloadButton %}
                     <a class="btn btn-info" target="_blank" {% raw %}href="{%=file.url%}"{% endraw %}>
                         <i class="fa fa-download"></i>
                         <span> {{ 's2a_collection_upload.download'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                     </a>
+                    {% endif %}
                     {% if allow_delete %}
                     <button class="btn btn-danger delete">
                         <i class="fa fa-trash-o"></i>
                         <span> {{ 's2a_collection_upload.delete'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                     </button>
-                    <span class="btn btn-toggle disabled input-append">
+                    <span class="btn btn-toggle btn-link input-append">
                         <input class="toggle" type="checkbox" name="delete" value="1">
                     </span>
                     {% endif %}

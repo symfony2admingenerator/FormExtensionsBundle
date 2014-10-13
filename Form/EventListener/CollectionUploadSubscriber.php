@@ -53,6 +53,11 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     protected $uploads;
 
     /**
+     * @var array Captured editable
+     */
+    protected $editable;
+
+    /**
      * @var array Submitted primary keys
      */
     protected $submitted_pk;
@@ -86,6 +91,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
         $this->nameable         = $options['nameable'];
         $this->nameable_field   = $options['nameable_field'];
         $this->uploads          = array();
+        $this->editable         = array();
         $this->submitted_pk     = array();
         $this->allow_add        = $options['allow_add'];
         $this->allow_delete     = $options['allow_delete'];
@@ -114,6 +120,13 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
             unset($data['uploads']);
         }
 
+        if (array_key_exists('editable', $data)) {
+            // capture editable and store them for onSubmit event
+            $this->editable = $data['editable'];
+            // unset additional form data to prevent errors
+            unset($data['editable']);
+        }
+
         if (array_key_exists('delete_uploads', $data)) {
             foreach ($data['delete_uploads'] as $fileId) {
                 $file = $this->storage->getFile($fileId);
@@ -128,7 +141,9 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
 
         // save submitted primary keys for onSubmit event
         foreach ($data as $file) {
-            $this->submitted_pk[] = $file[$this->primary_key];
+            if (is_array($file) && array_key_exists($this->primary_key, $file)) {
+                $this->submitted_pk[] = $file[$this->primary_key];
+            }
         }
 
         $event->setData($data);
@@ -157,6 +172,8 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
             // create file entites for each file
             foreach ($this->uploads as $upload) {
                 if (!is_object($upload) && !is_null($this->storage)) {
+                    // read submitted editable
+                    $editable = $this->editable[$upload];
                     $upload = $this->storage->getFile($upload);
                 }
 
@@ -171,6 +188,11 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
 
                 $file->setFile($upload);
                 $file->setParent($data);
+
+                foreach($editable as $editableField => $editableValue) {
+                    $setEditable = 'set'.ucfirst($editableField);
+                    $file->$setEditable($editableValue);
+                }
 
                 // if nameable field specified - set normalized name
                 if ($this->nameable && $this->nameable_field) {

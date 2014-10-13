@@ -29,6 +29,7 @@
             click: function(e) {
                 e.preventDefault();
                 filesList.find('button.cancel').click();
+                filesList.find('button.remove').click();
                 that._cleanInputsFile();
             }
         });
@@ -65,8 +66,8 @@
     		data.context.find('button.remove').on('click', function(e){
             	e.preventDefault();
             	data.context
-            			.find('.form input[type=checkbox].remove').prop('checked', true).end()
-            			.hide();
+        			.find('.form input[type=checkbox].remove').prop('checked', true).end()
+        			.hide();
             });
     	}
     },
@@ -167,10 +168,11 @@
                 url:                      this.options.urlUpload,
                 uploadOnSubmit:	          !this.options.autoUpload && !this.options.urlUpload,
                 progressall: function(e, data) {
-                    if (data.total != 0) {
-                        var progress = parseInt(data.loaded / data.total * 100, 10);
-                        that.$progressBarContainer.find('.bar').css('width', progress + '%');
-                    }
+                    // Not yet implemented
+                    // if (data.total != 0) {
+                    //     var progress = parseInt(data.loaded / data.total * 100, 10);
+                    //     that.$progressBarContainer.find('.bar').css('width', progress + '%');
+                    // }
                 },
                 start: function(e) {
                 	that.$progressBarContainer.show();
