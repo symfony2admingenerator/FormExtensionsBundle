@@ -106,6 +106,7 @@
     {% set original_full_name = full_name %}
     {% set full_name = full_name ~ '[uploads][]' %}
     <div id="{{ id ~ '_widget_container' }}">
+        {{ form_errors(form) }}
         {% if allow_add or allow_delete %}
         <div class="btn-toolbar form-actions form-actions-condensed fileupload-buttonbar">
             {% if allow_add %}
