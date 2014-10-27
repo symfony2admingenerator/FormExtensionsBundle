@@ -1,7 +1,7 @@
 FormExtensions
 ==============
 
-[![knpbundles.com](http://knpbundles.com/symfony2admingenerator/FormExtensionsBundle/badge)](http://knpbundles.com/symfony2admingenerator/FormExtensions)
+[![knpbundles.com](http://knpbundles.com/symfony2admingenerator/FormExtensionsBundle/badge)](http://knpbundles.com/symfony2admingenerator/FormExtensionsBundle)
 [![Latest Stable Version](https://poser.pugx.org/symfony2admingenerator/form-extensions-bundle/v/stable.png)](https://packagist.org/packages/symfony2admingenerator/form-extensions-bundle)
 [![Total Downloads](https://poser.pugx.org/symfony2admingenerator/form-extensions-bundle/downloads.png)](https://packagist.org/packages/symfony2admingenerator/form-extensions-bundle)
 
