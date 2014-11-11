@@ -262,11 +262,11 @@
 {% block s2a_datetime_family_prototype %}
 {% spaceless %}
 <input id="{{ id }}" name="{{ full_name }}" type="hidden" value="{{ value }}" />
-<div id="{{ id ~ '_widget' }}" class="input-group date">
+<div id="{{ id ~ '_widget' }}" class="s2a-date">
     <input id="{{ id ~ '_display' }}" type="text" class="form-control" value="{{ value }}" />
-    <span class="input-group-addon">
-        <span class="{{ widgetIcon }}"></span>
-    </span>
+    <div class="s2a-date-btn">
+        <i class="{{ widgetIcon }}"></i>
+    </div>
 </div>
 {% endspaceless %}
 {% endblock s2a_datetime_family_prototype %}
