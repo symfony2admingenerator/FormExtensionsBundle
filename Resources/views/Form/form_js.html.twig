@@ -353,11 +353,14 @@
     $widget.datetimepicker(config);
 {% if widget_value is defined %}
     $widget.data("DateTimePicker").setDate(moment("{{ widget_value }}", "{{ widget_format }}"));
+{% else %}
+    $widget.data("DateTimePicker").setValue(null);    
 {% endif %}
 
     var copyValue = function() {
         var date = $widget.data("DateTimePicker").getDate();
-        $field.val(moment(date).format("{{ widget_format }}"));
+        if(date == null) $field.val('')
+        else $field.val(moment(date).format("{{ widget_format }}"));
     };
 
     $widget.on("dp.change", copyValue);
