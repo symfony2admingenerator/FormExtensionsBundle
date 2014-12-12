@@ -5,13 +5,17 @@
   position: relative;
 }
 .s2a-date > input {
-  padding-right: 25px;
+  padding-right: 35px;
 }
-.s2a-date-btn {
+.s2a-date-btn,
+.s2a-clear-btn {
   position: absolute;
   top: 50%;
   right: 8px;
   margin-top: -10px;
+}
+.s2a-clear-btn {
+  right: 25px;
 }
 
 /*!
