@@ -262,13 +262,32 @@
 {% spaceless %}
 <input id="{{ id }}" name="{{ full_name }}" type="hidden" value="{{ value }}" />
 <div id="{{ id ~ '_widget' }}" class="s2a-date">
-    <input id="{{ id ~ '_display' }}" type="text" class="form-control" value="{{ value }}" />
+    <input {{ s2a_datetime_family_widget_attributes }} />
     <div class="s2a-date-btn">
         <i class="{{ widgetIcon }}"></i>
     </div>
 </div>
 {% endspaceless %}
 {% endblock s2a_datetime_family_prototype %}
+
+{% block s2a_datetime_family_widget_attributes -%}
+    id="{{ id ~ '_display' }}" type="text" class="form-control" value="{{ value }}" 
+    {%- if read_only %} readonly="readonly"{% endif -%}
+    {%- if disabled %} disabled="disabled"{% endif -%}
+    {%- if required %} required="required"{% endif -%}
+    {%- for attrname, attrvalue in attr -%}
+        {{- " " -}}
+        {%- if attrname in ['id', 'type', 'class', 'value'] -%}
+            {# ignore these attributes #}
+        {%- elseif attrname in ['placeholder', 'title'] -%}
+            {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
+        {%- elseif attrvalue is sameas(true) -%}
+            {{- attrname }}="{{ attrname }}"
+        {%- elseif attrvalue is not sameas(false) -%}
+            {{- attrname }}="{{ attrvalue }}"
+        {%- endif -%}
+    {%- endfor -%}
+{%- endblock s2a_datetime_family_widget_attributes %}
 
 {% block s2a_datetime_picker_widget %}
 {% spaceless %}
