@@ -363,7 +363,12 @@
         else $field.val(moment(date).format("{{ widget_format }}"));
     };
 
-    $widget.on("dp.change", copyValue);
+    $widget.on("dp.change", copyValue);  
+    $widget.find('a.s2a-clear-btn').on('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $widget.data("DateTimePicker").setValue(null);
+    });
     $field.closest('form').on('submit', copyValue);
 {% endspaceless %}
 {% endautoescape %}
