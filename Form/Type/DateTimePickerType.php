@@ -35,7 +35,7 @@ class DateTimePickerType extends AbstractType
 
         if ($view->vars['value']) {
             $value = new \DateTime($view->vars['value']);
-            $view->vars['widget_value'] = $value->format('y-m-d\TH:i:sP');
+            $view->vars['widget_value'] = $value->format('Y-m-d\TH:i:sP');
         }
 
         $view->vars['widget_format'] = 'YYYY-MM-DDTHH:mm:ssZ';
