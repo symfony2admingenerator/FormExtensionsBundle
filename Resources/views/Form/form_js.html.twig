@@ -368,6 +368,7 @@
         e.preventDefault();
         e.stopPropagation();
         $widget.data("DateTimePicker").setValue(null);
+        $widget.trigger("dp.change");
     });
     $field.closest('form').on('submit', copyValue);
 {% endspaceless %}
