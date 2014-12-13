@@ -56,12 +56,10 @@ class ImageAssetsExtension extends \Twig_Extension
         $params = func_get_args();
         
         if ('vich_uploader' === $this->getUploadManager()) {
+            // Note: requires v0.13.0 or higher
             $ext = new \Vich\UploaderBundle\Twig\Extension\UploaderExtension(
                 $this->container->get('vich_uploader.templating.helper.uploader_helper')  
             );
-            
-            // Overwrite the fieldname with the needed mapping by Vich
-            $params[1] = $this->container->get('vich_uploader.property_mapping_factory')->fromField($object, $field)->getMappingName();
             
             return call_user_func_array(array($ext, "asset"), $params);
         }
