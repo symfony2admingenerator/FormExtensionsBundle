@@ -20,6 +20,7 @@ class DatePickerType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
+        $view->vars['width'] = $options['width'];
         $view->vars['config'] = array_replace($options['config'], array(
             'pickDate'  => true,
             'pickTime'  => false
@@ -40,6 +41,7 @@ class DatePickerType extends AbstractType
         $resolver->setDefaults(array(
             'widget'    => 'single_text',
             'format'    => 'yyyy-MM-dd',
+            'width'     => null,
             'config'    => array(
                 'pickDate'  => true,
                 'pickTime'  => false,
@@ -53,6 +55,7 @@ class DatePickerType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
+            'width'  => array('null', 'integer'),
             'config' => array('array')
         ));
 

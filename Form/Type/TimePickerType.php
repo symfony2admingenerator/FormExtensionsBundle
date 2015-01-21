@@ -20,6 +20,7 @@ class TimePickerType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
+        $view->vars['width'] = $options['width'];
         $view->vars['config'] = array_replace($options['config'], array(
             'pickDate'      => false,
             'pickTime'      => true,
@@ -50,6 +51,7 @@ class TimePickerType extends AbstractType
     {
         $resolver->setDefaults(array(
             'widget'        => 'single_text',
+            'width'     => null,
             'config'        => array(
                 'pickDate'      => false,
                 'pickTime'      => true,
@@ -63,6 +65,7 @@ class TimePickerType extends AbstractType
         ));
 
         $resolver->setAllowedTypes(array(
+            'width'  => array('null', 'integer'),
             'config' => array('array')
         ));
 
