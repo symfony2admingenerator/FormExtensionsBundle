@@ -334,7 +334,9 @@
 
     {% block choice_js_prototype %}
         {% if not expanded %}
-        $field.selectpicker();
+        if ($field.hasClass("selectpicker")) {
+            $field.selectpicker();
+        }
         {% endif %}
     {% endblock choice_js_prototype %}
     });
