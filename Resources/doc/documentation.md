@@ -48,3 +48,4 @@
 * AutocompleteExtension [documentation](autocomplete-extension/overview.md)
 * HelpMessageExtension [documentation](help-message-extension/overview.md)
 * NovalidateExtension [documentation](novalidate-extension/overview.md)
+* SelectExtension [documentation](select-extension/overview.md)
