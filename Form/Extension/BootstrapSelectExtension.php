@@ -13,7 +13,7 @@ class BootstrapSelectExtension extends AbstractTypeExtension
 {
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if (false === $options['expanded']) {
+        if (false === $options['expanded'] && !array_key_exists('class', $options['attr'])) {
             $view->vars['attr'] = array_merge($view->vars['attr'], array(
                 'class' => 'selectpicker'
             ));
