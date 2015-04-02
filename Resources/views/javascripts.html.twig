@@ -1,4 +1,21 @@
 {% block admingenerator_form_javascripts %}
+    {% if s2a_formextensions_include_jquery %}
+    {% javascripts package='formextensions_js' filter='?uglifyjs2' 
+        output='assetic/js/compiled/admingeneratorformextensions/jquery.min.js'
+        'bundles/admingeneratorformextensions/jquery/js/jquery.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% endif %}
+    
+    {% if s2a_formextensions_include_jqueryui %}
+    {% javascripts package='formextensions_js' filter='?uglifyjs2' 
+        output='assetic/js/compiled/admingeneratorformextensions/jquery-ui.min.js'
+        'bundles/admingeneratorformextensions/jquery-ui/js/jquery-ui.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% endif %}
 
     {% javascripts package='formextensions_js' filter='?uglifyjs2' 
         output='assetic/js/compiled/admingeneratorformextensions/blueimp.jquery-file-upload.min.js'
