@@ -31,6 +31,8 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         $container->setParameter('admingenerator.form.upload_manager', $config['upload_manager']);
         $container->setParameter('admingenerator.form.image_manipulator', $config['image_manipulator']);
         $container->setParameter('admingenerator.form.twig', $config['twig']);
+        $container->setParameter('admingenerator.form.include_jquery', $config['include_jquery']);
+        $container->setParameter('admingenerator.form.include_jqueryui', $config['include_jqueryui']);
 
         $this->loadCollectionUploadListener($config['collection_upload'], $container);
         $this->loadBootstrapCollectionTypes($container);
