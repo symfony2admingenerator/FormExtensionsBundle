@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="admingenerator.form.collection_upload_listener.class">Admingenerator\FormExtensionsBundle\EventListener\CollectionUploadListener</parameter>
     </parameters>
+    
     <services>
         <!-- Form types -->
         <service id="admingenerator.form.extensions.type.bootstrap_collection" class="Admingenerator\FormExtensionsBundle\Form\Type\BootstrapCollectionType" abstract="true" />
@@ -25,6 +26,10 @@
         
         <service id="admingenerator.form.extensions.type.date_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\DatePickerType">
             <tag name="form.type" alias="s2a_date_picker" />
+        </service>
+        
+        <service id="admingenerator.form.extensions.type.google_map" class="Admingenerator\FormExtensionsBundle\Form\Type\GoogleMapType">
+            <tag name="form.type" alias="s2a_google_map" />
         </service>
         
         <service id="admingenerator.form.extensions.type.time_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\TimePickerType">
