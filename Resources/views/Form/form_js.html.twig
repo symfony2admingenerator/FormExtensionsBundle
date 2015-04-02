@@ -442,8 +442,8 @@
     		  'default_lat':          {{ (value is defined and value.lat is defined) ? value.lat|e4js : default_lat|e4js }},
     		  'default_lng':          {{ (value is defined and value.lng is defined) ? value.lng|e4js : default_lng|e4js }},
     		  'default_zoom':         {{ (value is defined and value.lat is defined and value.lng is defined) ? 15|e4js : 5|e4js }},
-    		  'lat_field':            $('#{{ id ~ "." ~ lat_name }}'),
-    		  'lng_field':            $('#{{ id ~ "." ~ lng_name }}'),
+    		  'lat_field':            $('#{{ id ~ "_" ~ lat_name }}'),
+    		  'lng_field':            $('#{{ id ~ "_" ~ lng_name }}'),
     		  'callback':             {{ callback|e4js }}
     		});
     	});
