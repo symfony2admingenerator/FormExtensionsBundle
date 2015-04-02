@@ -44,3 +44,7 @@ s2a_single_upload:
         text-document:    "Dokument<br />Tekstowy"
         unknown:          "Nieznany<br />Typ Pliku"
         video:            Wideo
+        
+s2a_google_map:
+    search:               Wyszukaj
+    current_location:     Obecna lokacja
