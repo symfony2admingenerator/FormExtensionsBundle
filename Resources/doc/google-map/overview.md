@@ -44,6 +44,7 @@ class MyLocation
         );
     }
 }
+?>
 ```
 
 ### Options
@@ -74,13 +75,13 @@ The options for longitude field.
 
 #### lat_name
 
-**type:** `string` **default:** `lat`
+**type:** `string` **default:** `latitude`
 
 The name of the latitude field.
 
 #### lng_name
 
-**type:** `string` **default:** `lng`
+**type:** `string` **default:** `longitude`
 
 The name of the longitude field.
 
