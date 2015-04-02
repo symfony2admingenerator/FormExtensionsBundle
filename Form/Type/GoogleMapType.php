@@ -45,6 +45,7 @@ class GoogleMapType extends AbstractType
             'map_height'     => 300,
             'default_lat'    => 51.5,
             'default_lng'    => -0.1245,
+            'callback'       => null,
         ));
     }
 
@@ -53,12 +54,15 @@ class GoogleMapType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-            $view->vars['lat_name'] = $options['lat_name']; 
-            $view->vars['lng_name'] = $options['lng_name']; 
-            $view->vars['map_width'] = $options['map_width']; 
-            $view->vars['map_height'] = $options['map_height']; 
-            $view->vars['default_lat'] = $options['default_lat']; 
-            $view->vars['default_lng'] = $options['default_lng']; 
+        $view->vars = array_merge($view->vars, array(
+            'lat_name'      => $options['lat_name'],
+            'lng_name'      => $options['lng_name'],
+            'map_width'     => $options['map_width'],
+            'map_height'    => $options['map_height'],
+            'default_lat'   => $options['default_lat'],
+            'default_lng'   => $options['default_lng'],
+            'callback'      => $options['callback'],
+        ));
     }
 
     public function getParent()
