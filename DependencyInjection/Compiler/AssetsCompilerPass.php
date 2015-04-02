@@ -16,6 +16,6 @@ class AssetsCompilerPass implements CompilerPassInterface
         $container->setParameter('twig.globals', array_merge($twigGlobals, array(
             's2a_formextensions_include_jquery'   => $container->getParameter('admingenerator_form_extensions.include_jquery'),
             's2a_formextensions_include_jqueryui' => $container->getParameter('admingenerator_form_extensions.include_jqueryui'),
-        ));
+        )));
     }
 }
