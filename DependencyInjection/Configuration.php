@@ -40,6 +40,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->booleanNode('include_jquery')->defaultFalse()->end()
                 ->booleanNode('include_jqueryui')->defaultFalse()->end()
+                ->booleanNode('include_gmaps')->defaultFalse()->end()
             ->end()
         ;
 
