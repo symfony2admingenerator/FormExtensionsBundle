@@ -11,7 +11,7 @@
  
 ### Description
 
-Use google map to pick longitude and latitude.
+Google map to pick longitude and latitude. Based on [ollietb/OhGoogleMapFormTypeBundle](https://github.com/ollietb/OhGoogleMapFormTypeBundle).
 
 On your model you will have to process the latitude and longitude array:
 
