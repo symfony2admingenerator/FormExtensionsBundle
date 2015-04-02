@@ -1,0 +1,12 @@
+{
+    "name"        : "S2A FormExtensionsBundle",
+    "version"     : "1.0.0",
+    "authors"     : [
+        "Piotr Gołębiewski <loostro@gmail.com>"
+    ],
+    "description" : "Assets for the admingenerator form extensions bundle",
+    "dependencies": {
+        "jquery": "~1",
+        "jquery-ui": "~1"
+    }
+}
