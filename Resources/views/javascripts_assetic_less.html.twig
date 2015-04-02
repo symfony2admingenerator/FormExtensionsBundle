@@ -1,4 +1,12 @@
 {% block admingenerator_form_javascripts %}
+    {% if s2a_formextensions_include_jquery %}
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/jquery/js/jquery.min.js') }}"></script>
+    {% endif %}
+    
+    {% if s2a_formextensions_include_jqueryui %}
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/jquery-ui/js/jquery-ui.min.js') }}"></script>
+    {% endif %}
+    
     <!-- blueimp.jquery-file-upload.min.js  -->
     <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-javascript-templates/js/tmpl.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-load-image/js/load-image.min.js') }}"></script>
