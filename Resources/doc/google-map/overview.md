@@ -13,6 +13,8 @@
 
 Google map to pick longitude and latitude. Based on [ollietb/OhGoogleMapFormTypeBundle](https://github.com/ollietb/OhGoogleMapFormTypeBundle).
 
+> **Note:** You must set the configuration `admingenerator_form_extensions.include_gmaps: true` or include GMAPS manually.
+
 On your model you will have to process the latitude and longitude array:
 
 ```php
