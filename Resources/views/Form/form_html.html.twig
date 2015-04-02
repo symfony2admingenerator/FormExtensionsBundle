@@ -1,3 +1,26 @@
+{% block form_row %}
+{% spaceless %}
+    <div class="control-group {{ name }}{% if errors|length > 0 %} has-error{% endif %}">
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {% if not compound %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_help') }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block form_help %}
+{% spaceless %}
+    {% if help %}
+        <span class="help-block">
+            <p class="muted">{{ help|trans({}, translation_domain) }}</p>
+        </span>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_help %}
+
 {% block s2a_collection_fieldset_widget %}
 {% spaceless %}
 {% if prototype is defined %}
@@ -179,29 +202,6 @@
 {% block s2a_double_list_model_widget %}
     {{ block('s2a_double_list_prototype') }}
 {% endblock s2a_double_list_model_widget %}
-
-{% block form_row %}
-{% spaceless %}
-    <div class="control-group {{ name }}{% if errors|length > 0 %} has-error{% endif %}">
-        {{ form_label(form) }}
-        {{ form_widget(form) }}
-        {% if not compound %}
-            {{ form_errors(form) }}
-        {% endif %}
-        {{ block('form_help') }}
-    </div>
-{% endspaceless %}
-{% endblock form_row %}
-
-{% block form_help %}
-{% spaceless %}
-    {% if help %}
-        <span class="help-block">
-            <p class="muted">{{ help|trans({}, translation_domain) }}</p>
-        </span>
-    {% endif %}
-{% endspaceless %}
-{% endblock form_help %}
 
 {% block s2a_single_upload_widget %}
 {% spaceless %}
