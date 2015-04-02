@@ -2,6 +2,7 @@
 
 namespace Admingenerator\FormExtensionsBundle;
 
+use Admingenerator\FormExtensionsBundle\DependencyInjection\Compiler\AssetsCompilerPass;
 use Admingenerator\FormExtensionsBundle\DependencyInjection\Compiler\FormCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -17,6 +18,7 @@ class AdmingeneratorFormExtensionsBundle extends Bundle
     {
         parent::build($container);
 
+        $container->addCompilerPass(new AssetsCompilerPass());
         $container->addCompilerPass(new FormCompilerPass());
     }
 }
