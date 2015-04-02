@@ -46,5 +46,5 @@ s2a_single_upload:
         video:            Video
 
 s2a_google_map:
-    search:               Search
-    current_location:     Current location
+    search:             Search
+    current:            Current location
