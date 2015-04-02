@@ -1,0 +1,12 @@
+<style type="text/css">
+{%  if map_width is not empty %}
+    #{{ id ~ '_map_canvas' }} {
+        width: {{ map_width }};
+    }
+{% endif %}
+{% if map_height is not empty %}
+    #{{ id ~ '_map_canvas' }} {
+        height: {{ map_height }};
+    }
+{% endif %}
+</style>
