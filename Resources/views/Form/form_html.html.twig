@@ -314,6 +314,7 @@
 {% endblock s2a_time_picker_widget %}
 
 {% block s2a_google_map_widget %}
+{% spaceless %}
 <div {{ block('widget_container_attributes') }}>
     <div id="{{ id }}_container">
         <input type="text" id="{{ id }}_input" />
@@ -331,6 +332,7 @@
         {{ form_row(child) }}
     {% endfor %}
 </div>
+{% endspaceless %}
 {% endblock s2a_google_map_widget %}
 
 {% block s2a_money_widget %}
