@@ -46,7 +46,7 @@ class GoogleMapType extends AbstractType
             // default to Greenwitch, London
             'default_lat'    => 51.5,
             'default_lng'    => -0.1245,
-            'callback'       => null,
+            'callback'       => 'function (location, gmap) {}',
         ));
     }
 
