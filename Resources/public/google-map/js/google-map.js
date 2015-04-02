@@ -35,17 +35,17 @@
         // is generally empty as we don't want to alter the default options for
         // future instances of the plugin
         this.options = $.extend({
-			'search_input_el'    : null,
-			'search_action_el'   : null,
-			'search_error_el'    : null,
-			'current_position_el': null,
-			'default_lat'        : '1',
-			'default_lng'        : '-1',
-			'default_zoom'       : 5,
-			'lat_field'          : null,
-			'lng_field'          : null,
-			'callback'           : function (location, gmap) {},
-			'error_callback'     : function(status) {
+			'search_input_el': 		null,
+			'search_action_el': 	null,
+			'search_error_el': 		null,
+			'current_position_el': 	null,
+			'default_lat': 			'1',
+			'default_lng': 			'-1',
+			'default_zoom': 		5,
+			'lat_field': 			null,
+			'lng_field': 			null,
+			'callback': 			function (location, gmap) {},
+			'error_callback': 		function(status) {
 				that.options.search_error_el.text(status);
 			},
         }, defaults, options) ;
@@ -55,7 +55,6 @@
         
         // define geocoder
 		this.geocoder = new google.maps.Geocoder();
-        
         this._init();
     }
     
@@ -100,7 +99,7 @@
             // Plugin-scope helper
             var that = this;
             
-			var address = this.settings.search_input_el.val();
+			var address = this.options.search_input_el.val();
 			this.geocoder.geocode({'address': address}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					that.map.setCenter(results[0].geometry.location);
@@ -127,18 +126,18 @@
 						that.map.setZoom(16);
 					}, 
 					function(error) {
-						that.settings.error_callback(error);
+						that.options.error_callback(error);
 					}
 				);      
 			} else {
-				that.settings.search_error_el.text('Your broswer does not support geolocation');
+				that.options.search_error_el.text('Your broswer does not support geolocation');
 			}
 		},
 
 		updateLocation: function(location) {
-			this.settings.lat_field.val(location.lat());
-			this.settings.lng_field.val(location.lng());
-			this.settings.callback(location, this);
+			this.options.lat_field.val(location.lat());
+			this.options.lng_field.val(location.lng());
+			this.options.callback(location, this);
 		},
 
 		addMarker: function(center) {
