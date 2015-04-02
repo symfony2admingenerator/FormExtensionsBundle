@@ -318,19 +318,19 @@
 <div {{ block('widget_container_attributes') }}>
     <div id="{{ id }}_container">
         <div class="input-group">
-            <input type="text" class="s2a-gmap-input form-control">
+            <input id="{{ id ~ '_search' }}" type="text" class="s2a-gmap-input form-control">
             <span class="input-group-btn">
-                <button class="s2a-gmap-search_button btn btn-default" type="button">
+                <button id="{{ id ~ '_search_button' }}" class="s2a-gmap-search_button btn btn-default" type="button">
                     {{ 's2a_google_map.search'|trans({}, 'AdmingeneratorFormExtensions') }}
                 </button>
             </span>
             <span class="input-group-btn">
-                <button href="#" class="s2a-gmap-current_position btn btn-primary">
+                <button id="{{ id ~ '_current_position' }}" class="s2a-gmap-current_position btn btn-primary">
                     {{ 's2a_google_map.current'|trans({}, 'AdmingeneratorFormExtensions') }}
                 </button>
             </span>
         </div>
-        <div class="gmap s2a-gmap-map_canvas" style="width: {{ map_width }}px; height: {{ map_height }}px"></div>
+        <div id="{{ id ~ '_map_canvas' }}" class="gmap s2a-gmap-map_canvas"></div>
         <div class="s2a-gmap-error"></div>
     </div>
     {% for child in form %}
