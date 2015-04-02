@@ -89,24 +89,24 @@ The name of the longitude field.
 
 #### map_width
 
-**type:** `integer` **default:** `300`
+**type:** `string|null` **default:** `null`
 
-The width of the map.
+The width of the map. If set CSS width style will be added.
 
 #### map_height
 
-**type:** `integer` **default:** `300`
+**type:** `string|null` **default:** `null`
 
-The height of the map.
+The height of the map. If set CSS height style will be added.
 
 #### default_lat
 
 **type:** `string|boolean` **default:** `51.5`
 
-The starting position on the map.
+The default starting position on the map is Greenwitch, London.
 
 #### default_lng
 
 **type:** `string|boolean` **default:** `-0.1245`
 
-The starting position on the map.
+The default starting position on the map is Greenwitch, London.
