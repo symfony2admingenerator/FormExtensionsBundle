@@ -110,3 +110,9 @@ The default starting position on the map is Greenwitch, London.
 **type:** `string|boolean` **default:** `-0.1245`
 
 The default starting position on the map is Greenwitch, London.
+
+#### callback
+
+**type:** `string` **default:** `function (location, gmap) {}`
+
+Javascript callback function.
