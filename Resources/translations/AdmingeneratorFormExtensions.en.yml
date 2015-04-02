@@ -44,3 +44,7 @@ s2a_single_upload:
         text-document:    "Text<br />Document"
         unknown:          "Unknown<br />Filetype"
         video:            Video
+
+s2a_google_map:
+    search:               Search
+    current_location:     Current location
