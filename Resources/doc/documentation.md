@@ -32,6 +32,10 @@
 
 * `s2a_elastic_textarea` [documentation](elastic-textarea/overview.md)
 
+##### Google Map:
+
+* `s2a_google_map` [documentation](google-map/overview.md)
+
 ##### Select2 family:
 
 * `s2a_select2_choice` [documentation](select2/overview.md)
