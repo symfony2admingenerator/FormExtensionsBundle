@@ -1,3 +1,26 @@
+{% block form_row %}
+{% spaceless %}
+    <div class="control-group {{ name }}{% if errors|length > 0 %} has-error{% endif %}">
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {% if not compound %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_help') }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block form_help %}
+{% spaceless %}
+    {% if help %}
+        <span class="help-block">
+            <p class="muted">{{ help|trans({}, translation_domain) }}</p>
+        </span>
+    {% endif %}
+{% endspaceless %}
+{% endblock form_help %}
+
 {% block s2a_collection_fieldset_widget %}
 {% spaceless %}
 {% if prototype is defined %}
@@ -180,29 +203,6 @@
     {{ block('s2a_double_list_prototype') }}
 {% endblock s2a_double_list_model_widget %}
 
-{% block form_row %}
-{% spaceless %}
-    <div class="control-group {{ name }}{% if errors|length > 0 %} has-error{% endif %}">
-        {{ form_label(form) }}
-        {{ form_widget(form) }}
-        {% if not compound %}
-            {{ form_errors(form) }}
-        {% endif %}
-        {{ block('form_help') }}
-    </div>
-{% endspaceless %}
-{% endblock form_row %}
-
-{% block form_help %}
-{% spaceless %}
-    {% if help %}
-        <span class="help-block">
-            <p class="muted">{{ help|trans({}, translation_domain) }}</p>
-        </span>
-    {% endif %}
-{% endspaceless %}
-{% endblock form_help %}
-
 {% block s2a_single_upload_widget %}
 {% spaceless %}
     <div id="{{ id ~ '_widget_container' }}" class="single-upload">
@@ -312,6 +312,28 @@
     {{ block('s2a_datetime_family_prototype') }}
 {% endspaceless %}
 {% endblock s2a_time_picker_widget %}
+
+{% block s2a_google_map_widget %}
+{% spaceless %}
+<div {{ block('widget_container_attributes') }}>
+    <div id="{{ id }}_container">
+        <input type="text" class="s2a-gmap-input" />
+        <button class="s2a-gmap-search_button btn">
+            {{ search_label|trans({}, translation_domain) }}
+        </button>
+        <br />
+        <a href="#" class="s2a-gmap-current_position">
+            {{ current_label|trans({}, translation_domain) }}
+        </a>
+        <div class="gmap s2a-gmap-map_canvas" style="width: {{ map_width }}px; height: {{ map_height }}px"></div>
+        <div class="s2a-gmap-error"></div>
+    </div>
+    {% for child in form %}
+        {{ form_row(child) }}
+    {% endfor %}
+</div>
+{% endspaceless %}
+{% endblock s2a_google_map_widget %}
 
 {% block s2a_money_widget %}
 {% spaceless %}

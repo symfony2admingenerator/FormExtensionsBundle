@@ -1,14 +1,13 @@
 /**
-*	@name							Elastic
-*	@descripton						Elastic is jQuery plugin that grow and shrink your textareas automatically
-*	@version						1.6.11
-*	@requires						jQuery 1.2.6+
+* @name         Elastic
+* @descripton	Elastic is jQuery plugin that grow and shrink your textareas automatically
+* @version	1.6.11
+* @requires	jQuery 1.2.6+
 *
-*	@author							Jan Jarfalk
-*	@author-email					jan.jarfalk@unwrongest.com
-*	@author-website					http://www.unwrongest.com
+* @author	Jan Jarfalk <jan.jarfalk@unwrongest.com>
+* @website	http://www.unwrongest.com
 *
-*	@licence						MIT License - http://www.opensource.org/licenses/mit-license.php
+* @licence	MIT License - http://www.opensource.org/licenses/mit-license.php
 */
 
 (function($){ 
