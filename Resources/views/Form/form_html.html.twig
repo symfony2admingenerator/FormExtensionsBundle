@@ -315,20 +315,20 @@
 
 {% block s2a_google_map_widget %}
 <div {{ block('widget_container_attributes') }}>
-	<div id="{{ id }}_container">
-		<input type="text" id="{{ id }}_input" />
-		<button id="{{ id }}_search_button" class="btn">
-		    {{ search_label|trans({}, translation_domain) }}
-		</button>
-		<br />
-		<a href="#" id="{{ id }}_current_position">
-		    {{ current_label|trans({}, translation_domain) }}
-		</a>
-		<div id="{{ id }}_map_canvas" class="gmap" style="width: {{ map_width }}px; height: {{ map_height }}px"></div>
-		<div id="{{ id }}_error"></div>
-	</div>
-	{% for child in form %}
-	    {{ form_row(child) }}
+    <div id="{{ id }}_container">
+        <input type="text" id="{{ id }}_input" />
+        <button id="{{ id }}_search_button" class="btn">
+            {{ search_label|trans({}, translation_domain) }}
+        </button>
+        <br />
+        <a href="#" id="{{ id }}_current_position">
+            {{ current_label|trans({}, translation_domain) }}
+        </a>
+        <div id="{{ id }}_map_canvas" class="gmap" style="width: {{ map_width }}px; height: {{ map_height }}px"></div>
+        <div id="{{ id }}_error"></div>
+    </div>
+    {% for child in form %}
+        {{ form_row(child) }}
     {% endfor %}
 </div>
 {% endblock s2a_google_map_widget %}
