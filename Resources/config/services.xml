@@ -28,15 +28,15 @@
             <tag name="form.type" alias="s2a_date_picker" />
         </service>
         
+        <service id="admingenerator.form.extensions.type.double_list" class="Admingenerator\FormExtensionsBundle\Form\Type\DoubleListType" abstract="true" />
+        
+        <service id="admingenerator.form.extensions.type.elastic_textarea" class="Admingenerator\FormExtensionsBundle\Form\Type\ElasticTextareaType">
+            <tag name="form.type" alias="s2a_elastic_textarea" />
+        </service>
+        
         <service id="admingenerator.form.extensions.type.google_map" class="Admingenerator\FormExtensionsBundle\Form\Type\GoogleMapType">
             <tag name="form.type" alias="s2a_google_map" />
         </service>
-        
-        <service id="admingenerator.form.extensions.type.time_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\TimePickerType">
-            <tag name="form.type" alias="s2a_time_picker" />
-        </service>
-        
-        <service id="admingenerator.form.extensions.type.double_list" class="Admingenerator\FormExtensionsBundle\Form\Type\DoubleListType" abstract="true" />
         
         <service id="admingenerator.form.extensions.type.knob" class="Admingenerator\FormExtensionsBundle\Form\Type\KnobType">
             <tag name="form.type" alias="s2a_knob" />
@@ -51,9 +51,9 @@
         <service id="admingenerator.form.extensions.type.single_upload" class="Admingenerator\FormExtensionsBundle\Form\Type\SingleUploadType">
             <tag name="form.type" alias="s2a_single_upload" />
         </service>
-
-        <service id="admingenerator.form.extensions.type.elastic_textarea" class="Admingenerator\FormExtensionsBundle\Form\Type\ElasticTextareaType">
-            <tag name="form.type" alias="s2a_elastic_textarea" />
+        
+        <service id="admingenerator.form.extensions.type.time_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\TimePickerType">
+            <tag name="form.type" alias="s2a_time_picker" />
         </service>
 
         <!-- Form extensions -->
