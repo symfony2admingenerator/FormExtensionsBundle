@@ -319,11 +319,11 @@
     <div id="{{ id }}_container">
         <input type="text" class="s2a-gmap-input" />
         <button class="s2a-gmap-search_button btn">
-            {{ search_label|trans({}, translation_domain) }}
+            {{ 's2a_google_map.search'|trans({}, 'AdmingeneratorFormExtensions') }}
         </button>
         <br />
         <a href="#" class="s2a-gmap-current_position">
-            {{ current_label|trans({}, translation_domain) }}
+            {{ 's2a_google_map.current'|trans({}, 'AdmingeneratorFormExtensions') }}
         </a>
         <div class="gmap s2a-gmap-map_canvas" style="width: {{ map_width }}px; height: {{ map_height }}px"></div>
         <div class="s2a-gmap-error"></div>
