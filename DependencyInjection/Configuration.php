@@ -37,6 +37,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('async_route_name')->end() // TODO: add dynamic validation: if async_listener_enabled: true, this parameter should not be empty
                         ->scalarNode('file_storage')->defaultValue('admingenerator.form.file_storage.local')->end() // TODO: add dynamic validation
                     ->end()
+                ->end()
                 ->booleanNode('include_jquery')->defaultFalse()->end()
                 ->booleanNode('include_jqueryui')->defaultFalse()->end()
             ->end()
