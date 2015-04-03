@@ -443,7 +443,8 @@
     		  'default_zoom':         {{ (value is defined and value.lat is defined and value.lng is defined) ? 15|e4js : 5|e4js }},
     		  'lat_field':            $('#{{ id ~ "_" ~ lat_name }}'),
     		  'lng_field':            $('#{{ id ~ "_" ~ lng_name }}'),
-    		  'callback':             {{ callback|e4js }}
+    		  'callback':             {{ callback|e4js }},
+    		  'error_handler'         {{ error_handler|e4js }}
     		});
     {% endblock s2a_google_map_js_prototype %}
     });
