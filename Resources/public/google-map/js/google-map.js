@@ -104,7 +104,9 @@
                     that.map.setZoom(16);
                     that.insertMarker(results[0].geometry.location);
                 } else {
-                    that.settings.error_callback(that.options.search_error_el, status);
+                    if ($.isFunction(that.settings.error_handler) {
+                        that.settings.error_handler(that.options.search_error_el, status);
+                    }
                 }
             });
         },
@@ -124,11 +126,15 @@
                         that.map.setZoom(16);
                     }, 
                     function(error) {
-                        that.options.error_callback(that.options.search_error_el, error);
+                        if ($.isFunction(that.settings.error_handler) {
+                            that.options.error_handler(that.options.search_error_el, error);
+                        }
                     }
                 );      
             } else {
-                that.options.error_callback(that.options.search_error_el, 'Your broswer does not support geolocation');
+                if ($.isFunction(that.settings.error_handler) {
+                    that.options.error_handler(that.options.search_error_el, 'Your broswer does not support geolocation');
+                }
             }
         },
 
