@@ -45,9 +45,7 @@
 			'lat_field': 			null,
 			'lng_field': 			null,
 			'callback': 			function (location, gmap) {},
-			'error_callback': 		function(status) {
-				that.options.search_error_el.text(status);
-			},
+			'error_callback': 		function (elem, status) {},
         }, defaults, options) ;
         
         this._defaults = defaults;
@@ -106,7 +104,7 @@
 					that.map.setZoom(16);
 					that.insertMarker(results[0].geometry.location);
 				} else {
-					that.settings.error_callback(status);
+					that.settings.error_callback(that, status);
 				}
 			});
 		},
@@ -126,11 +124,11 @@
 						that.map.setZoom(16);
 					}, 
 					function(error) {
-						that.options.error_callback(error);
+						that.options.error_callback(that, error);
 					}
 				);      
 			} else {
-				that.options.search_error_el.text('Your broswer does not support geolocation');
+				that.options.error_callback(that, 'Your broswer does not support geolocation');
 			}
 		},
 
