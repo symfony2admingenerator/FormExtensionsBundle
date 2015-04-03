@@ -116,3 +116,10 @@ The default starting position on the map is Greenwitch, London.
 **type:** `string` **default:** `function (location, gmap) {}`
 
 Javascript callback function.
+
+#### error_handler
+
+**type:** `string` **default:** `function (elem, status) {}`
+
+Javascript error handler function.
+
