@@ -331,7 +331,7 @@
             </span>
         </div>
         <div id="{{ id ~ '_map_canvas' }}" class="gmap s2a-gmap-map_canvas"></div>
-        <div class="s2a-gmap-error"></div>
+        <div id="{{ id ~ '_error' }}" class="s2a-gmap-error"></div>
     </div>
     {% for child in form %}
         {{ form_row(child) }}
