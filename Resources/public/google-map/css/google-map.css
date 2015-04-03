@@ -1,0 +1,12 @@
+.s2a-gmap-map_canvas {
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	margin: 15px 0;
+}
+
+.s2a-gmap-map_canvas:before {
+	content: "";
+	display: block;
+	padding-bottom: 56.25%; /* aspect ratio 16:9 */
+}
