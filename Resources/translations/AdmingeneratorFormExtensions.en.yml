@@ -47,4 +47,4 @@ s2a_single_upload:
 
 s2a_google_map:
     search:             Search
-    current:            Get position
+    current:            Current localisation
