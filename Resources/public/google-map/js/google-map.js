@@ -88,7 +88,12 @@
             });
 
             this.options.search_action_el.click($.proxy(this.searchAddress, this));			
-            this.options.current_position_el.click($.proxy(this.currentPosition, this));            
+            this.options.current_position_el.click($.proxy(this.currentPosition, this));
+            
+            // fix for bootstrap tab
+            $('[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+                google.maps.event.trigger(that.map, 'resize');
+            });           
         },
 
         searchAddress: function(e) {
