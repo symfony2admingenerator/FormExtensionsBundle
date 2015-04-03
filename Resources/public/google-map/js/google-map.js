@@ -131,13 +131,13 @@
                         that.map.setZoom(16);
                     }, 
                     function(error) {
-                        if ($.isFunction(that.settings.error_handler)) {
+                        if ($.isFunction(that.options.error_handler)) {
                             that.options.error_handler(that.options.search_error_el, error);
                         }
                     }
                 );      
             } else {
-                if ($.isFunction(that.settings.error_handler)) {
+                if ($.isFunction(that.options.error_handler)) {
                     that.options.error_handler(that.options.search_error_el, 'Your broswer does not support geolocation');
                 }
             }
