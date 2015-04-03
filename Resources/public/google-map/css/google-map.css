@@ -3,6 +3,8 @@
 	width: 100%;
 	overflow: hidden;
 	margin: 15px 0;
+	max-width: 100vw;
+	max-height: 100vh;
 }
 
 .s2a-gmap-map_canvas:before {
