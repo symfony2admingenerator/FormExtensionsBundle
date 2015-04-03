@@ -444,7 +444,7 @@
     		  'lat_field':            $('#{{ id ~ "_" ~ lat_name }}'),
     		  'lng_field':            $('#{{ id ~ "_" ~ lng_name }}'),
     		  'callback':             {{ callback|e4js }},
-    		  'error_callback'        {{ error_handler|e4js }}
+    		  'error_handler'         {{ error_handler|e4js }}
     		});
     {% endblock s2a_google_map_js_prototype %}
     });
