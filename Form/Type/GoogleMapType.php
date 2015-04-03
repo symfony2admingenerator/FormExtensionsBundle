@@ -47,6 +47,7 @@ class GoogleMapType extends AbstractType
             'default_lat'    => 51.5,
             'default_lng'    => -0.1245,
             'callback'       => 'function (location, gmap) {}',
+            'error_handler'  => 'function(elem, status) {}'
         ));
     }
 
@@ -63,6 +64,7 @@ class GoogleMapType extends AbstractType
             'default_lat'   => $options['default_lat'],
             'default_lng'   => $options['default_lng'],
             'callback'      => $options['callback'],
+            'error_handler' => $options['error_handler'],
         ));
     }
 
