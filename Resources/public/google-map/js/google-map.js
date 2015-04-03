@@ -35,24 +35,24 @@
         // is generally empty as we don't want to alter the default options for
         // future instances of the plugin
         this.options = $.extend({
-			'search_input_el': 		null,
-			'search_action_el': 	null,
-			'search_error_el': 		null,
-			'current_position_el': 	null,
-			'default_lat': 			'1',
-			'default_lng': 			'-1',
-			'default_zoom': 		5,
-			'lat_field': 			null,
-			'lng_field': 			null,
-			'callback': 			function (location, gmap) {},
-			'error_handler': 		function (elem, status) {},
-        }, defaults, options) ;
+            'search_input_el':          null,
+            'search_action_el':         null,
+            'search_error_el':          null,
+            'current_position_el':      null,
+            'default_lat':              51.5,
+            'default_lng':              -0.1245,
+            'default_zoom':             5,
+            'lat_field':                null,
+            'lng_field':                null,
+            'callback':                 function (location, gmap) {},
+            'error_handler':            function (elem, status) {},
+        }, defaults, options);
         
         this._defaults = defaults;
         this._name = pluginName;
         
         // define geocoder
-		this.geocoder = new google.maps.Geocoder();
+        this.geocoder = new google.maps.Geocoder();
         this._init();
     }
     
@@ -63,105 +63,105 @@
             var that = this;
             
             // init variables
-			var center = new google.maps.LatLng(
-				this.options.default_lat,
-				this.options.default_lng
-			);
-			var mapOptions = {
-				zoom: this.options.default_zoom,
-				center: center,
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
+            var center = new google.maps.LatLng(
+                this.options.default_lat,
+                this.options.default_lng
+            );
+            var mapOptions = {
+                zoom: this.options.default_zoom,
+                center: center,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
 			
-			// init map with marker on center
-			this.map = new google.maps.Map(this.element, mapOptions);
-			this.addMarker(center);
+            // init map with marker on center
+            this.map = new google.maps.Map(this.element, mapOptions);
+            this.addMarker(center);
 
-			google.maps.event.addListener(this.marker, "dragend", function(event) {
-				var point = that.marker.getPosition();
-				that.map.panTo(point);
-				that.updateLocation(point);
-			});
+            google.maps.event.addListener(this.marker, "dragend", function(event) {
+                var point = that.marker.getPosition();
+                that.map.panTo(point);
+                that.updateLocation(point);
+            });
 
-			google.maps.event.addListener(this.map, 'click', function(event) {
-				that.insertMarker(event.latLng);
-			});
+            google.maps.event.addListener(this.map, 'click', function(event) {
+                that.insertMarker(event.latLng);
+            });
 
-			this.options.search_action_el.click($.proxy(this.searchAddress, this));			
-			this.options.current_position_el.click($.proxy(this.currentPosition, this));            
+            this.options.search_action_el.click($.proxy(this.searchAddress, this));			
+            this.options.current_position_el.click($.proxy(this.currentPosition, this));            
         },
 
-		searchAddress: function(e) {
-			e.preventDefault();
+        searchAddress: function(e) {
+            e.preventDefault();
 			
             // Plugin-scope helper
             var that = this;
             
-			var address = this.options.search_input_el.val();
-			this.geocoder.geocode({'address': address}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					that.map.setCenter(results[0].geometry.location);
-					that.map.setZoom(16);
-					that.insertMarker(results[0].geometry.location);
-				} else {
-					that.settings.error_callback(that.options.search_error_el, status);
-				}
-			});
-		},
+            var address = this.options.search_input_el.val();
+            this.geocoder.geocode({'address': address}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    that.map.setCenter(results[0].geometry.location);
+                    that.map.setZoom(16);
+                    that.insertMarker(results[0].geometry.location);
+                } else {
+                    that.settings.error_callback(that.options.search_error_el, status);
+                }
+            });
+        },
 
-		currentPosition: function(e){
-			e.preventDefault();
+        currentPosition: function(e){
+            e.preventDefault();
 			
             // Plugin-scope helper
             var that = this;
 			
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition ( 
-					function(position) {
-						var clientPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-						that.insertMarker(clientPosition);
-						that.map.setCenter(clientPosition);
-						that.map.setZoom(16);
-					}, 
-					function(error) {
-						that.options.error_callback(that.options.search_error_el, error);
-					}
-				);      
-			} else {
-				that.options.error_callback(that.options.search_error_el, 'Your broswer does not support geolocation');
-			}
-		},
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition ( 
+                    function(position) {
+                        var clientPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                        that.insertMarker(clientPosition);
+                        that.map.setCenter(clientPosition);
+                        that.map.setZoom(16);
+                    }, 
+                    function(error) {
+                        that.options.error_callback(that.options.search_error_el, error);
+                    }
+                );      
+            } else {
+                that.options.error_callback(that.options.search_error_el, 'Your broswer does not support geolocation');
+            }
+        },
 
-		updateLocation: function(location) {
-			this.options.lat_field.val(location.lat());
-			this.options.lng_field.val(location.lng());
-			this.options.callback(location, this);
-		},
+        updateLocation: function(location) {
+            this.options.lat_field.val(location.lat());
+            this.options.lng_field.val(location.lng());
+            this.options.callback(location, this);
+        },
 
-		addMarker: function(center) {
-			if (this.marker) {
-				this.marker.setMap(this.map);
-				this.marker.setPosition(center);
-			} else {
-				this.marker = new google.maps.Marker({
-					map: this.map,
-					position: center,
-					draggable: true
-				});
-			}
-		},
+        addMarker: function(center) {
+            if (this.marker) {
+                this.marker.setMap(this.map);
+                this.marker.setPosition(center);
+            } else {
+                this.marker = new google.maps.Marker({
+                    map: this.map,
+                    position: center,
+                    draggable: true
+                });
+            }
+        },
 
-		insertMarker: function(position) {
-			this.removeMarker();
-			this.addMarker(position);
-			this.updateLocation(position);
-		},
+        insertMarker: function(position) {
+            this.removeMarker();
+            this.addMarker(position);
+            this.updateLocation(position);
+        },
 		
-		removeMarker: function() {
-			if (this.marker != undefined) {
-				this.marker.setMap(null);
-			}
-		}
+        removeMarker: function() {
+            if (this.marker != undefined) {
+                this.marker.setMap(null);
+            }
+        }
     };
 
     // You don't need to change something below:
