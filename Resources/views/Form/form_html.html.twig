@@ -318,7 +318,7 @@
 <div {{ block('widget_container_attributes') }}>
     <div id="{{ id }}_container">
         <div class="input-group">
-            <input id="{{ id ~ '_search' }}" type="text" class="s2a-gmap-input form-control">
+            <input id="{{ id ~ '_search' }}" type="text" class="s2a-gmap-input form-control" placeholder="{{ 's2a_google_map.placeholder'|trans({}, 'AdmingeneratorFormExtensions') }}">
             <span class="input-group-btn">
                 <button id="{{ id ~ '_search_button' }}" class="s2a-gmap-search_button btn btn-default" type="button">
                     <i class="fa fa-search"></i> {{ 's2a_google_map.search'|trans({}, 'AdmingeneratorFormExtensions') }}
