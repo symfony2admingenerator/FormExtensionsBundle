@@ -433,12 +433,11 @@
         var $field = $('#{{ id }}');
 
     {% block s2a_google_map_js_prototype %}
-    	$(function(){
-    		$field.find('[id$="s2a-gmap-map_canvas"]').googleMap({
-    		  'search_input_el':      $field.find('[id$="s2a-gmap-input]'),
-    		  'search_action_el':     $field.find('[id$="s2a-gmap-search_button]'),
-    		  'search_error_el':      $field.find('[id$="s2a-gmap-error]'),
-    		  'current_position_el':  $field.find('[id$="s2a-gmap-current_position]'),
+    		$field.find("[id$='_map_canvas']").googleMap({
+    		  'search_input_el':      $field.find("[id$='_search']"),
+    		  'search_action_el':     $field.find("[id$='_search_button']"),
+    		  'search_error_el':      $field.find("[id$='_error']"),
+    		  'current_position_el':  $field.find("[id$='_current_position']"),
     		  'default_lat':          {{ (value is defined and value.lat is defined) ? value.lat|e4js : default_lat|e4js }},
     		  'default_lng':          {{ (value is defined and value.lng is defined) ? value.lng|e4js : default_lng|e4js }},
     		  'default_zoom':         {{ (value is defined and value.lat is defined and value.lng is defined) ? 15|e4js : 5|e4js }},
@@ -446,7 +445,6 @@
     		  'lng_field':            $('#{{ id ~ "_" ~ lng_name }}'),
     		  'callback':             {{ callback|e4js }}
     		});
-    	});
     {% endblock s2a_google_map_js_prototype %}
     });
 </script>
