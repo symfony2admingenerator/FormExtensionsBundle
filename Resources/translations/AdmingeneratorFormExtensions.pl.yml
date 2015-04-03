@@ -48,3 +48,4 @@ s2a_single_upload:
 s2a_google_map:
     search:             Wyszukaj
     current:            Moja lokalizacja
+    placeholder:        Wpisz nazwę miejsca...
