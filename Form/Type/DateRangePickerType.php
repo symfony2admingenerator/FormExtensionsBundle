@@ -20,33 +20,6 @@ class DateRangePickerType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add($options['from_name'], $options['type'], array_merge($options['options'], $options['from_options']))
-            ->add($options['to_name'], $options['type'], array_merge($options['options'], $options['to_options']))
-        ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'type'            => 'text',
-            'options'         => array(),
-            'from_options'    => array(),
-            'to_options'      => array(),
-            'from_name'       => 'from',
-            'to_name'         => 'to',
-            'error_bubbling' => false,
-        ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_merge($view->vars, array(
@@ -54,10 +27,44 @@ class DateRangePickerType extends AbstractType
             'to_name'     => $options['to_name'],
         ));
     }
-
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'startDate'             => null,
+            'endDate'               => null,
+            'minDate'               => null,
+            'maxDate'               => null,
+            'dateLimit'             => null,
+            'timeZone'              => null,
+            'showDropdowns'         => null,
+            'showWeekNumbers'       => null,
+            'timePicker'            => null,
+            'timePickerIncrement'   => null,
+            'timePicker12Hour'      => null,
+            'timePickerSeconds'     => null,
+            'ranges'                => null,
+            'opens'                 => null,
+            'buttonClasses'         => null,
+            'applyClass'            => null,
+            'cancelClass'           => null,
+            'format'                => null,
+            'separator'             => null,
+            'locale'                => null,
+            'singleDatePicker'      => null,
+            'parentEl'              => null,
+        ));
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
     public function getParent()
     {
-        return 'form';
+        return 'text';
     }
 
     public function getName()
