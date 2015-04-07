@@ -71,7 +71,7 @@ class DateRangePickerType extends AbstractType
             'buttonClasses'         => array('btn'),
             'applyClass'            => 'btn-success',
             'cancelClass'           => 'btn-default',
-            'format'                => 'yyyy-MM-dd',
+            'format'                => 'YYYY-MM-DD',
             'separator'             => ' - ',
             'singleDatePicker'      => false,
             'parentEl'              => 'body',
