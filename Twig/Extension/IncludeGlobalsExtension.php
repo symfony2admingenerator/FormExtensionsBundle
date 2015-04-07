@@ -27,6 +27,7 @@ class IncludeGlobalsExtension extends \Twig_Extension
         return array(
             's2a_formextensions_include_jquery'   => $this->container->getParameter('admingenerator.form.include_jquery'),
             's2a_formextensions_include_jqueryui' => $this->container->getParameter('admingenerator.form.include_jqueryui'),
+            's2a_formextensions_include_momentjs' => $this->container->getParameter('admingenerator.form.include_momentjs'),
             's2a_formextensions_include_gmaps'    => $this->container->getParameter('admingenerator.form.include_gmaps'),
         );
     }
