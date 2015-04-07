@@ -1,5 +1,24 @@
 # Documentation
 
+## Bundle configuration
+
+```yaml
+# Default bundle configuration
+admingenerator_form_extensions:
+  upload_manager:           ~
+  image_manipulator:        ~
+  twig:
+    use_form_resources:     true
+  collection_upload:
+    async_listener_enabled: false
+    async_route_name:       ~
+    file_storage:           admingenerator.form.file_storage.local'
+  include_jquery:           false
+  include_jqueryui:         false
+  include_momentjs:         false
+  include_gmaps:            false
+```
+
 ##### Bootstrap Collection family: 
 
 * `s2a_collection_fieldset` [documentation](bootstrap-collection/overview.md)
