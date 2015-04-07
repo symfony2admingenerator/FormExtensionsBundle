@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * See `Resources/doc/daterange-picker/overview.md` for documentation
@@ -19,14 +19,14 @@ use Symfony\Component\Translation\Translator;
 class DateRangePickerType extends AbstractType
 {
     /**
-     * @var \Symfony\Component\Translation\Translator
+     * @var \Symfony\Component\Translation\TranslatorInterface
      */
     protected $translator;
     
     /**
-     * @param \Symfony\Component\Translation\Translator $translator
+     * @param \Symfony\Component\Translation\TranslatorInterface $translator
      */
-    public function setTranslator(Translator $translator)
+    public function setTranslator(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
