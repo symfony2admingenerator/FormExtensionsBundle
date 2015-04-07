@@ -24,6 +24,35 @@ s2a_collection_upload:
 s2a_double_list:
     selected:           Selected
     unselected:         Unselected
+
+s2a_daterange_picker:
+    applyLabel:         Submit
+    cancelLabel:        Clear
+    fromLabel:          From
+    toLabel:            To
+    customRangeLabel:   Custom range
+    daysOfWeek:
+        Su:     Su
+        Mo:     Mo
+        Tu:     Tu
+        We:     We
+        Th:     Th
+        Fr:     Fr
+        Sa:     Sa
+    monthNames:
+        January:    January
+        February:   February
+        March:      March
+        April:      April
+        May:        May
+        June:       June
+        July:       July
+        August:     August
+        September:  September
+        October:    October
+        November:   November
+        December:   December
+    firstDay:   1
         
 s2a_single_upload:
     button:
