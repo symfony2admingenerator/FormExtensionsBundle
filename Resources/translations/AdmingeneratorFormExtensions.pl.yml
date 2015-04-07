@@ -49,3 +49,32 @@ s2a_google_map:
     search:             Wyszukaj
     current:            Moja lokalizacja
     placeholder:        Wpisz nazwę miejsca...
+
+s2a_daterange_picker:
+    applyLabel:         Zastosuj
+    cancelLabel:        Wyczyść
+    fromLabel:          Od
+    toLabel:            Do
+    customRangeLabel:   Inny przedział
+    daysOfWeek:
+        Su:     N
+        Mo:     Pn
+        Tu:     Wt
+        We:     Śr
+        Th:     Cz
+        Fr:     Pt
+        Sa:     So
+    monthNames:
+        January:    Styczeń
+        February:   Luty
+        March:      Marzec
+        April:      Kwiecień
+        May:        Maj
+        June:       Czerwiec
+        July:       Lipiec
+        August:     Sierpień
+        September:  Wrzesień
+        October:    Październik
+        November:   Listopad
+        December:   Grudzień
+    firstDay:   1
