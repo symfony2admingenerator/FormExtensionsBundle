@@ -142,6 +142,45 @@
 {% endautoescape %}
 {% endblock s2a_collection_upload_js %}
 
+{% block s2a_daterange_picker_js %}
+{% autoescape false %}
+{% spaceless %}
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $field = $('#{{ id }}');
+
+    {% block s2a_daterange_picker_js_prototype %}
+        $field.daterangepicker({
+            'startDate':            {{ startDate|e4js }},
+            'endDate':              {{ endDate|e4js }},
+            'minDate':              {{ minDate|e4js }},
+            'maxDate':              {{ maxDate|e4js }},
+            'dateLimit':            {{ dateLimit|e4js }},
+            'timeZone':             {{ timeZone|e4js }},
+            'showDropdowns':        {{ showDropdowns|e4js }},
+            'showWeekNumbers':      {{ showWeekNumbers|e4js }},
+            'timePicker':           {{ timePicker|e4js }},
+            'timePickerIncrement':  {{ timePickerIncrement|e4js }},
+            'timePicker12Hour':     {{ timePicker12Hour|e4js }},
+            'timePickerSeconds':    {{ timePickerSeconds|e4js }},
+            'ranges':               {{ ranges|e4js }},
+            'opens':                {{ opens|e4js }},
+            'buttonClasses':        {{ buttonClasses|e4js }},
+            'applyClass':           {{ applyClass|e4js }},
+            'cancelClass':          {{ cancelClass|e4js }},
+            'format':               {{ format|e4js }},
+            'separator':            {{ separator|e4js }},
+            'locale':               {{ app.request.locale|e4js }},
+            'singleDatePicker':     {{ singleDatePicker|e4js }},
+            'parentEl':             {{ parentEl|e4js }}
+        }, {{ callback|e4js }});
+    {% endblock s2a_daterange_picker_js_prototype %}
+    });
+</script>
+{% endspaceless %}
+{% endautoescape %}
+{% endblock s2a_daterange_picker_js %}
+
 {% block s2a_double_list_family_js_prototype_template %}
 {% autoescape false %}
 {% spaceless %}
