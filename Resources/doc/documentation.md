@@ -3,6 +3,7 @@
 ## Bundle configuration
 
 ```yaml
+# Default bundle configuration
 admingenerator_form_extensions:
   upload_manager:           ~
   image_manipulator:        ~
