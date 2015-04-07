@@ -18,7 +18,7 @@
 
 ##### Bootstrap DateTime:
 
-* `s2a_datetime_picker` [documentation](date-picker/overview.md)
+* `s2a_datetime_picker` [documentation](datetime-picker/overview.md)
 
 ##### Knob:
 
