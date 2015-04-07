@@ -1,36 +1,40 @@
 {% block admingenerator_form_javascripts %}
     {% if s2a_formextensions_include_jquery %}
-    {% javascripts package='formextensions_js' filter='?uglifyjs2' 
+    {% javascripts package='formextensions_js' filter='?uglifyjs2'
         output='assetic/js/compiled/admingeneratorformextensions/jquery.min.js'
         'bundles/admingeneratorformextensions/jquery/js/jquery.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {% endif %}
-    
+
     {% if s2a_formextensions_include_jqueryui %}
-    {% javascripts package='formextensions_js' filter='?uglifyjs2' 
+    {% javascripts package='formextensions_js' filter='?uglifyjs2'
         output='assetic/js/compiled/admingeneratorformextensions/jquery-ui.min.js'
         'bundles/admingeneratorformextensions/jquery-ui/js/jquery-ui.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {% endif %}
-    
+
     {% if s2a_formextensions_include_momentjs %}
-    {% javascripts package='formextensions_js' filter='?uglifyjs2' 
+    {% javascripts package='formextensions_js' filter='?uglifyjs2'
         output='assetic/js/compiled/admingeneratorformextensions/momentjs.min.js'
-        'bundles/admingeneratorformextensions/bootstrap-datetimepicker/js/vendor/moment.js'
+        'bundles/admingeneratorformextensions/vendor/moment/moment.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+        {% if app.request.locale in ['af', 'ar-ma', 'ar-sa', 'ar-tn', 'ar', 'az', 'be', 'bg', 'bn', 'bo', 'br', 'bs', 'ca', 'cs', 'cv', 'cy', 'da', 'de-at', 'de', 'el', 'en-au', 'en-ca', 'en-gb', 'eo', 'es', 'et', 'eu', 'fa', 'fi', 'fo', 'fr-ca', 'fr', 'fy', 'gl', 'he', 'hi', 'hr', 'hu', 'hy-am', 'id', 'is', 'it', 'ja', 'ka', 'km', 'ko', 'lb', 'lt', 'lv', 'mk', 'ml', 'mr', 'ms-my', 'my', 'nb', 'ne', 'nl', 'nn', 'pl', 'pt-br', 'pt', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr-cyrl', 'sr', 'sv', 'ta', 'th', 'tl-ph', 'tr', 'tzm-latn', 'tzm', 'uk', 'uz', 'vi', 'zh-cn', 'zh-tw'] %}
+            <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/moment/locale/' ~ app.request.locale ~ '.js') }}"></script>
+        {% endif %}
     {% endif %}
-    
+
     {% if s2a_formextensions_include_gmaps %}
         <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
     {% endif %}
 
-    {% javascripts package='formextensions_js' filter='?uglifyjs2' 
+    {% javascripts package='formextensions_js' filter='?uglifyjs2'
         output='assetic/js/compiled/admingeneratorformextensions/blueimp.jquery-file-upload.min.js'
         'bundles/admingeneratorformextensions/blueimp-javascript-templates/js/tmpl.js'
         'bundles/admingeneratorformextensions/blueimp-load-image/js/load-image.js'
@@ -50,11 +54,11 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
-    {% javascripts package='formextensions_js' filter='?uglifyjs2' 
+    {% javascripts package='formextensions_js' filter='?uglifyjs2'
         output='assetic/js/compiled/admingeneratorformextensions/form-extensions.min.js'
         'bundles/admingeneratorformextensions/bootstrap-collection/js/bootstrap-collection.js'
-        'bundles/admingeneratorformextensions/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js'
-        'bundles/admingeneratorformextensions/bootstrap-daterange-picker/js/daterangepicker.js'
+        'bundles/admingeneratorformextensions/datetime-picker/js/bootstrap-datetimepicker.js'
+        'bundles/admingeneratorformextensions/daterange-picker/js/daterangepicker.js'
         'bundles/admingeneratorformextensions/bootstrap-select/js/bootstrap-select.js'
         'bundles/admingeneratorformextensions/collection-upload/js/collection-upload.js'
         'bundles/admingeneratorformextensions/double-list/js/double-list.js'
@@ -78,7 +82,7 @@
     {% endif %}
 
     {% if app.request.locale in ['ar-ma', 'ar', 'bg', 'br', 'bs', 'ca', 'cs', 'cv', 'da', 'de', 'el', 'en-au', 'en-ca', 'en-gb', 'eo', 'es', 'et', 'eu', 'fa', 'fi', 'fr-ca', 'fr', 'gl', 'he', 'hi', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'ka', 'ko', 'lt', 'lv', 'ml', 'mr', 'ms-mv', 'nb', 'ne', 'nl', 'nn', 'pl', 'pt-BR', 'pt', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv', 'th', 'tr', 'tzm-la', 'tzm', 'uk', 'uz', 'vn', 'zh-CN', 'zh-TW'] %}
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.' ~ app.request.locale ~ '.js', 'formextensions_js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/datetime-picker/js/locales/bootstrap-datetimepicker.' ~ app.request.locale ~ '.js', 'formextensions_js') }}"></script>
     {% endif %}
 
 {% endblock admingenerator_form_javascripts %}
