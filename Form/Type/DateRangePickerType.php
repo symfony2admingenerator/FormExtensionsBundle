@@ -42,6 +42,7 @@ class DateRangePickerType extends AbstractType
             'cancelClass'           => $options['cancelClass'],
             'format'                => $options['format'],
             'separator'             => $options['separator'],
+            'locale'                => $options['locale'],
             'singleDatePicker'      => $options['singleDatePicker'],
             'parentEl'              => $options['parentEl'],
             'callback'              => $options['callback']
