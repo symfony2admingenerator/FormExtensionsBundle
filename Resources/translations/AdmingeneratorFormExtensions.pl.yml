@@ -55,7 +55,7 @@ s2a_daterange_picker:
     cancelLabel:        Wyczyść
     fromLabel:          Od
     toLabel:            Do
-    customRangeLabel:   Inny przedział
+    customRangeLabel:   Przedział
     daysOfWeek:
         Su:     N
         Mo:     Pn
