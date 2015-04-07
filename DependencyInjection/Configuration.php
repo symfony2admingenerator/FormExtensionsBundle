@@ -41,6 +41,7 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('include_jquery')->defaultFalse()->end()
                 ->booleanNode('include_jqueryui')->defaultFalse()->end()
                 ->booleanNode('include_momentjs')->defaultFalse()->end()
+                ->booleanNode('include_blueimp')->defaultFalse()->end()
                 ->booleanNode('include_gmaps')->defaultFalse()->end()
             ->end()
         ;

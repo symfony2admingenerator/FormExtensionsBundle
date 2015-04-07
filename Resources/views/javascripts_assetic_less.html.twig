@@ -1,10 +1,10 @@
 {% block admingenerator_form_javascripts %}
     {% if s2a_formextensions_include_jquery %}
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/jquery/js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/jquery/js/jquery.min.js') }}"></script>
     {% endif %}
 
     {% if s2a_formextensions_include_jqueryui %}
-        <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/jquery-ui/js/jquery-ui.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/jquery-ui/js/jquery-ui.min.js') }}"></script>
     {% endif %}
 
     {% if s2a_formextensions_include_momentjs %}
@@ -19,16 +19,18 @@
         <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
     {% endif %}
 
+    {% if s2a_formextensions_include_blueimp %}
     <!-- blueimp.jquery-file-upload.min.js  -->
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-javascript-templates/js/tmpl.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-load-image/js/load-image.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-canvas-to-blob/js/canvas-to-blob.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.iframe-transport.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.fileupload.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.fileupload-process.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.fileupload-image.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.fileupload-validate.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.fileupload-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/blueimp-javascript-templates/js/tmpl.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/blueimp-load-image/js/load-image.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/blueimp-canvas-to-blob/js/canvas-to-blob.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.iframe-transport.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.fileupload.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.fileupload-process.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.fileupload-image.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.fileupload-validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.fileupload-ui.min.js') }}"></script>
+    {% endif %}
 
     <!-- form-extensions.min.js -->
     <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/bootstrap-collection/js/bootstrap-collection.min.js') }}"></script>

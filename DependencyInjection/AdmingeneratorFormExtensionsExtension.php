@@ -34,6 +34,7 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         $container->setParameter('admingenerator.form.include_jquery', $config['include_jquery']);
         $container->setParameter('admingenerator.form.include_jqueryui', $config['include_jqueryui']);
         $container->setParameter('admingenerator.form.include_momentjs', $config['include_momentjs']);
+        $container->setParameter('admingenerator.form.include_blueimp', $config['include_blueimp']);
         $container->setParameter('admingenerator.form.include_gmaps', $config['include_gmaps']);
 
         $this->loadCollectionUploadListener($config['collection_upload'], $container);

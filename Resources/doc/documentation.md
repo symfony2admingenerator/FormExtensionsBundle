@@ -12,10 +12,14 @@ admingenerator_form_extensions:
   collection_upload:
     async_listener_enabled: false
     async_route_name:       ~
-    file_storage:           admingenerator.form.file_storage.local'
+    file_storage:           admingenerator.form.file_storage.local
+  # you need these JS assets for some form types
+  # if you set it to true, the bundle will include them for you
+  # otherwise you have to do it manually
   include_jquery:           false
   include_jqueryui:         false
   include_momentjs:         false
+  include_blueimp:          false 
   include_gmaps:            false
 ```
 

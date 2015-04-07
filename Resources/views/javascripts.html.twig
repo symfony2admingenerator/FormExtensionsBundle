@@ -2,7 +2,7 @@
     {% if s2a_formextensions_include_jquery %}
     {% javascripts package='formextensions_js' filter='?uglifyjs2'
         output='assetic/js/compiled/admingeneratorformextensions/jquery.min.js'
-        'bundles/admingeneratorformextensions/jquery/js/jquery.js'
+        'bundles/admingeneratorformextensions/vendor/jquery/js/jquery.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -11,7 +11,7 @@
     {% if s2a_formextensions_include_jqueryui %}
     {% javascripts package='formextensions_js' filter='?uglifyjs2'
         output='assetic/js/compiled/admingeneratorformextensions/jquery-ui.min.js'
-        'bundles/admingeneratorformextensions/jquery-ui/js/jquery-ui.js'
+        'bundles/admingeneratorformextensions/vendor/jquery-ui/js/jquery-ui.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -34,25 +34,27 @@
         <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=true"></script>
     {% endif %}
 
+    {% if s2a_formextensions_include_blueimp %}
     {% javascripts package='formextensions_js' filter='?uglifyjs2'
         output='assetic/js/compiled/admingeneratorformextensions/blueimp.jquery-file-upload.min.js'
-        'bundles/admingeneratorformextensions/blueimp-javascript-templates/js/tmpl.js'
-        'bundles/admingeneratorformextensions/blueimp-load-image/js/load-image.js'
-        'bundles/admingeneratorformextensions/blueimp-load-image/js/load-image-ios.js'
-        'bundles/admingeneratorformextensions/blueimp-load-image/js/load-image-orientation.js'
-        'bundles/admingeneratorformextensions/blueimp-load-image/js/load-image-meta.js'
-        'bundles/admingeneratorformextensions/blueimp-load-image/js/load-image-exif.js'
-        'bundles/admingeneratorformextensions/blueimp-load-image/js/load-image-exif-map.js'
-        'bundles/admingeneratorformextensions/blueimp-canvas-to-blob/js/canvas-to-blob.js'
-        'bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.iframe-transport.js'
-        'bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.fileupload.js'
-        'bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.fileupload-process.js'
-        'bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.fileupload-image.js'
-        'bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.fileupload-validate.js'
-        'bundles/admingeneratorformextensions/blueimp-file-upload/js/jquery.fileupload-ui.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-javascript-templates/js/tmpl.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-load-image/js/load-image.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-load-image/js/load-image-ios.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-load-image/js/load-image-orientation.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-load-image/js/load-image-meta.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-load-image/js/load-image-exif.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-load-image/js/load-image-exif-map.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-canvas-to-blob/js/canvas-to-blob.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.iframe-transport.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.fileupload.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.fileupload-process.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.fileupload-image.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.fileupload-validate.js'
+        'bundles/admingeneratorformextensions/vendor/blueimp-file-upload/js/jquery.fileupload-ui.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+    {% endif %}
 
     {% javascripts package='formextensions_js' filter='?uglifyjs2'
         output='assetic/js/compiled/admingeneratorformextensions/form-extensions.min.js'
