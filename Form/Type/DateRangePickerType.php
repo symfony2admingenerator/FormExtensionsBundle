@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Translation\Translator;
 
 /**
  * See `Resources/doc/daterange-picker/overview.md` for documentation
@@ -17,6 +18,19 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class DateRangePickerType extends AbstractType
 {
+    /**
+     * @var \Symfony\Component\Translation\Translator
+     */
+    protected $translator;
+    
+    /**
+     * @param \Symfony\Component\Translation\Translator $translator
+     */
+    public function setTranslator(Translator $translator)
+    {
+        $this->translator = $translator;
+    }
+    
     /**
      * {@inheritdoc}
      */
@@ -75,35 +89,35 @@ class DateRangePickerType extends AbstractType
             'format'                => 'YYYY-MM-DD',
             'separator'             => ' - ',
             'locale'                => array(
-                'applyLabel'            => 's2a_daterange_picker.applyLabel',
-                'cancelLabel'           => 's2a_daterange_picker.cancelLabel',
-                'fromLabel'             => 's2a_daterange_picker.fromLabel',
-                'toLabel'               => 's2a_daterange_picker.toLabel',
-                'customRangeLabel'      => 's2a_daterange_picker.customRangeLabel',
+                'applyLabel'            => $this->translator->trans('s2a_daterange_picker.applyLabel', array(), 'AdmingeneratorFormExtensions'),
+                'cancelLabel'           => $this->translator->trans('s2a_daterange_picker.cancelLabel', array(), 'AdmingeneratorFormExtensions'),
+                'fromLabel'             => $this->translator->trans('s2a_daterange_picker.fromLabel', array(), 'AdmingeneratorFormExtensions'),
+                'toLabel'               => $this->translator->trans('s2a_daterange_picker.toLabel', array(), 'AdmingeneratorFormExtensions'),
+                'customRangeLabel'      => $this->translator->trans('s2a_daterange_picker.customRangeLabel', array(), 'AdmingeneratorFormExtensions'),
                 'daysOfWeek'            => array(
-                    's2a_daterange_picker.daysOfWeek.Su',
-                    's2a_daterange_picker.daysOfWeek.Mo',
-                    's2a_daterange_picker.daysOfWeek.Tu',
-                    's2a_daterange_picker.daysOfWeek.We',
-                    's2a_daterange_picker.daysOfWeek.Th',
-                    's2a_daterange_picker.daysOfWeek.Fr',
-                    's2a_daterange_picker.daysOfWeek.Sa'
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Su', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Mo', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Tu', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.We', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Th', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Fr', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Sa', array(), 'AdmingeneratorFormExtensions'),
                 ),
                 'monthNames'            => array(
-                    's2a_daterange_picker.monthNames.January',
-                    's2a_daterange_picker.monthNames.February',
-                    's2a_daterange_picker.monthNames.March',
-                    's2a_daterange_picker.monthNames.April',
-                    's2a_daterange_picker.monthNames.May',
-                    's2a_daterange_picker.monthNames.June',
-                    's2a_daterange_picker.monthNames.July',
-                    's2a_daterange_picker.monthNames.August',
-                    's2a_daterange_picker.monthNames.September',
-                    's2a_daterange_picker.monthNames.October',
-                    's2a_daterange_picker.monthNames.November',
-                    's2a_daterange_picker.monthNames.December'
+                    $this->translator->trans('s2a_daterange_picker.monthNames.January', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.February', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.March', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.April', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.May', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.June', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.July', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.August', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.September', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.October', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.November', array(), 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.December', array(), 'AdmingeneratorFormExtensions'),
                 ),
-                'firstDay'              => 's2a_daterange_picker.firstDay'
+                'firstDay'              => intval($this->translator->trans('s2a_daterange_picker.firstDay', array(), 'AdmingeneratorFormExtensions')),
             ),
             'singleDatePicker'      => false,
             'parentEl'              => 'body',
