@@ -73,6 +73,37 @@ class DateRangePickerType extends AbstractType
             'cancelClass'           => 'btn-default',
             'format'                => 'YYYY-MM-DD',
             'separator'             => ' - ',
+            'locale'                => array(
+                'applyLabel'            => 's2a_daterange_picker.applyLabel',
+                'cancelLabel'           => 's2a_daterange_picker.cancelLabel',
+                'fromLabel'             => 's2a_daterange_picker.fromLabel',
+                'toLabel'               => 's2a_daterange_picker.toLabel',
+                'customRangeLabel'      => 's2a_daterange_picker.customRangeLabel',
+                'daysOfWeek'            => array(
+                    's2a_daterange_picker.daysOfWeek.Su',
+                    's2a_daterange_picker.daysOfWeek.Mo',
+                    's2a_daterange_picker.daysOfWeek.Tu',
+                    's2a_daterange_picker.daysOfWeek.We',
+                    's2a_daterange_picker.daysOfWeek.Th',
+                    's2a_daterange_picker.daysOfWeek.Fr',
+                    's2a_daterange_picker.daysOfWeek.Sa'
+                ),
+                'monthNames'            => array(
+                    's2a_daterange_picker.monthNames.January',
+                    's2a_daterange_picker.monthNames.February',
+                    's2a_daterange_picker.monthNames.March',
+                    's2a_daterange_picker.monthNames.April',
+                    's2a_daterange_picker.monthNames.May',
+                    's2a_daterange_picker.monthNames.June',
+                    's2a_daterange_picker.monthNames.July',
+                    's2a_daterange_picker.monthNames.August',
+                    's2a_daterange_picker.monthNames.September',
+                    's2a_daterange_picker.monthNames.October',
+                    's2a_daterange_picker.monthNames.November',
+                    's2a_daterange_picker.monthNames.December'
+                ),
+                'firstDay'              => 's2a_daterange_picker.firstDay'
+            ),
             'singleDatePicker'      => false,
             'parentEl'              => 'body',
             'callback'              => 'function(start, end, label) {}'
@@ -97,6 +128,7 @@ class DateRangePickerType extends AbstractType
             'cancelClass'           => array('string'),
             'format'                => array('string'),
             'separator'             => array('string'),
+            'locale'                => array('array'),
             'singleDatePicker'      => array('bool'),
             'parentEl'              => array('string'),
             'callback'              => array('string'),
