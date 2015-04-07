@@ -24,6 +24,10 @@
             <tag name="form.type" alias="s2a_datetime_picker" />
         </service>
         
+        <service id="admingenerator.form.extensions.type.daterange_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\DateRangePickerType">
+            <tag name="form.type" alias="s2a_daterange_picker" />
+        </service>
+        
         <service id="admingenerator.form.extensions.type.date_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\DatePickerType">
             <tag name="form.type" alias="s2a_date_picker" />
         </service>
