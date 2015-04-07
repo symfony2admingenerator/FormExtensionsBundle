@@ -23,8 +23,28 @@ class DateRangePickerType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_merge($view->vars, array(
-            'from_name'   => $options['from_name'],
-            'to_name'     => $options['to_name'],
+            'startDate'             => $options['startDate'],
+            'endDate'               => $options['endDate'],
+            'minDate'               => $options['minDate'],
+            'maxDate'               => $options['maxDate'],
+            'dateLimit'             => $options['dateLimit'],
+            'timeZone'              => $options['timeZone'],
+            'showDropdowns'         => $options['showDropdowns'],
+            'showWeekNumbers'       => $options['showWeekNumbers'],
+            'timePicker'            => $options['timePicker'],
+            'timePickerIncrement'   => $options['timePickerIncrement'],
+            'timePicker12Hour'      => $options['timePicker12Hour'],
+            'timePickerSeconds'     => $options['timePickerSeconds'],
+            'ranges'                => $options['ranges'],
+            'opens'                 => $options['opens'],
+            'buttonClasses'         => $options['buttonClasses'],
+            'applyClass'            => $options['applyClass'],
+            'cancelClass'           => $options['cancelClass'],
+            'format'                => $options['format'],
+            'separator'             => $options['separator'],
+            'locale'                => $options['locale'],
+            'singleDatePicker'      => $options['singleDatePicker'],
+            'parentEl'              => $options['parentEl'],
         ));
     }
     
