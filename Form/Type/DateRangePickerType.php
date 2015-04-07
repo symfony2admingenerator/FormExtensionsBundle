@@ -42,7 +42,6 @@ class DateRangePickerType extends AbstractType
             'cancelClass'           => $options['cancelClass'],
             'format'                => $options['format'],
             'separator'             => $options['separator'],
-            'locale'                => $options['locale'],
             'singleDatePicker'      => $options['singleDatePicker'],
             'parentEl'              => $options['parentEl'],
         ));
@@ -73,9 +72,8 @@ class DateRangePickerType extends AbstractType
             'cancelClass'           => null,
             'format'                => null,
             'separator'             => null,
-            'locale'                => null,
-            'singleDatePicker'      => null,
-            'parentEl'              => null,
+            'singleDatePicker'      => false,
+            'parentEl'              => 'body',
         ));
     }
     
