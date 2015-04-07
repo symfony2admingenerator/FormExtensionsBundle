@@ -44,6 +44,7 @@ class DateRangePickerType extends AbstractType
             'separator'             => $options['separator'],
             'singleDatePicker'      => $options['singleDatePicker'],
             'parentEl'              => $options['parentEl'],
+            'callback'              => $options['callback']
         ));
     }
     
@@ -74,6 +75,7 @@ class DateRangePickerType extends AbstractType
             'separator'             => ' - ',
             'singleDatePicker'      => false,
             'parentEl'              => 'body',
+            'callback'              => 'function(start, end, label) {}'
         ));
         
         $resolver->setAllowedTypes(array(
@@ -97,6 +99,7 @@ class DateRangePickerType extends AbstractType
             'separator'             => array('string'),
             'singleDatePicker'      => array('bool'),
             'parentEl'              => array('string'),
+            'callback'              => array('string'),
         ));
     }
     
