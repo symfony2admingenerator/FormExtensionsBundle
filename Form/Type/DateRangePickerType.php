@@ -83,7 +83,7 @@ class DateRangePickerType extends AbstractType
             'timePickerSeconds'     => false,
             'ranges'                => array(),
             'opens'                 => 'right',
-            'buttonClasses'         => array('btn'),
+            'buttonClasses'         => array('btn', 'btn-sm'),
             'applyClass'            => 'btn-success',
             'cancelClass'           => 'btn-default',
             'format'                => 'YYYY-MM-DD',
