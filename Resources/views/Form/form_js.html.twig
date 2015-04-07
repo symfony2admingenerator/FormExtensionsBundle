@@ -151,11 +151,21 @@
 
     {% block s2a_daterange_picker_js_prototype %}
         $field.daterangepicker({
+        {% if startDate is not empty %}
             'startDate':            {{ startDate|e4js }},
+        {% endif %}
+        {% if endDate is not empty %}
             'endDate':              {{ endDate|e4js }},
+        {% endif %}
+        {% if minDate is not empty %}
             'minDate':              {{ minDate|e4js }},
+        {% endif %}
+        {% if maxDate is not empty %}
             'maxDate':              {{ maxDate|e4js }},
+        {% endif %}
+        {% if dateLimit is not empty %}
             'dateLimit':            {{ dateLimit|e4js }},
+        {% endif %}
             'timeZone':             {{ timeZone|e4js }},
             'showDropdowns':        {{ showDropdowns|e4js }},
             'showWeekNumbers':      {{ showWeekNumbers|e4js }},
