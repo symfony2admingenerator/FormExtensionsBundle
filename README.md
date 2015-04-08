@@ -55,12 +55,18 @@ For Admingenerator users:
     {{ parent() }}
 
     {% include 'AdmingeneratorFormExtensionsBundle::stylesheets.html.twig' %}
+    {% if form is defined and form is not empty %}
+        {{ form_css(form) }}
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
 
     {% include 'AdmingeneratorFormExtensionsBundle::javascripts.html.twig' %}
+    {% if form is defined and form is not empty %}
+        {{ form_js(form) }}
+    {% endif %}
 {% endblock %}
 ```
 
