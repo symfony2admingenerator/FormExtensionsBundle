@@ -398,27 +398,32 @@
 {% spaceless %}
     var $widget = $('#'+$field.attr('id')+'_widget');
     var config = {{ config|merge({
-        'language': app.request.locale
+        'locale': app.request.locale
     })|e4js|raw }};
 
     $widget.datetimepicker(config);
 {% if widget_value is defined %}
-    $widget.data("DateTimePicker").setDate(moment("{{ widget_value }}", "{{ widget_format }}"));
+    $widget.data("DateTimePicker").date(moment("{{ widget_value }}", "{{ widget_format }}"));
 {% else %}
-    $widget.data("DateTimePicker").setValue(null);    
+    $widget.data("DateTimePicker").date(null);
 {% endif %}
 
     var copyValue = function() {
-        var date = $widget.data("DateTimePicker").getDate();
+        var date = $widget.data("DateTimePicker").date();
         if(date == null) $field.val('')
         else $field.val(moment(date).format("{{ widget_format }}"));
     };
 
-    $widget.on("dp.change", copyValue);  
+    $widget.on("dp.change", copyValue);
+    $widget.find('a.s2a-date-btn').on('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        $widget.data("DateTimePicker").show();
+    });
     $widget.find('a.s2a-clear-btn').on('click', function(e){
         e.preventDefault();
         e.stopPropagation();
-        $widget.data("DateTimePicker").setValue(null);
+        $widget.data("DateTimePicker").date(null);
         $widget.trigger("dp.change");
     });
     $field.closest('form').on('submit', copyValue);
