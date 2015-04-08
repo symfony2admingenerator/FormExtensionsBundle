@@ -70,7 +70,7 @@ For others:
 {% block stylesheets %}
     {% include 'AdmingeneratorFormExtensionsBundle::stylesheets.html.twig' %}
     
-    {% if form is defined %}
+    {% if form is defined and form is not empty %}
         {{ form_css(form) }}
     {% endif %}
 {% endblock %}
@@ -78,7 +78,7 @@ For others:
 {% block javascripts %}
     {% include 'AdmingeneratorFormExtensionsBundle::javascripts.html.twig' %}
     
-    {% if form is defined %}
+    {% if form is defined and form is not empty %}
         {{ form_js(form) }}
     {% endif %}
 {% endblock %}
