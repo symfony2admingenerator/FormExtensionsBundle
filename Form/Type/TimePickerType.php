@@ -21,12 +21,7 @@ class TimePickerType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['width'] = $options['width'];
-        $view->vars['config'] = array_replace($options['config'], array(
-            'pickDate'      => false,
-            'pickTime'      => true,
-            'useMinutes'    => $options['with_minutes'],
-            'useSeconds'    => $options['with_seconds'],
-        ));
+        $view->vars['config'] = $options['config'];
 
         if ($options['with_minutes'] && $options['with_seconds']) {
             $widgetFormat = 'HH:mm:ss';
@@ -53,8 +48,6 @@ class TimePickerType extends AbstractType
             'widget'        => 'single_text',
             'width'     => null,
             'config'        => array(
-                'pickDate'      => false,
-                'pickTime'      => true,
                 'icons'         => array(
                     'time'  => "fa fa-clock-o",
                     'date'  => "fa fa-calendar",

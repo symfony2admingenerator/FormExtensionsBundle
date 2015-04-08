@@ -22,10 +22,6 @@ class DateTimePickerType extends AbstractType
     {
         $view->vars['width'] = $options['width'];
         $view->vars['config'] = array_replace($options['config'], array(
-            'pickDate'      => true,
-            'pickTime'      => true,
-            'useMinutes'    => $options['with_minutes'],
-            'useSeconds'    => $options['with_seconds'],
             'icons'         => array(
                 'time'  => "fa fa-clock-o",
                 'date'  => "fa fa-calendar",
@@ -52,8 +48,6 @@ class DateTimePickerType extends AbstractType
             'format'    => DateTimeType::HTML5_FORMAT,
             'width'     => null,
             'config'    => array(
-                'pickDate'      => true,
-                'pickTime'      => true,
                 'sideBySide'    => false,
                 'icons'     => array(
                     'time'  => "fa fa-clock-o",
