@@ -54,8 +54,4 @@
     {% if app.request.locale in ['cs', 'de', 'es', 'eu', 'it', 'nl', 'pl', 'pt-BR', 'ru', 'zh-CN'] %}
     <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/bootstrap-select/js/i18n/defaults-' ~ app.request.locale ~ '.js') }}"></script>
     {% endif %}
-
-    {% if app.request.locale in ['ar-ma', 'ar', 'bg', 'br', 'bs', 'ca', 'cs', 'cv', 'da', 'de', 'el', 'en-au', 'en-ca', 'en-gb', 'eo', 'es', 'et', 'eu', 'fa', 'fi', 'fr-ca', 'fr', 'gl', 'he', 'hi', 'hr', 'hu', 'id', 'is', 'it', 'ja', 'ka', 'ko', 'lt', 'lv', 'ml', 'mr', 'ms-mv', 'nb', 'ne', 'nl', 'nn', 'pl', 'pt-BR', 'pt', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv', 'th', 'tr', 'tzm-la', 'tzm', 'uk', 'uz', 'vn', 'zh-CN', 'zh-TW'] %}
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/datetime-picker/js/locales/bootstrap-datetimepicker.' ~ app.request.locale ~ '.js') }}"></script>
-    {% endif %}
 {% endblock admingenerator_form_javascripts %}
