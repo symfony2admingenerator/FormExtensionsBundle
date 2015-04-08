@@ -1,6 +1,6 @@
 {% block form_row %}
 {% spaceless %}
-    <div class="control-group {{ name }}{% if errors|length > 0 %} has-error{% endif %}">
+    <div class="control-group control-group-{{ name }}{% if errors|length > 0 %} has-error{% endif %}">
         {{ form_label(form) }}
         {{ form_widget(form) }}
         {% if not compound %}
