@@ -40,8 +40,6 @@ class DatePickerType extends AbstractType
             'format'    => 'yyyy-MM-dd',
             'width'     => null,
             'config'    => array(
-                'pickDate'  => true,
-                'pickTime'  => false,
                 'icons'     => array(
                     'time'  => "fa fa-clock-o",
                     'date'  => "fa fa-calendar",
