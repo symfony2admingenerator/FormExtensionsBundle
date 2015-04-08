@@ -22,10 +22,6 @@ class TimePickerType extends AbstractType
     {
         $view->vars['width'] = $options['width'];
         $view->vars['config'] = array_replace($options['config'], array(
-            'pickDate'      => false,
-            'pickTime'      => true,
-            'useMinutes'    => $options['with_minutes'],
-            'useSeconds'    => $options['with_seconds'],
         ));
 
         if ($options['with_minutes'] && $options['with_seconds']) {
@@ -53,8 +49,6 @@ class TimePickerType extends AbstractType
             'widget'        => 'single_text',
             'width'     => null,
             'config'        => array(
-                'pickDate'      => false,
-                'pickTime'      => true,
                 'icons'         => array(
                     'time'  => "fa fa-clock-o",
                     'date'  => "fa fa-calendar",
