@@ -76,6 +76,9 @@
             // init map with marker on center
             this.map = new google.maps.Map(this.element, mapOptions);
             this.addMarker(center);
+            
+            that.map.panTo(center);
+            that.updateLocation(center);
 
             google.maps.event.addListener(this.marker, "dragend", function(event) {
                 var point = that.marker.getPosition();
