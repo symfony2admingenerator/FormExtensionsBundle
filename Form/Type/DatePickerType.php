@@ -27,7 +27,7 @@ class DatePickerType extends AbstractType
             $view->vars['widget_value'] = $view->vars['value'];
         }
 
-        $view->vars['widget_format'] = 'YYYY-MM-DD';
+        $view->vars['widget_format'] = 'L';
     }
 
     /**
