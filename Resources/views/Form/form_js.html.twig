@@ -398,7 +398,8 @@
 {% spaceless %}
     var $widget = $('#'+$field.attr('id')+'_widget');
     var config = {{ config|merge({
-        'locale': app.request.locale
+        'locale': app.request.locale,
+        'format': widget_format
     })|e4js|raw }};
 
     $widget.datetimepicker(config);
