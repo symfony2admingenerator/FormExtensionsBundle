@@ -68,9 +68,10 @@
                 this.options.default_lng
             );
             var mapOptions = {
-                zoom: this.options.default_zoom,
-                center: center,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                zoom: 		this.options.default_zoom,
+                center: 	center,
+                mapTypeId: 	google.maps.MapTypeId.ROADMAP,
+                scrollwheel:    false
             };
 			
             // init map with marker on center
