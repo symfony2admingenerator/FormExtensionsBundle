@@ -121,11 +121,15 @@
                         {% endfor %}
                     {% endif %}
                     "size": {{ item.size }},
+                    {% if itemFilter %}
+                    "url": "{{ image_asset(item, 'file')|image_filter(itemFilter) }}",
+                    {% else %}
                     "url": "{{ image_asset(item, 'file') }}",
+                    {% endif %}
                     {% if item.preview and previewFilter and item.size < loadImageMaxFileSize %}
-                        "thumbnail_url": "{{ image_asset(item, 'file')|image_filter(previewFilter)|e4js }}",
+                        "thumbnail_url": "{{ image_asset(item, 'file')|image_filter(previewFilter) }}",
                     {% elseif item.preview and item.size < loadImageMaxFileSize %}
-                        "thumbnail_url": {{ image_asset(item, 'file')|e4js }},
+                        "thumbnail_url": "{{ image_asset(item, 'file') }}",
                     {% endif %}
                     "count": {{ key }},
                 }
