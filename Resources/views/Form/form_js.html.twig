@@ -123,7 +123,7 @@
                     "size": {{ item.size }},
                     "url": "{{ image_asset(item, 'file') }}",
                     {% if item.preview and previewFilter and item.size < loadImageMaxFileSize %}
-                        "thumbnail_url": "{{ app.request.getUriForPath(image_asset(item, 'file')|image_filter(previewFilter))|e4js }}",
+                        "thumbnail_url": {{ app.request.getUriForPath(image_asset(item, 'file')|image_filter(previewFilter))|e4js }},
                     {% elseif item.preview and item.size < loadImageMaxFileSize %}
                         "thumbnail_url": {{ app.request.getUriForPath(image_asset(item, 'file'))|e4js }},
                     {% endif %}
