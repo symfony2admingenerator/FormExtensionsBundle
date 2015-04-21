@@ -173,7 +173,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
             foreach ($this->uploads as $upload) {
                 if (!is_object($upload) && !is_null($this->storage)) {
                     // read submitted editable
-                    $editable = $this->editable[$upload];
+                    $editable = array_key_exists($upload, $this->editable) ? $this->editable[$upload] : array();
                     $upload = $this->storage->getFile($upload);
                 }
 
