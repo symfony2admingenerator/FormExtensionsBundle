@@ -13,9 +13,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class NoValidateExtension extends AbstractTypeExtension
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        // It doesn't hurt even if it will be left empty.
         if (empty($view->vars['attr'])) {
             $view->vars['attr'] = array();
         }
