@@ -413,6 +413,17 @@ If set, given filter will be applied on uploaded file to generate a thumbnail.
 (https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/cookbook/image-manipulator.md) 
 cookbook entry.
 
+#### itemFilter
+
+**type:** `string` **default:** `null`
+
+If set, given filter will be applied on uploaded file. 
+
+> **Note:** Requires instaling and configureing image manipulator. See 
+[How to use image manipulator with this bundle?]
+(https://github.com/symfony2admingenerator/FormExtensionsBundle/blob/master/Resources/doc/cookbook/image-manipulator.md) 
+cookbook entry.
+
 #### prependFiles
 
 **type:** `boolean` **default:** `false`
