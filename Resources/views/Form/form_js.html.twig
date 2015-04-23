@@ -401,10 +401,10 @@
 {% autoescape false %}
 {% spaceless %}
     var $widget = $('#'+$field.attr('id')+'_widget');
-    var config = {{ config|merge({
+    var config = {{ {
         'locale': app.request.locale,
         'format': widget_format
-    })|e4js|raw }};
+    }|merge(config)|e4js|raw }};
 
     $widget.datetimepicker(config);
 {% if widget_value is defined %}
