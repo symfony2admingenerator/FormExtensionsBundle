@@ -261,7 +261,7 @@
 {% block s2a_datetime_family_prototype %}
 {% spaceless %}
 <input id="{{ id }}" name="{{ full_name }}" type="hidden" value="{{ value }}" />
-<div id="{{ id ~ '_widget' }}" class="s2a-date" {% if width is not null %}style="width: {{ width }}px"{% endif %}>
+<div id="{{ id ~ '_widget' }}" class="s2a-date" {% if width is defined and width is not null %}style="width: {{ width }}px"{% endif %}>
     <input {{ block('s2a_datetime_family_widget_attributes') }} />
     <a class="s2a-clear-btn">
         <i class="fa fa-fw fa-times"></i>
