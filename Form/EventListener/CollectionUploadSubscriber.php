@@ -217,21 +217,9 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     {
         $form = $event->getForm();
         $data = $form->getParent()->getData();
-
-        $current = $form;
-        $isAllValid = true;
-
-        // check recuresively this form and all it's parents
-        do {
-            if (!$current->isValid()) {
-                $isAllValid = false;
-                break;
-            }
-            $current = $current->getParent();
-        } while (null !== $current);
-
+        
         $getter = 'get'.ucfirst($this->propertyName);
-        if (!$isAllValid && $data->$getter() instanceof ArrayCollection) {
+        if (!$form->isValid() && $data->$getter() instanceof ArrayCollection) {
             // remove files absent in the original collection
             $data->$getter()->clear();
 
