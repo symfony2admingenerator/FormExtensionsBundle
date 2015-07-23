@@ -340,3 +340,12 @@
 </div>
 {% endspaceless %}
 {% endblock %}
+
+{% block s2a_daterange_picker_widget %}
+{% spaceless %}
+   <div class="input-group">
+   <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+    {{ block('form_widget_simple') }}
+</div> 
+{% endspaceless %}
+{% endblock s2a_daterange_picker_widget %}
