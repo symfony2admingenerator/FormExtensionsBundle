@@ -36,4 +36,5 @@
 
 .double-list .hidden-select {
     visibility: hidden;
+    height: 0;
 }
