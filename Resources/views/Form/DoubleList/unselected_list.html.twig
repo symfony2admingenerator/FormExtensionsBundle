@@ -5,7 +5,7 @@
     {% if choice is not selectedchoice(value) %}
     <li data-value="{{ choice.value }}">
         <a tabindex="-1" href="#">
-            <i class="icon-ok"></i> {{ choice.label }}
+            <i class="fa fa-check"></i> {{ choice.label }}
         </a>
     </li>
     {% endif %}
