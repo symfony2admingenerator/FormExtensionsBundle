@@ -170,13 +170,13 @@
 {% block s2a_double_list_prototype %}
 {% spaceless %}
     <div id="{{ id ~ '_widget_container' }}" class="double-list">
-        <div class="list-unselected dropdown open">
+        <div class="col-xs-12 col-sm-5 list-unselected dropdown open">
             {% include "AdmingeneratorFormExtensionsBundle:Form/DoubleList:unselected_list.html.twig" %}
         </div>
-        <div class="list-controls">
+        <div class="col-xs-12 col-sm-1 list-controls">
             {% include "AdmingeneratorFormExtensionsBundle:Form/DoubleList:controls.html.twig" %}
         </div>
-        <div class="list-selected dropdown open">
+        <div class="col-xs-12 col-sm-5 list-selected dropdown open">
             {% include "AdmingeneratorFormExtensionsBundle:Form/DoubleList:selected_list.html.twig" %}
         </div>
         {{ block('choice_widget') }}
