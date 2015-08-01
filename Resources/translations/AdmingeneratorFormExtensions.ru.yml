@@ -25,6 +25,35 @@ s2a_double_list:
     selected:           Выбранный
     unselected:         Не выбран
         
+s2a_daterange_picker:
+    applyLabel:         Применить
+    cancelLabel:        Отмена
+    fromLabel:          С даты
+    toLabel:            По дату
+    customRangeLabel:   Диапазон дат
+    daysOfWeek:
+        Su:     Вс
+        Mo:     Пн
+        Tu:     Вт
+        We:     Ср
+        Th:     Чт
+        Fr:     Пт
+        Sa:     Сб
+    monthNames:
+        January:    Январь
+        February:   Февраль
+        March:      Март
+        April:      Апрель
+        May:        Май
+        June:       Июнь
+        July:       Июль
+        August:     Август
+        September:  Сентябрь
+        October:    Октябрь
+        November:   Ноябрь
+        December:   Декабрь
+    firstDay:   1
+        
 s2a_single_upload:
     button:
         add:              Загрузить файл
@@ -44,3 +73,8 @@ s2a_single_upload:
         text-document:    "Текстовой<br />Документ"
         unknown:          "Неизвестный<br />Файл"
         video:            Видео
+
+s2a_google_map:
+    search:             Поиск
+    current:            Текущее местоположение
+    placeholder:        Введите название места...
