@@ -132,7 +132,7 @@ class DateRangePickerType extends AbstractType
         )->setAllowedTypes(
             'dateLimit', array('null', 'string')
         )->setAllowedTypes(
-            'timeZone', array('string')
+            'timeZone', array('null', 'string')
         )->setAllowedTypes(
             'showDropdowns', array('bool')
         )->setAllowedTypes(
