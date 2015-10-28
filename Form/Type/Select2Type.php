@@ -2,12 +2,13 @@
 
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
+use Admingenerator\FormExtensionsBundle\Form\DataTransformer\ArrayToStringTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * See `Resources/doc/select2/overview.md` for documentation
@@ -56,7 +57,7 @@ class Select2Type extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $defaults = array(
             'allowClear'         => false,
@@ -70,11 +71,11 @@ class Select2Type extends AbstractType
                 'configs'       => $defaults,
                 'transformer'   => null,
             ))
-            ->setNormalizers(array(
-                'configs' => function (Options $options, $configs) use ($defaults) {
+            ->setNormalizer(
+                'configs', function (Options $options, $configs) use ($defaults) {
                     return array_merge($defaults, $configs);
-                },
-            ))
+                }
+            )
         ;
     }
 

@@ -3,12 +3,9 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
@@ -66,7 +63,7 @@ class DateRangePickerType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'startDate'             => null,
@@ -124,30 +121,51 @@ class DateRangePickerType extends AbstractType
             'callback'              => 'function(start, end, label) {}'
         ));
         
-        $resolver->setAllowedTypes(array(
-            'startDate'             => array('null', 'string'),
-            'endDate'               => array('null', 'string'),
-            'minDate'               => array('null', 'string'),
-            'maxDate'               => array('null', 'string'),
-            'dateLimit'             => array('null', 'string'),
-            'timeZone'              => array('null', 'string'),
-            'showDropdowns'         => array('bool'),
-            'showWeekNumbers'       => array('bool'),
-            'timePicker'            => array('bool'),
-            'timePickerIncrement'   => array('integer'),
-            'timePicker12Hour'      => array('bool'),
-            'timePickerSeconds'     => array('bool'),
-            'ranges'                => array('array'),
-            'buttonClasses'         => array('array'),
-            'applyClass'            => array('string'),
-            'cancelClass'           => array('string'),
-            'format'                => array('string'),
-            'separator'             => array('string'),
-            'locale'                => array('array'),
-            'singleDatePicker'      => array('bool'),
-            'parentEl'              => array('string'),
-            'callback'              => array('string'),
-        ));
+        $resolver->setAllowedTypes(
+            'startDate', array('null', 'string')
+        )->setAllowedTypes(
+            'endDate', array('null', 'string')
+        )->setAllowedTypes(
+            'minDate', array('null', 'string')
+        )->setAllowedTypes(
+            'maxDate', array('null', 'string')
+        )->setAllowedTypes(
+            'dateLimit', array('null', 'string')
+        )->setAllowedTypes(
+            'timeZone', array('string')
+        )->setAllowedTypes(
+            'showDropdowns', array('bool')
+        )->setAllowedTypes(
+            'showWeekNumbers', array('bool')
+        )->setAllowedTypes(
+            'timePicker', array('bool')
+        )->setAllowedTypes(
+            'timePickerIncrement', array('integer')
+        )->setAllowedTypes(
+            'timePicker12Hour', array('bool')
+        )->setAllowedTypes(
+            'timePickerSeconds', array('bool')
+        )->setAllowedTypes(
+            'ranges', array('array')
+        )->setAllowedTypes(
+            'buttonClasses', array('array')
+        )->setAllowedTypes(
+            'applyClass', array('string')
+        )->setAllowedTypes(
+            'cancelClass', array('string')
+        )->setAllowedTypes(
+            'format', array('string')
+        )->setAllowedTypes(
+            'separator', array('string')
+        )->setAllowedTypes(
+            'locale', array('array')
+        )->setAllowedTypes(
+            'singleDatePicker', array('bool')
+        )->setAllowedTypes(
+            'parentEl', array('string')
+        )->setAllowedTypes(
+            'callback', array('string')
+        );
     }
     
     /**
