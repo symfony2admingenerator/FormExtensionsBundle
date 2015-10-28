@@ -4,12 +4,11 @@ namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Admingenerator\FormExtensionsBundle\Form\EventListener\CollectionUploadSubscriber;
 use Admingenerator\FormExtensionsBundle\Storage\FileStorageInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
@@ -25,7 +24,7 @@ class CollectionUploadType extends AbstractType
     protected $storage = null;
 
     /**
-     * @param FileStorageInterface $fileStorage
+     * @param FileStorageInterface $storage
      */
     public function setFileStorage(FileStorageInterface $storage)
     {
@@ -92,9 +91,9 @@ class CollectionUploadType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
             'acceptFileTypes'           => '/.*$/i',
@@ -127,41 +126,69 @@ class CollectionUploadType extends AbstractType
 
         // This seems weird... why to we accept it as option if we force
         // its value?
-        $resolver->setAllowedValues(array(
-            'novalidate'  => array(true),
-            'multipart'   => array(true),
-            'multiple'    => array(true),
-            'required'    => array(false),
-        ));
+        $resolver->setAllowedValues(
+            'novalidate', array(true)
+        )->setAllowedValues(
+            'multipart', array(true)
+        )->addAllowedValues(
+            'multiple', array(true)
+        )->setAllowedValues(
+            'required', array(false)
+        );
 
-        $resolver->setAllowedTypes(array(
-            'acceptFileTypes'           => array('string'),
-            'autoUpload'                => array('bool'),
-            'editable'                  => array('array'),
-            'displayDownloadButton'     => array('bool'),
-            'loadImageFileTypes'        => array('string'),
-            'loadImageMaxFileSize'      => array('integer'),
-            'maxNumberOfFiles'          => array('integer', 'null'),
-            'maxFileSize'               => array('integer', 'null'),
-            'minFileSize'               => array('integer', 'null'),
-            'multipart'                 => array('bool'),
-            'multiple'                  => array('bool'),
-            'nameable'                  => array('bool'),
-            'nameable_field'            => array('string', 'null'),
-            'novalidate'                => array('bool'),
-            'prependFiles'              => array('bool'),
-            'previewAsCanvas'           => array('bool'),
-            'previewFilter'             => array('string', 'null'),
-            'itemFilter'                => array('string', 'null'),
-            'previewMaxWidth'           => array('integer'),
-            'previewMaxHeight'          => array('integer'),
-            'primary_key'               => array('string'),
-            'required'                  => array('bool'),
-            'sortable'                  => array('bool'),
-            'sortable_field'            => array('string'),
-            'uploadRouteName'           => array('string', 'null'),
-            'uploadRouteParameters'     => array('array')
-        ));
+        $resolver->setAllowedTypes(
+            'acceptFileTypes', array('string')
+        )->setAllowedTypes(
+            'autoUpload', array('bool')
+        )->setAllowedTypes(
+            'editable', array('array')
+        )->setAllowedTypes(
+            'displayDownloadButton', array('bool')
+        )->setAllowedTypes(
+            'loadImageFileTypes', array('string')
+        )->setAllowedTypes(
+            'loadImageMaxFileSize', array('integer')
+        )->setAllowedTypes(
+            'maxNumberOfFiles', array('integer', 'null')
+        )->setAllowedTypes(
+            'maxFileSize', array('integer', 'null')
+        )->setAllowedTypes(
+            'minFileSize', array('integer', 'null')
+        )->setAllowedTypes(
+            'multipart', array('bool')
+        )->setAllowedTypes(
+            'multiple', array('bool')
+        )->setAllowedTypes(
+            'nameable', array('bool')
+        )->setAllowedTypes(
+            'nameable_field', array('string', 'null')
+        )->setAllowedTypes(
+            'novalidate' , array('bool')
+        )->setAllowedTypes(
+            'prependFiles', array('bool')
+        )->setAllowedTypes(
+            'previewAsCanvas', array('bool')
+        )->setAllowedTypes(
+            'previewFilter', array('string', 'null')
+        )->setAllowedTypes(
+            'itemFilter', array('string', 'null')
+        )->setAllowedTypes(
+            'previewMaxWidth', array('integer')
+        )->setAllowedTypes(
+            'previewMaxHeight', array('integer')
+        )->setAllowedTypes(
+            'primary_key', array('string')
+        )->setAllowedTypes(
+            'required', array('bool')
+        )->setAllowedTypes(
+            'sortable', array('bool')
+        )->setAllowedTypes(
+            'sortable_field', array('string')
+        )->setAllowedTypes(
+            'uploadRouteName', array('string', 'null')
+        )->setAllowedTypes(
+            'uploadRouteParameters', array('array')
+        );
     }
 
     /**

@@ -5,7 +5,7 @@ namespace Admingenerator\FormExtensionsBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * See `Resources/doc/mini-colors/overview.md` for documentation
@@ -44,7 +44,7 @@ class MiniColorsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'animationSpeed'  => 100,
@@ -62,24 +62,35 @@ class MiniColorsType extends AbstractType
             'theme'           => 'bootstrap'
         ));
 
-        $resolver->setAllowedValues(array(
-            'control'        => array('hue', 'brightness', 'saturation', 'wheel'),
-            'letterCase'     => array('lowercase', 'uppercase'),
-            'position'       => array('default', 'top', 'left', 'top left'),
-            'swatchPosition' => array('left', 'right')
-        ));
+        $resolver->setAllowedValues(
+            'control', array('hue', 'brightness', 'saturation', 'wheel')
+        )->setAllowedValues(
+            'letterCase', array('lowercase', 'uppercase')
+        )->setAllowedValues(
+            'position', array('default', 'top', 'left', 'top left')
+        )->setAllowedValues(
+            'swatchPosition', array('left', 'right')
+        );
 
-        $resolver->setAllowedTypes(array(
-            'animationSpeed'  => 'integer',
-            'animationEasing' => 'string',
-            'changeDelay'     => 'integer',
-            'hideSpeed'       => 'integer',
-            'inline'          => 'bool',
-            'opacity'         => 'bool',
-            'showSpeed'       => 'integer',
-            'textfield'       => 'bool',
-            'theme'           => 'string'
-        ));
+        $resolver->setAllowedTypes(
+            'animationSpeed',  array('integer')
+        )->setAllowedTypes(
+            'animationEasing', array('string')
+        )->setAllowedTypes(
+            'changeDelay', array('integer')
+        )->setAllowedTypes(
+            'hideSpeed', array('integer')
+        )->setAllowedTypes(
+            'inline', array('bool')
+        )->setAllowedTypes(
+            'opacity', array('bool')
+        )->setAllowedTypes(
+            'showSpeed', array('integer')
+        )->setAllowedTypes(
+            'textfield', array('bool')
+        )->setAllowedTypes(
+            'theme', array('string')
+        );
     }
 
     /**

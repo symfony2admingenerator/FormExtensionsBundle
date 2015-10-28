@@ -14,7 +14,7 @@ use Vich\UploaderBundle\Event\Events;
 class SingleUploadSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var string Single upload field configs
+     * @var array Single upload field configs
      */
     protected $configs = array();
     
