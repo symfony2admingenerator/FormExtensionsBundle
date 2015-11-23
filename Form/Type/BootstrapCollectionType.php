@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * See `Resources/doc/bootstrap-collection/overview.md` for documentation
@@ -45,7 +45,7 @@ class BootstrapCollectionType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'sortable'          => false,
@@ -54,12 +54,15 @@ class BootstrapCollectionType extends AbstractType
             'fieldset_class'    => 'col-md-4',
         ));
 
-        $resolver->setAllowedTypes(array(
-            'sortable'        => array('bool'),
-            'sortable_field'  => array('string'),
-            'new_label'       => array('string'),
-            'fieldset_class'  => array('string'),
-        ));
+        $resolver->setAllowedTypes(
+            'sortable', array('bool')
+        )->setAllowedTypes(
+            'sortable_field', array('string')
+        )->setAllowedTypes(
+            'new_label', array('string')
+        )->setAllowedTypes(
+            'fieldset_class', array('string')
+        );
     }
 
     /**

@@ -33,7 +33,7 @@ interface UploadCollectionFileInterface
     /**
      * Get file
      *
-     * @return Symfony\Component\HttpFoundation\File\File
+     * @return \Symfony\Component\HttpFoundation\File\File
      */
     public function getFile();
 
