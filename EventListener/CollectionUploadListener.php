@@ -5,7 +5,6 @@ use Admingenerator\FormExtensionsBundle\Storage\FileStorageInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
@@ -37,9 +36,9 @@ class CollectionUploadListener implements EventSubscriberInterface
     protected $propertyAccessor;
 
     /**
-     * @param SessionInterface $session
-     * @param Request $request
-     * @param string $routeName
+     * @param FileStorageInterface      $storage
+     * @param string                    $routeName
+     * @param PropertyAccessorInterface $propertyAccessor
      */
     public function __construct(FileStorageInterface $storage, $routeName, PropertyAccessorInterface $propertyAccessor)
     {

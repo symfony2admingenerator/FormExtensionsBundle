@@ -24,6 +24,13 @@ Add this to your `composer.json`:
 }
 ```
 
+For Symfony version lower than 2.7 or Twig lower than 1.12 add the following to your `composer.json`:
+```json
+"require": {
+    "symfony2admingenerator/form-extensions-bundle": "v2.0-beta.21"
+}
+```
+
 And then enable the bundle in your `AppKernel.php`:
 
 ```php

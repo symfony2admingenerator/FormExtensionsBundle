@@ -11,7 +11,7 @@ s2a_collection_upload:
     start:         Hochladen beginnen
     error:        Fehler
     cancel:       Abbrechen
-    remove:       Entfernen
+    delete:       Entfernen
     download:     Herunterladen
     confirm:
         batchDelete:      Wollen Sie wirklich alle ausgewählten Elemente löschen?
