@@ -5,7 +5,7 @@ namespace Admingenerator\FormExtensionsBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 /**
@@ -41,7 +41,7 @@ class DateTimePickerType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'widget'    => 'single_text',
@@ -58,15 +58,17 @@ class DateTimePickerType extends AbstractType
             )
         ));
 
-        $resolver->setAllowedTypes(array(
-            'width'  => array('null', 'integer'),
-            'config' => array('array')
-        ));
+        $resolver->setAllowedTypes(
+            'width', array('null', 'integer')
+        )->setAllowedTypes(
+            'config', array('array')
+        );
 
-        $resolver->setAllowedValues(array(
-            'widget' => array('single_text'),
-            'format' => array(DateTimeType::HTML5_FORMAT)
-        ));
+        $resolver->setAllowedValues(
+            'widget', array('single_text')
+        )->setAllowedValues(
+            'format', array(DateTimeType::HTML5_FORMAT)
+        );
     }
 
     /**

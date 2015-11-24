@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @author havvg <tuebernickel@gmail.com>
@@ -24,15 +24,15 @@ class HelpMessageExtension extends AbstractTypeExtension
         $view->vars['help'] = $form->getConfig()->getAttribute('help');
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'help' => null,
         ));
         
-        $resolver->setAllowedTypes(array(
-            'help' => array('null', 'string')
-        ));
+        $resolver->setAllowedTypes(
+            'help', array('null', 'string')
+        );
     }
 
     public function getExtendedType()
