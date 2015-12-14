@@ -97,6 +97,20 @@ For others:
 {% endblock %}
 ```
 
+### Configure assetic packages (only if you use base.html.twig template)
+
+```yaml
+framework:
+    templating:
+        packages:
+            formextensions_css:
+                version: 1.0
+                version_format: "%%1$s?v%%2$s"
+            formextensions_js:
+                version: 1.0
+                version_format: "%%1$s?v%%2$s"
+```
+
 ### Translators needed!
 
 We need your support to translate forms messages :) 
