@@ -20,11 +20,40 @@ s2a_collection_upload:
         acceptFileTypes:  Type de fichier non autorisé
         maxFileSize:      Fichier trop volumineux
         minFileSize:      Fichier trop petit
-        
+
 s2a_double_list:
     selected:           Sélectionné
     unselected:         Non sélectionné
-        
+
+s2a_daterange_picker:
+    applyLabel:         Valider
+    cancelLabel:        Annuler
+    fromLabel:          De
+    toLabel:            À
+    customRangeLabel:   Durée
+    daysOfWeek:
+        Su:     Di
+        Mo:     Lu
+        Tu:     Ma
+        We:     Me
+        Th:     Je
+        Fr:     Ve
+        Sa:     Sa
+    monthNames:
+        January:    Janvier
+        February:   Février
+        March:      Mars
+        April:      Avril
+        May:        Mai
+        June:       Juin
+        July:       Juillet
+        August:     Août
+        September:  Septembre
+        October:    Octobre
+        November:   Novembre
+        December:   Decembre
+    firstDay:   1
+
 s2a_single_upload:
     button:
         add:              Ajouter un fichier
