@@ -41,6 +41,6 @@ class AutocompleteExtension extends AbstractTypeExtension
 
     public function getExtendedType()
     {
-        return 'form';
+        return 'Symfony\Component\Form\Form';
     }
 }
