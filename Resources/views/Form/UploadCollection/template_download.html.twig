@@ -20,7 +20,7 @@
             <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
             <td class="error" colspan="2">
                 <span class="label label-important">
-                {{- 's2a_collection_upload.error'|trans({}, 'AdmingeneratorFormExtensions') -}}
+                {{- 's2a_upload_collection.error'|trans({}, 'AdmingeneratorFormExtensions') -}}
                 </span> {% raw %}{%=file.error%}{% endraw %}
             </td>
         {% raw %}
@@ -95,7 +95,7 @@
                 {% endraw %}
                     <button class="btn btn-warning remove">
                         <i class="fa fa-trash-o"></i>
-                        <span> {{ 's2a_collection_upload.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                        <span> {{ 's2a_upload_collection.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                     </button>
                 {% raw %}
                 {% } else { %}
@@ -103,13 +103,13 @@
                     {% if displayDownloadButton %}
                     <a class="btn btn-info" target="_blank" {% raw %}href="{%=file.url%}"{% endraw %}>
                         <i class="fa fa-download"></i>
-                        <span> {{ 's2a_collection_upload.download'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                        <span> {{ 's2a_upload_collection.download'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                     </a>
                     {% endif %}
                     {% if allow_delete %}
                     <button class="btn btn-danger delete">
                         <i class="fa fa-trash-o"></i>
-                        <span> {{ 's2a_collection_upload.delete'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                        <span> {{ 's2a_upload_collection.delete'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                     </button>
                     <span class="btn btn-toggle btn-link input-append">
                         <input class="toggle" type="checkbox" name="delete" value="1">

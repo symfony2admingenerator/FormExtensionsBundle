@@ -37,7 +37,7 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         $container->setParameter('admingenerator.form.include_blueimp', $config['include_blueimp']);
         $container->setParameter('admingenerator.form.include_gmaps', $config['include_gmaps']);
 
-        $this->loadCollectionUploadListener($config['collection_upload'], $container);
+        $this->loadUploadCollectionListener($config['upload_collection'], $container);
         $this->loadBootstrapCollectionTypes($container);
     }
 
@@ -65,23 +65,23 @@ class AdmingeneratorFormExtensionsExtension extends Extension
      * @param ContainerBuilder $container
      * @throws \LogicException
      */
-    private function loadCollectionUploadListener(array $config, ContainerBuilder $container)
+    private function loadUploadCollectionListener(array $config, ContainerBuilder $container)
     {
         if ($config['async_listener_enabled']) {
             if (!(array_key_exists('async_route_name', $config) && $routeName = $config['async_route_name'])) {
                 throw new \LogicException('async_route_name must be defined when async_listener_enabled is true');
             }
 
-            $collectionUploadListenerDefinition = new Definition('%admingenerator.form.collection_upload_listener.class%');
+            $collectionUploadListenerDefinition = new Definition('%admingenerator.form.upload_collection_listener.class%');
             $collectionUploadListenerDefinition->setArguments(array(
                     new Reference($config['file_storage']),
                     $routeName,
                     new Reference('property_accessor')
             ));
             $collectionUploadListenerDefinition->addTag('kernel.event_subscriber');
-            $container->setDefinition('admingenerator.form.collection_upload_listener', $collectionUploadListenerDefinition);
+            $container->setDefinition('admingenerator.form.upload_collection_listener', $collectionUploadListenerDefinition);
 
-            $container->getDefinition('admingenerator.form.extensions.type.collection_upload')->addMethodCall('setFileStorage', array(new Reference($config['file_storage'])));
+            $container->getDefinition('admingenerator.form.extensions.type.upload_collection')->addMethodCall('setFileStorage', array(new Reference($config['file_storage'])));
         }
     }
 }

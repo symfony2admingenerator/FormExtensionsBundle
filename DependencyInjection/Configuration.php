@@ -30,7 +30,7 @@ class Configuration implements ConfigurationInterface
                         ->booleanNode('use_form_resources')->defaultTrue()->end()
                     ->end()
                 ->end()
-                ->arrayNode('collection_upload')
+                ->arrayNode('upload_collection')
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->booleanNode('async_listener_enabled')->defaultFalse()->end()

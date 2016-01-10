@@ -6,7 +6,7 @@ s2a_bootstrap_collection:
         delete:           Er du sikker på at du vil slette dette elementet?
         batchDelete:      Er du sikker på at du vil slette alle merkede elementer?
 
-s2a_collection_upload:
+s2a_upload_collection:
     file.add:     "Legg til fil..."
     start:        Start upload
     error:        Feil

@@ -13,8 +13,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * @author Piotr Gołębiewski <loostro@gmail.com>
+ * @author Stéphane Escandell <stephane.escandell@gmail.com>
  */
-class CollectionUploadSubscriber implements EventSubscriberInterface
+class UploadCollectionSubscriber implements EventSubscriberInterface
 {
     /**
      * @var string Name of property holding collection

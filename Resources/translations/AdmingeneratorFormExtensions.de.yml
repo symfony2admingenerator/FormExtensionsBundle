@@ -6,7 +6,7 @@ s2a_bootstrap_collection:
         delete:           Wollen Sie wirklich dieses Element löschen?
         batchDelete:      Wollen Sie wirklich alle ausgewählten Elemente löschen?
 
-s2a_collection_upload:
+s2a_upload_collection:
     file.add:     "Dateien hinzufügen..."
     start:         Hochladen beginnen
     error:        Fehler

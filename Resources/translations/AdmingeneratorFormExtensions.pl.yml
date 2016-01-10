@@ -6,7 +6,7 @@ s2a_bootstrap_collection:
         delete:           Czy potwierdzasz usunięcie elementu?
         batchDelete:      Czy potwierdzasz usunięcie wszystkich zaznaczonych elementów?
 
-s2a_collection_upload:
+s2a_upload_collection:
     file.add:     "Dodaj plik..."
     start:        Wgraj
     error:        Błąd

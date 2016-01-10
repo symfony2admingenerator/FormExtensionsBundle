@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="admingenerator.form.collection_upload_listener.class">Admingenerator\FormExtensionsBundle\EventListener\CollectionUploadListener</parameter>
+        <parameter key="admingenerator.form.upload_collection_listener.class">Admingenerator\FormExtensionsBundle\EventListener\UploadCollectionListener</parameter>
     </parameters>
     
     <services>
@@ -16,7 +16,7 @@
             <tag name="form.type" />
         </service>
 
-        <service id="admingenerator.form.extensions.type.collection_upload" class="Admingenerator\FormExtensionsBundle\Form\Type\CollectionUploadType">
+        <service id="admingenerator.form.extensions.type.upload_collection" class="Admingenerator\FormExtensionsBundle\Form\Type\UploadCollectionType">
             <tag name="form.type" />
         </service>
         
@@ -72,10 +72,6 @@
         </service>
 
         <service id="admingenerator.form.extensions.type.select2_model" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2ModelType">
-            <tag name="form.type" />
-        </service>
-
-        <service id="admingenerator.form.extensions.type.select2_hidden" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2HiddenType">
             <tag name="form.type" />
         </service>
 

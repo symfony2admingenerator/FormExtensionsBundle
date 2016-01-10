@@ -6,7 +6,7 @@ s2a_bootstrap_collection:
         delete:           Confirma a eliminação deste elemento?
         batchDelete:      Confirma a eliminação de todos os elementos selecionados?
 
-s2a_collection_upload:
+s2a_upload_collection:
     file.add:     "Adicionar ficheiro..."
     start:        Start upload
     error:        Erro

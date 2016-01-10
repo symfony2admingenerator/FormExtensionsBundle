@@ -2,21 +2,21 @@
 
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
-use Admingenerator\FormExtensionsBundle\Form\EventListener\CollectionUploadSubscriber;
+use Admingenerator\FormExtensionsBundle\Form\EventListener\UploadCollectionSubscriber;
 use Admingenerator\FormExtensionsBundle\Storage\FileStorageInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * See `Resources/doc/collection-upload/overview.md` for documentation
  *
  * @author Piotr Gołębiewski <loostro@gmail.com>
+ * @author Stéphane Escandell <stephane.escandell@gmail.com>
  */
-class CollectionUploadType extends AbstractType
+class UploadCollectionType extends AbstractType
 {
     /**
      * @var FileStorageInterface
@@ -36,7 +36,7 @@ class CollectionUploadType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventSubscriber(new CollectionUploadSubscriber(
+        $builder->addEventSubscriber(new UploadCollectionSubscriber(
             $builder->getName(),
             $options,
             $this->storage
@@ -196,14 +196,14 @@ class CollectionUploadType extends AbstractType
      */
     public function getParent()
     {
-        return 'collection';
+        return 'Symfony\Component\Form\Extension\Core\Type\CollectionType';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
-        return 's2a_collection_upload';
+        return 's2a_upload_collection';
     }
 }

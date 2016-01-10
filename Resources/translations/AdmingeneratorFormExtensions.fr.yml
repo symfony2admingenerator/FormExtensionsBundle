@@ -6,7 +6,7 @@ s2a_bootstrap_collection:
         delete:           Êtes-vous sûr de vouloir retirer cet élément ?
         batchDelete:      Êtes-vous sûr de vouloir retirer tous ces éléments ?
 
-s2a_collection_upload:
+s2a_upload_collection:
     file.add:     "Ajouter des fichiers..."
     start:        Envoyer
     error:        Erreur

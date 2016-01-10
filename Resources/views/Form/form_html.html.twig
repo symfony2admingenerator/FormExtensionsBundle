@@ -118,7 +118,7 @@
 </tr>
 {% endblock s2a_collection_table_item %}
 
-{% block s2a_collection_upload_widget %}
+{% block s2a_upload_collection_widget %}
 {% spaceless %}
     {% set original_full_name = full_name %}
     {% set full_name = full_name ~ '[uploads][]' %}
@@ -128,26 +128,26 @@
             {% if allow_add %}
             <span class="btn btn-success fileinput">
                 <i class="fa fa-fw fa-plus"></i>
-                <span> {{ 's2a_collection_upload.file.add'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                <span> {{ 's2a_upload_collection.file.add'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                 <input type="file" {{ block('widget_attributes') }} multiple/>
             </span>
             {% endif %}
             {% if not autoUpload and uploadRouteName is not empty %}
             <button type="button" class="btn btn-primary start">
                 <i class="fa fa-fw fa-upload"></i>
-                <span> {{ 's2a_collection_upload.start'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                <span> {{ 's2a_upload_collection.start'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
             </button>
             {% endif %}
             {% if allow_add %}
             <button type="reset" class="btn btn-warning cancel">
                 <i class="fa fa-fw fa-ban"></i>
-                <span> {{ 's2a_collection_upload.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                <span> {{ 's2a_upload_collection.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
             </button>
             {% endif %}
             {% if allow_delete %}
             <button type="button" class="btn btn-danger delete">
                 <i class="fa fa-fw fa-trash"></i>
-                <span> {{ 's2a_collection_upload.delete'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                <span> {{ 's2a_upload_collection.delete'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
             </button>
             <label class="btn btn-toggle btn-link input-append">
                 <input type="checkbox" class="toggle">
@@ -158,14 +158,14 @@
             </div>
         </div>
         {% endif %}
-        {% include "AdmingeneratorFormExtensionsBundle:Form/CollectionUpload:presentation_table.html.twig" %}
-        {% include "AdmingeneratorFormExtensionsBundle:Form/CollectionUpload:template_download.html.twig" %}
+        {% include "AdmingeneratorFormExtensionsBundle:Form/UploadCollection:presentation_table.html.twig" %}
+        {% include "AdmingeneratorFormExtensionsBundle:Form/UploadCollection:template_download.html.twig" %}
         {% if allow_add %}
-            {% include "AdmingeneratorFormExtensionsBundle:Form/CollectionUpload:template_upload.html.twig" %}
+            {% include "AdmingeneratorFormExtensionsBundle:Form/UploadCollection:template_upload.html.twig" %}
         {% endif %}
     </div>
 {% endspaceless %}
-{% endblock s2a_collection_upload_widget %}
+{% endblock s2a_upload_collection_widget %}
 
 {% block s2a_double_list_prototype %}
 {% spaceless %}
@@ -236,12 +236,6 @@
     {{ block('choice_widget') }}
 {% endif %}
 {% endblock %}
-
-{% block s2a_select2_hidden_row %}
-{% spaceless %}
-    {{ block('form_row') }}
-{% endspaceless %}
-{% endblock s2a_select2_hidden_row %}
 
 {% block s2a_select2_model_widget %}
 {% if hidden %}

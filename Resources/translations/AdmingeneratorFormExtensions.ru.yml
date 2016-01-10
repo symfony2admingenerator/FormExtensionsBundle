@@ -6,7 +6,7 @@ s2a_bootstrap_collection:
         delete:           "Вы уверены, что хотите удалить этот элемент?"
         batchDelete:      "Вы уверены, что хотите удалить все выбранные элементы?"
 
-s2a_collection_upload:
+s2a_upload_collection:
     file.add:     "Добавить файл..."
     start:        Start upload
     error:        Ошибка
