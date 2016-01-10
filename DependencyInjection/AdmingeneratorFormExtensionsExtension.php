@@ -39,7 +39,6 @@ class AdmingeneratorFormExtensionsExtension extends Extension
 
         $this->loadCollectionUploadListener($config['collection_upload'], $container);
         $this->loadBootstrapCollectionTypes($container);
-        $this->loadDoubleListTypes($container);
         $this->loadSelect2Types($container);
     }
 
@@ -54,25 +53,6 @@ class AdmingeneratorFormExtensionsExtension extends Extension
             $typeDef
                 ->addArgument($type)
                 ->addTag('form.type', array('alias' => 's2a_collection_'.$type))
-            ;
-
-            $container->setDefinition($serviceId.'.'.$type, $typeDef);
-        }
-    }
-
-    private function loadDoubleListTypes(ContainerBuilder $container)
-    {
-        $serviceId = 'admingenerator.form.extensions.type.double_list';
-
-        $doubleListTypes = array(
-            'entity', 'document', 'model'
-        );
-
-        foreach ($doubleListTypes as $type) {
-            $typeDef = new DefinitionDecorator($serviceId);
-            $typeDef
-                ->addArgument($type)
-                ->addTag('form.type', array('alias' => 's2a_double_list_'.$type))
             ;
 
             $container->setDefinition($serviceId.'.'.$type, $typeDef);

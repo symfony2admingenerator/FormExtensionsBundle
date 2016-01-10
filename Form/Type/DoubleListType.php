@@ -9,8 +9,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * See `Resources/doc/double-list/overview.md` for documentation
  *
  * @author Piotr Gołębiewski <loostro@gmail.com>
+ * @author Stéphane Escandell <stephane.escandell@gmail.com>
  */
-class DoubleListType extends AbstractType
+abstract class DoubleListType extends AbstractType
 {
     private $widget;
 
@@ -35,15 +36,7 @@ class DoubleListType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getParent()
-    {
-        return $this->widget;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_double_list_' . $this->widget;
     }

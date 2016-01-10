@@ -35,7 +35,17 @@
             <tag name="form.type" alias="s2a_date_picker" />
         </service>
         
-        <service id="admingenerator.form.extensions.type.double_list" class="Admingenerator\FormExtensionsBundle\Form\Type\DoubleListType" abstract="true" />
+        <service id="admingenerator.form.extensions.type.double_list_entity" class="Admingenerator\FormExtensionsBundle\Form\Type\DoubleListEntityType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.double_list_document" class="Admingenerator\FormExtensionsBundle\Form\Type\DoubleListDocumentType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.double_list_model" class="Admingenerator\FormExtensionsBundle\Form\Type\DoubleListModelType">
+            <tag name="form.type" />
+        </service>
         
         <service id="admingenerator.form.extensions.type.elastic_textarea" class="Admingenerator\FormExtensionsBundle\Form\Type\ElasticTextareaType">
             <tag name="form.type" alias="s2a_elastic_textarea" />
