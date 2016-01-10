@@ -66,13 +66,13 @@ class DatePickerType extends AbstractType
      */
     public function getParent()
     {
-        return 'date';
+        return 'Symfony\Component\Form\Extension\Core\Type\DateType';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_date_picker';
     }

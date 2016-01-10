@@ -3,11 +3,11 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 /**
- * See `Resources/doc/double-list/overview.md` for documentation
+ * See `Resources/doc/select2/overview.md` for documentation
  *
  * @author Stéphane Escandell <stephane.escandell@gmail.com>
  */
-class DoubleListDocumentType extends DoubleListType
+class Select2DocumentType extends Select2Type
 {
     public function __construct()
     {

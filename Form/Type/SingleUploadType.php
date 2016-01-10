@@ -122,13 +122,13 @@ class SingleUploadType extends AbstractType
      */
     public function getParent()
     {
-        return 'file';
+        return 'Symfony\Component\Form\Extension\Core\Type\FileType';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_single_upload';
     }

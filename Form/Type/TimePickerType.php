@@ -72,13 +72,13 @@ class TimePickerType extends AbstractType
      */
     public function getParent()
     {
-        return 'time';
+        return 'Symfony\Component\Form\Extension\Core\Type\TimeType';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_time_picker';
     }

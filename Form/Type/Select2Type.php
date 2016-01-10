@@ -15,14 +15,27 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Bilal Amarni <bilal.amarni@gmail.com>
  * @author Chris Tickner <chris.tickner@gmail.com>
+ * @author Stéphane Escandell <stephane.escandell@gmail.com>
  */
-class Select2Type extends AbstractType
+abstract class Select2Type extends AbstractType
 {
+    /**
+     * @var string
+     */
     private $widget;
+    /**
+     * @var string
+     */
+    private $parent;
 
-    public function __construct($widget)
+    /**
+     * @param string $widget Type of the form (used as a suffix fot he blocprefix)
+     * @param string $parent Parent FQCN form
+     */
+    public function __construct($widget, $parent)
     {
         $this->widget = $widget;
+        $this->parent = $parent;
     }
 
     /**
@@ -48,7 +61,7 @@ class Select2Type extends AbstractType
         // Adds a custom block prefix
         array_splice(
             $view->vars['block_prefixes'],
-            array_search($this->getName(), $view->vars['block_prefixes']),
+            array_search($this->getBlockPrefix(), $view->vars['block_prefixes']),
             0,
             's2a_select2'
         );
@@ -84,13 +97,13 @@ class Select2Type extends AbstractType
      */
     public function getParent()
     {
-        return $this->widget;
+        return $this->parent;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_select2_' . $this->widget;
     }

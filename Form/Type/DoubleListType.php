@@ -13,11 +13,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class DoubleListType extends AbstractType
 {
+    /**
+     * @var string
+     */
     private $widget;
+    /**
+     * @var string
+     */
+    private $parent;
 
-    public function __construct($widget)
+    /**
+     * @param string $widget Type of the form (used as a suffix fot he blocprefix)
+     * @param string $parent Parent FQCN form
+     */
+    public function __construct($widget, $parent)
     {
         $this->widget = $widget;
+        $this->parent = $parent;
     }
 
     /**
@@ -31,6 +43,14 @@ abstract class DoubleListType extends AbstractType
                 'class' => 'hidden-select',
             ),
         ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 
     /**

@@ -16,13 +16,13 @@ class MoneyType extends AbstractType
      */
     public function getParent()
     {
-        return 'money';
+        return 'Symfony\Component\Form\Extension\Core\Type\MoneyType';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_money';
     }

@@ -173,10 +173,10 @@ class DateRangePickerType extends AbstractType
      */
     public function getParent()
     {
-        return 'text';
+        return 'Symfony\Component\Form\Extension\Core\Type\TextType';
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_daterange_picker';
     }
