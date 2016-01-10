@@ -10,7 +10,13 @@
     
     <services>
         <!-- Form types -->
-        <service id="admingenerator.form.extensions.type.bootstrap_collection" class="Admingenerator\FormExtensionsBundle\Form\Type\BootstrapCollectionType" abstract="true" />
+        <service id="admingenerator.form.extensions.type.bootstrap_table_collection" class="Admingenerator\FormExtensionsBundle\Form\Type\BootstrapTableCollectionType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.bootstrap_fieldset_collection" class="Admingenerator\FormExtensionsBundle\Form\Type\BootstrapFieldsetCollectionType">
+            <tag name="form.type" />
+        </service>
         
         <service id="admingenerator.form.extensions.type.bootstrap_money" class="Admingenerator\FormExtensionsBundle\Form\Type\MoneyType">
             <tag name="form.type" />

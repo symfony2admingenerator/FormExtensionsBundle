@@ -17,7 +17,10 @@ class SingleUploadSubscriber implements EventSubscriberInterface
      * @var array Single upload field configs
      */
     protected $configs = array();
-    
+
+    /**
+     * @var array
+     */
     protected $files = array();
 
     public static function getSubscribedEvents()
@@ -154,8 +157,12 @@ class SingleUploadSubscriber implements EventSubscriberInterface
     
     private function isFieldSingleUpload(ResolvedFormTypeInterface $formTypeInterface = null)
     {
-        if ($formTypeInterface == null) return false;
-        if ($formTypeInterface->getName() == 's2a_single_upload') return true;
+        if ($formTypeInterface == null) {
+            return false;
+        }
+        if (get_class($formTypeInterface->getInnerType()) == 'Admingen\FormExtensionsBundle\Form\Type\SingleUploadType') {
+            return true;
+        }
 
         return $this->isFieldSingleUpload($formTypeInterface->getParent());
     }

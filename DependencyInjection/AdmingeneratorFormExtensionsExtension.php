@@ -38,24 +38,6 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         $container->setParameter('admingenerator.form.include_gmaps', $config['include_gmaps']);
 
         $this->loadUploadCollectionListener($config['upload_collection'], $container);
-        $this->loadBootstrapCollectionTypes($container);
-    }
-
-    private function loadBootstrapCollectionTypes(ContainerBuilder $container)
-    {
-        $serviceId = 'admingenerator.form.extensions.type.bootstrap_collection';
-
-        $bootstrapCollectionTypes = array('fieldset', 'table');
-
-        foreach ($bootstrapCollectionTypes as $type) {
-            $typeDef = new DefinitionDecorator($serviceId);
-            $typeDef
-                ->addArgument($type)
-                ->addTag('form.type', array('alias' => 's2a_collection_'.$type))
-            ;
-
-            $container->setDefinition($serviceId.'.'.$type, $typeDef);
-        }
     }
 
     /**
