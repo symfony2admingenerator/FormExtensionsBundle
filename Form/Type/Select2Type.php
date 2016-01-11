@@ -80,7 +80,7 @@ abstract class Select2Type extends AbstractType
 
         $resolver
             ->setDefaults(array(
-                'hidden'        => false, // TODO: what the aim of this option? I don't get a use case for an hidden select2 input...
+                'hidden'        => false,
                 'configs'       => $defaults,
                 'transformer'   => null,
             ))
