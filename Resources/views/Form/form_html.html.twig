@@ -11,7 +11,7 @@
 
 {% block form_help %}
 {% spaceless %}
-    {% if help %}
+    {% if help is defined %}
         <span class="help-block">
             <p class="muted">{{ help|trans({}, translation_domain) }}</p>
         </span>
