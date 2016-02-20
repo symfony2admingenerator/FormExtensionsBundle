@@ -160,7 +160,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         if ($formTypeInterface == null) {
             return false;
         }
-        if (get_class($formTypeInterface->getInnerType()) == 'Admingen\FormExtensionsBundle\Form\Type\SingleUploadType') {
+        if (get_class($formTypeInterface->getInnerType()) == 'Admingenerator\FormExtensionsBundle\Form\Type\SingleUploadType') {
             return true;
         }
 
