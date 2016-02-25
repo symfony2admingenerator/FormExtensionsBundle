@@ -58,10 +58,11 @@ abstract class BootstrapCollectionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'sortable'          => false,
-            'sortable_field'    => 'position',
-            'new_label'         => 's2a_bootstrap_collection.new_label',
-            'fieldset_class'    => 'col-md-4',
+            'sortable'           => false,
+            'sortable_field'     => 'position',
+            'new_label'          => 's2a_bootstrap_collection.new_label',
+            'fieldset_class'     => 'col-md-4',
+            'translation_domain' => 'AdmingeneratorFormExtensions'
         ));
 
         $resolver->setAllowedTypes(
