@@ -60,8 +60,8 @@ abstract class BootstrapCollectionType extends AbstractType
         $resolver->setDefaults(array(
             'sortable'           => false,
             'sortable_field'     => 'position',
-            'fieldset_class'     => 'col-md-4',
-            'translation_domain' => 'AdmingeneratorFormExtensions'
+            'new_label'          => 's2a_bootstrap_collection.new_label',
+            'fieldset_class'     => 'col-md-4'
         ));
 
         $resolver->setAllowedTypes(
