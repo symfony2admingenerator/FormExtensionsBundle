@@ -20,7 +20,7 @@ Add this to your `composer.json`:
 
 ```json
 "require": {
-    "symfony2admingenerator/form-extensions-bundle": "dev-master"
+    "symfony2admingenerator/form-extensions-bundle": "^2.0"
 }
 ```
 
