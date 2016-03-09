@@ -5,8 +5,11 @@
 {% set field = form.vars.name %}
 <div class="{{ id ~ '_preview_image' }} download active">
 {% if file|default is not empty %}
-    {% if previewImages and fileType == 'image' and previewFilter is not empty %}
-        {% set src = image_asset(object, field)|image_filter(previewFilter) %}
+    {% if previewImages and fileType == 'image' %}
+        {% set src = image_asset(object, field) %}
+        {% if previewFilter is not empty %}
+          {% set src = src|image_filter(previewFilter) %}
+        {% endif %}
         <img class="img-polaroid"
              src="{{ src }}"
              style="{{- 'max-width:'  ~ maxWidth   ~'px;' -}}
