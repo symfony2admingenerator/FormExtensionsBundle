@@ -11,6 +11,6 @@ class DoubleListModelType extends DoubleListType
 {
     public function __construct()
     {
-        parent::__construct('model', 'Symfony\Bridge\Propel1\Form\Type\ModelType');
+        parent::__construct('model', 'Propel\Bundle\PropelBundle\Form\Type\ModelType');
     }
 }
