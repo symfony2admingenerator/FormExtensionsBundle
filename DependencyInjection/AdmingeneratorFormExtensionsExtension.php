@@ -37,66 +37,7 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         $container->setParameter('admingenerator.form.include_blueimp', $config['include_blueimp']);
         $container->setParameter('admingenerator.form.include_gmaps', $config['include_gmaps']);
 
-        $this->loadCollectionUploadListener($config['collection_upload'], $container);
-        $this->loadBootstrapCollectionTypes($container);
-        $this->loadDoubleListTypes($container);
-        $this->loadSelect2Types($container);
-    }
-
-    private function loadBootstrapCollectionTypes(ContainerBuilder $container)
-    {
-        $serviceId = 'admingenerator.form.extensions.type.bootstrap_collection';
-
-        $bootstrapCollectionTypes = array('fieldset', 'table');
-
-        foreach ($bootstrapCollectionTypes as $type) {
-            $typeDef = new DefinitionDecorator($serviceId);
-            $typeDef
-                ->addArgument($type)
-                ->addTag('form.type', array('alias' => 's2a_collection_'.$type))
-            ;
-
-            $container->setDefinition($serviceId.'.'.$type, $typeDef);
-        }
-    }
-
-    private function loadDoubleListTypes(ContainerBuilder $container)
-    {
-        $serviceId = 'admingenerator.form.extensions.type.double_list';
-
-        $doubleListTypes = array(
-            'entity', 'document', 'model'
-        );
-
-        foreach ($doubleListTypes as $type) {
-            $typeDef = new DefinitionDecorator($serviceId);
-            $typeDef
-                ->addArgument($type)
-                ->addTag('form.type', array('alias' => 's2a_double_list_'.$type))
-            ;
-
-            $container->setDefinition($serviceId.'.'.$type, $typeDef);
-        }
-    }
-
-    private function loadSelect2Types(ContainerBuilder $container)
-    {
-        $serviceId = 'admingenerator.form.extensions.type.select2';
-
-        $select2types = array(
-            'choice', 'language', 'country', 'timezone',
-            'locale', 'entity', 'document', 'model', 'hidden'
-        );
-
-        foreach ($select2types as $type) {
-            $typeDef = new DefinitionDecorator($serviceId);
-            $typeDef
-                ->addArgument($type)
-                ->addTag('form.type', array('alias' => 's2a_select2_'.$type))
-            ;
-
-            $container->setDefinition($serviceId.'.'.$type, $typeDef);
-        }
+        $this->loadUploadCollectionListener($config['upload_collection'], $container);
     }
 
     /**
@@ -106,23 +47,23 @@ class AdmingeneratorFormExtensionsExtension extends Extension
      * @param ContainerBuilder $container
      * @throws \LogicException
      */
-    private function loadCollectionUploadListener(array $config, ContainerBuilder $container)
+    private function loadUploadCollectionListener(array $config, ContainerBuilder $container)
     {
         if ($config['async_listener_enabled']) {
             if (!(array_key_exists('async_route_name', $config) && $routeName = $config['async_route_name'])) {
                 throw new \LogicException('async_route_name must be defined when async_listener_enabled is true');
             }
 
-            $collectionUploadListenerDefinition = new Definition('%admingenerator.form.collection_upload_listener.class%');
+            $collectionUploadListenerDefinition = new Definition('%admingenerator.form.upload_collection_listener.class%');
             $collectionUploadListenerDefinition->setArguments(array(
                     new Reference($config['file_storage']),
                     $routeName,
                     new Reference('property_accessor')
             ));
             $collectionUploadListenerDefinition->addTag('kernel.event_subscriber');
-            $container->setDefinition('admingenerator.form.collection_upload_listener', $collectionUploadListenerDefinition);
+            $container->setDefinition('admingenerator.form.upload_collection_listener', $collectionUploadListenerDefinition);
 
-            $container->getDefinition('admingenerator.form.extensions.type.collection_upload')->addMethodCall('setFileStorage', array(new Reference($config['file_storage'])));
+            $container->getDefinition('admingenerator.form.extensions.type.upload_collection')->addMethodCall('setFileStorage', array(new Reference($config['file_storage'])));
         }
     }
 }

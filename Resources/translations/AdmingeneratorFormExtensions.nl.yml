@@ -6,7 +6,7 @@ s2a_bootstrap_collection:
         delete:           Weet U zeker dat U dit element wilt verwijderen?
         batchDelete:      Weet U zeker dat U alle geselecteerde elementen wilt verwijderen?
 
-s2a_collection_upload:
+s2a_upload_collection:
     file.add:     "Bestand toevoegen..."
     start:        Start upload
     error:        Fout

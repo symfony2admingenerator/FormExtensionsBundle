@@ -5,83 +5,133 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="admingenerator.form.collection_upload_listener.class">Admingenerator\FormExtensionsBundle\EventListener\CollectionUploadListener</parameter>
+        <parameter key="admingenerator.form.upload_collection_listener.class">Admingenerator\FormExtensionsBundle\EventListener\UploadCollectionListener</parameter>
     </parameters>
     
     <services>
         <!-- Form types -->
-        <service id="admingenerator.form.extensions.type.bootstrap_collection" class="Admingenerator\FormExtensionsBundle\Form\Type\BootstrapCollectionType" abstract="true" />
-        
-        <service id="admingenerator.form.extensions.type.bootstrap_money" class="Admingenerator\FormExtensionsBundle\Form\Type\MoneyType">
-            <tag name="form.type" alias="s2a_money" />
+        <service id="admingenerator.form.extensions.type.bootstrap_table_collection" class="Admingenerator\FormExtensionsBundle\Form\Type\BootstrapTableCollectionType">
+            <tag name="form.type" />
         </service>
 
-        <service id="admingenerator.form.extensions.type.collection_upload" class="Admingenerator\FormExtensionsBundle\Form\Type\CollectionUploadType">
-            <tag name="form.type" alias="s2a_collection_upload" />
+        <service id="admingenerator.form.extensions.type.bootstrap_fieldset_collection" class="Admingenerator\FormExtensionsBundle\Form\Type\BootstrapFieldsetCollectionType">
+            <tag name="form.type" />
+        </service>
+        
+        <service id="admingenerator.form.extensions.type.bootstrap_money" class="Admingenerator\FormExtensionsBundle\Form\Type\MoneyType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.upload_collection" class="Admingenerator\FormExtensionsBundle\Form\Type\UploadCollectionType">
+            <tag name="form.type" />
         </service>
         
         <service id="admingenerator.form.extensions.type.datetime_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\DateTimePickerType">
-            <tag name="form.type" alias="s2a_datetime_picker" />
+            <tag name="form.type" />
         </service>
         
         <service id="admingenerator.form.extensions.type.daterange_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\DateRangePickerType">
-            <tag name="form.type" alias="s2a_daterange_picker" />
+            <tag name="form.type" />
             <call method="setTranslator">
                 <argument type="service" id="translator" />
             </call>
         </service>
         
         <service id="admingenerator.form.extensions.type.date_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\DatePickerType">
-            <tag name="form.type" alias="s2a_date_picker" />
+            <tag name="form.type" />
         </service>
         
-        <service id="admingenerator.form.extensions.type.double_list" class="Admingenerator\FormExtensionsBundle\Form\Type\DoubleListType" abstract="true" />
+        <service id="admingenerator.form.extensions.type.double_list_entity" class="Admingenerator\FormExtensionsBundle\Form\Type\DoubleListEntityType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.double_list_document" class="Admingenerator\FormExtensionsBundle\Form\Type\DoubleListDocumentType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.double_list_model" class="Admingenerator\FormExtensionsBundle\Form\Type\DoubleListModelType">
+            <tag name="form.type" />
+        </service>
         
         <service id="admingenerator.form.extensions.type.elastic_textarea" class="Admingenerator\FormExtensionsBundle\Form\Type\ElasticTextareaType">
-            <tag name="form.type" alias="s2a_elastic_textarea" />
+            <tag name="form.type" />
         </service>
         
         <service id="admingenerator.form.extensions.type.google_map" class="Admingenerator\FormExtensionsBundle\Form\Type\GoogleMapType">
-            <tag name="form.type" alias="s2a_google_map" />
+            <tag name="form.type" />
         </service>
         
         <service id="admingenerator.form.extensions.type.knob" class="Admingenerator\FormExtensionsBundle\Form\Type\KnobType">
-            <tag name="form.type" alias="s2a_knob" />
+            <tag name="form.type" />
         </service>
         
         <service id="admingenerator.form.extensions.type.mini_colors" class="Admingenerator\FormExtensionsBundle\Form\Type\MiniColorsType">
-            <tag name="form.type" alias="s2a_mini_colors" />
+            <tag name="form.type" />
         </service>
 
-        <service id="admingenerator.form.extensions.type.select2" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2Type" abstract="true" />
+        <service id="admingenerator.form.extensions.type.select2_entity" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2EntityType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.select2_document" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2DocumentType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.select2_model" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2ModelType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.select2_locale" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2LocaleType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.select2_language" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2LanguageType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.select2_country" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2CountryType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.select2_timezone" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2TimezoneType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.select2_choice" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2ChoiceType">
+            <tag name="form.type" />
+        </service>
         
         <service id="admingenerator.form.extensions.type.single_upload" class="Admingenerator\FormExtensionsBundle\Form\Type\SingleUploadType">
-            <tag name="form.type" alias="s2a_single_upload" />
+            <tag name="form.type" />
         </service>
         
         <service id="admingenerator.form.extensions.type.time_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\TimePickerType">
-            <tag name="form.type" alias="s2a_time_picker" />
+            <tag name="form.type" />
+        </service>
+
+        <service id="admingenerator.form.extensions.type.hidden" class="Admingenerator\FormExtensionsBundle\Form\Type\HiddenType">
+            <tag name="form.type" />
         </service>
 
         <!-- Form extensions -->
         <service id="form.type_extension.autocomplete" class="Admingenerator\FormExtensionsBundle\Form\Extension\AutocompleteExtension">
-            <tag name="form.type_extension" alias="form" />
+            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
 
         <service id="form.type_extension.bootstrap_select" class="Admingenerator\FormExtensionsBundle\Form\Extension\BootstrapSelectExtension">
-            <tag name="form.type_extension" alias="choice" />
+            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\ChoiceType" />
         </service>
 
         <service id="form.type_extension.help_message" class="Admingenerator\FormExtensionsBundle\Form\Extension\HelpMessageExtension">
-            <tag name="form.type_extension" alias="form" />
+            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
         
         <service id="form.type_extension.novalidate" class="Admingenerator\FormExtensionsBundle\Form\Extension\NoValidateExtension">
-            <tag name="form.type_extension" alias="form" />
+            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
         
         <service id="form.type_extension.single_upload" class="Admingenerator\FormExtensionsBundle\Form\Extension\SingleUploadExtension">
-            <tag name="form.type_extension" alias="form" />
+            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
         
         <!-- Twig extensions -->

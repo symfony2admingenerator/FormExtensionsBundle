@@ -13,8 +13,9 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * @author Piotr Gołębiewski <loostro@gmail.com>
+ * @author Stéphane Escandell <stephane.escandell@gmail.com>
  */
-class CollectionUploadSubscriber implements EventSubscriberInterface
+class UploadCollectionSubscriber implements EventSubscriberInterface
 {
     /**
      * @var string Name of property holding collection
@@ -29,7 +30,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     /**
      * @var boolean Primary Key field
      */
-    protected $primary_key;
+    protected $primaryKey;
 
     /**
      * @var boolean Is file nameable
@@ -39,7 +40,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     /**
      * @var string Nameable field name
      */
-    protected $nameable_field;
+    protected $nameableField;
 
     /**
      * Used to revert changes if form is not valid.
@@ -60,17 +61,17 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     /**
      * @var array Submitted primary keys
      */
-    protected $submitted_pk;
+    protected $submittedPk;
 
     /**
      * @var boolean
      */
-    protected $allow_add;
+    protected $allowAdd;
 
     /**
      * @var boolean
      */
-    protected $allow_delete;
+    protected $allowDelete;
 
     /**
      * @var FileStorageInterface
@@ -87,14 +88,14 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     {
         $this->propertyName     = $propertyName;
         $this->dataClass        = $options['options']['data_class'];
-        $this->primary_key      = $options['primary_key'];
+        $this->primaryKey      = $options['primary_key'];
         $this->nameable         = $options['nameable'];
-        $this->nameable_field   = $options['nameable_field'];
+        $this->nameableField   = $options['nameable_field'];
         $this->uploads          = array();
         $this->editable         = array();
-        $this->submitted_pk     = array();
-        $this->allow_add        = $options['allow_add'];
-        $this->allow_delete     = $options['allow_delete'];
+        $this->submittedPk     = array();
+        $this->allowAdd        = $options['allow_add'];
+        $this->allowDelete     = $options['allow_delete'];
         $this->storage          = $storage;
     }
 
@@ -109,7 +110,6 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
 
     public function preSubmit(FormEvent $event)
     {
-        $form = $event->getForm();
         $data = $event->getData();
 
         $data = $data ?: array();
@@ -141,8 +141,8 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
 
         // save submitted primary keys for onSubmit event
         foreach ($data as $file) {
-            if (is_array($file) && array_key_exists($this->primary_key, $file)) {
-                $this->submitted_pk[] = $file[$this->primary_key];
+            if (is_array($file) && array_key_exists($this->primaryKey, $file)) {
+                $this->submittedPk[] = $file[$this->primaryKey];
             }
         }
 
@@ -158,22 +158,22 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
         $getter = 'get'.ucfirst($this->propertyName);
         $this->originalFiles = $data->$getter();
 
-        if ($this->allow_delete) {
+        if ($this->allowDelete) {
             // remove files not present in submitted pk
-            $pkGetter = 'get'.ucfirst($this->primary_key);
+            $pkGetter = 'get'.ucfirst($this->primaryKey);
             foreach ($data->$getter() as $file) {
-                if (!in_array($file->$pkGetter(), $this->submitted_pk)) {
+                if (!in_array($file->$pkGetter(), $this->submittedPk)) {
                     $data->$getter()->removeElement($file);
                 }
             }
         }
 
-        if ($this->allow_add) {
+        if ($this->allowAdd) {
             // create file entites for each file
             foreach ($this->uploads as $upload) {
                 if (!is_object($upload) && !is_null($this->storage)) {
                     // read submitted editable
-                    $editable = $this->editable[$upload];
+                    $editable = array_key_exists($upload, $this->editable) ? $this->editable[$upload] : array();
                     $upload = $this->storage->getFile($upload);
                 }
 
@@ -195,8 +195,8 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
                 }
 
                 // if nameable field specified - set normalized name
-                if ($this->nameable && $this->nameable_field) {
-                    $setNameable = 'set'.ucfirst($this->nameable_field);
+                if ($this->nameable && $this->nameableField) {
+                    $setNameable = 'set'.ucfirst($this->nameableField);
 
                     // this value is unsafe
                     $name = $upload->getClientOriginalName();
@@ -217,7 +217,7 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     {
         $form = $event->getForm();
         $data = $form->getParent()->getData();
-
+        
         $getter = 'get'.ucfirst($this->propertyName);
         if (!$form->isValid() && $data->$getter() instanceof ArrayCollection) {
             // remove files absent in the original collection
@@ -234,25 +234,25 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
     private function normalizeUtf8String($s)
     {
         // save original string
-        $original_string = $s;
+        $originalString = $s;
 
         // Normalizer-class missing!
         if (!class_exists('\Normalizer')) {
             // remove all non-whitelisted characters
-            return  preg_replace( '@[^a-zA-Z0-9._\-\s ]@u' , "", $original_string );
+            return  preg_replace( '@[^a-zA-Z0-9._\-\s ]@u' , '', $originalString );
         }
 
         $normalizer = new \Normalizer();
 
         // maps German (umlauts) and other European characters onto two characters before just removing diacritics
-        $s = preg_replace('@\x{00c4}@u', "AE", $s);    // umlaut Ä => AE
-        $s = preg_replace('@\x{00d6}@u', "OE", $s);    // umlaut Ö => OE
-        $s = preg_replace('@\x{00dc}@u', "UE", $s);    // umlaut Ü => UE
-        $s = preg_replace('@\x{00e4}@u', "ae", $s);    // umlaut ä => ae
-        $s = preg_replace('@\x{00f6}@u', "oe", $s);    // umlaut ö => oe
-        $s = preg_replace('@\x{00fc}@u', "ue", $s);    // umlaut ü => ue
-        $s = preg_replace('@\x{00f1}@u', "ny", $s);    // ñ => ny
-        $s = preg_replace('@\x{00ff}@u', "yu", $s);    // ÿ => yu
+        $s = preg_replace('@\x{00c4}@u', 'AE', $s);    // umlaut Ä => AE
+        $s = preg_replace('@\x{00d6}@u', 'OE', $s);    // umlaut Ö => OE
+        $s = preg_replace('@\x{00dc}@u', 'UE', $s);    // umlaut Ü => UE
+        $s = preg_replace('@\x{00e4}@u', 'ae', $s);    // umlaut ä => ae
+        $s = preg_replace('@\x{00f6}@u', 'oe', $s);    // umlaut ö => oe
+        $s = preg_replace('@\x{00fc}@u', 'ue', $s);    // umlaut ü => ue
+        $s = preg_replace('@\x{00f1}@u', 'ny', $s);    // ñ => ny
+        $s = preg_replace('@\x{00ff}@u', 'yu', $s);    // ÿ => yu
 
         // maps special characters (characters with diacritics) on their base-character followed by the diacritical mark
         // exmaple:  Ú => U´,  á => a`
@@ -260,44 +260,44 @@ class CollectionUploadSubscriber implements EventSubscriberInterface
 
         $s = preg_replace('@\pM@u', "", $s);    // removes diacritics
 
-        $s = preg_replace('@\x{00df}@u', "ss", $s);    // maps German ß onto ss
-        $s = preg_replace('@\x{00c6}@u', "AE", $s);    // Æ => AE
-        $s = preg_replace('@\x{00e6}@u', "ae", $s);    // æ => ae
-        $s = preg_replace('@\x{0132}@u', "IJ", $s);    // ? => IJ
-        $s = preg_replace('@\x{0133}@u', "ij", $s);    // ? => ij
-        $s = preg_replace('@\x{0152}@u', "OE", $s);    // Œ => OE
-        $s = preg_replace('@\x{0153}@u', "oe", $s);    // œ => oe
+        $s = preg_replace('@\x{00df}@u', 'ss', $s);    // maps German ß onto ss
+        $s = preg_replace('@\x{00c6}@u', 'AE', $s);    // Æ => AE
+        $s = preg_replace('@\x{00e6}@u', 'ae', $s);    // æ => ae
+        $s = preg_replace('@\x{0132}@u', 'IJ', $s);    // ? => IJ
+        $s = preg_replace('@\x{0133}@u', 'ij', $s);    // ? => ij
+        $s = preg_replace('@\x{0152}@u', 'OE', $s);    // Œ => OE
+        $s = preg_replace('@\x{0153}@u', 'oe', $s);    // œ => oe
 
-        $s = preg_replace('@\x{00d0}@u', "D", $s);    // Ð => D
-        $s = preg_replace('@\x{0110}@u', "D", $s);    // Ð => D
-        $s = preg_replace('@\x{00f0}@u', "d", $s);    // ð => d
-        $s = preg_replace('@\x{0111}@u', "d", $s);    // d => d
-        $s = preg_replace('@\x{0126}@u', "H", $s);    // H => H
-        $s = preg_replace('@\x{0127}@u', "h", $s);    // h => h
-        $s = preg_replace('@\x{0131}@u', "i", $s);    // i => i
-        $s = preg_replace('@\x{0138}@u', "k", $s);    // ? => k
-        $s = preg_replace('@\x{013f}@u', "L", $s);    // ? => L
-        $s = preg_replace('@\x{0141}@u', "L", $s);    // L => L
-        $s = preg_replace('@\x{0140}@u', "l", $s);    // ? => l
-        $s = preg_replace('@\x{0142}@u', "l", $s);    // l => l
-        $s = preg_replace('@\x{014a}@u', "N", $s);    // ? => N
-        $s = preg_replace('@\x{0149}@u', "n", $s);    // ? => n
-        $s = preg_replace('@\x{014b}@u', "n", $s);    // ? => n
-        $s = preg_replace('@\x{00d8}@u', "O", $s);    // Ø => O
-        $s = preg_replace('@\x{00f8}@u', "o", $s);    // ø => o
-        $s = preg_replace('@\x{017f}@u', "s", $s);    // ? => s
-        $s = preg_replace('@\x{00de}@u', "T", $s);    // Þ => T
-        $s = preg_replace('@\x{0166}@u', "T", $s);    // T => T
-        $s = preg_replace('@\x{00fe}@u', "t", $s);    // þ => t
-        $s = preg_replace('@\x{0167}@u', "t", $s);    // t => t
+        $s = preg_replace('@\x{00d0}@u', 'D', $s);    // Ð => D
+        $s = preg_replace('@\x{0110}@u', 'D', $s);    // Ð => D
+        $s = preg_replace('@\x{00f0}@u', 'd', $s);    // ð => d
+        $s = preg_replace('@\x{0111}@u', 'd', $s);    // d => d
+        $s = preg_replace('@\x{0126}@u', 'H', $s);    // H => H
+        $s = preg_replace('@\x{0127}@u', 'h', $s);    // h => h
+        $s = preg_replace('@\x{0131}@u', 'i', $s);    // i => i
+        $s = preg_replace('@\x{0138}@u', 'k', $s);    // ? => k
+        $s = preg_replace('@\x{013f}@u', 'L', $s);    // ? => L
+        $s = preg_replace('@\x{0141}@u', 'L', $s);    // L => L
+        $s = preg_replace('@\x{0140}@u', 'l', $s);    // ? => l
+        $s = preg_replace('@\x{0142}@u', 'l', $s);    // l => l
+        $s = preg_replace('@\x{014a}@u', 'N', $s);    // ? => N
+        $s = preg_replace('@\x{0149}@u', 'n', $s);    // ? => n
+        $s = preg_replace('@\x{014b}@u', 'n', $s);    // ? => n
+        $s = preg_replace('@\x{00d8}@u', 'O', $s);    // Ø => O
+        $s = preg_replace('@\x{00f8}@u', 'o', $s);    // ø => o
+        $s = preg_replace('@\x{017f}@u', 's', $s);    // ? => s
+        $s = preg_replace('@\x{00de}@u', 'T', $s);    // Þ => T
+        $s = preg_replace('@\x{0166}@u', 'T', $s);    // T => T
+        $s = preg_replace('@\x{00fe}@u', 't', $s);    // þ => t
+        $s = preg_replace('@\x{0167}@u', 't', $s);    // t => t
 
         // remove all non-ASCii characters
-        $s = preg_replace('@[^\0-\x80]@u', "", $s);
+        $s = preg_replace('@[^\0-\x80]@u', '', $s);
 
         // possible errors in UTF8-regular-expressions
         if (empty($s)) {
             // remove all non-whitelisted characters
-            return  preg_replace('@[^a-zA-Z0-9._\-\s ]@u' , "", $original_string);
+            return  preg_replace('@[^a-zA-Z0-9._\-\s ]@u' , '', $originalString);
         }
 
         // return normalized string

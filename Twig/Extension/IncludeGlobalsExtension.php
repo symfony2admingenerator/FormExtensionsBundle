@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Container;
  *
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
-class IncludeGlobalsExtension extends \Twig_Extension
+class IncludeGlobalsExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     protected $container;
 

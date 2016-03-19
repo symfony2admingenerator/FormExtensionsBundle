@@ -2,26 +2,40 @@
 
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
+use Admingenerator\FormExtensionsBundle\Form\DataTransformer\ArrayToStringTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * See `Resources/doc/select2/overview.md` for documentation
  *
  * @author Bilal Amarni <bilal.amarni@gmail.com>
  * @author Chris Tickner <chris.tickner@gmail.com>
+ * @author Stéphane Escandell <stephane.escandell@gmail.com>
  */
-class Select2Type extends AbstractType
+abstract class Select2Type extends AbstractType
 {
+    /**
+     * @var string
+     */
     private $widget;
+    /**
+     * @var string
+     */
+    private $parent;
 
-    public function __construct($widget)
+    /**
+     * @param string $widget Type of the form (used as a suffix fot he blocprefix)
+     * @param string $parent Parent FQCN form
+     */
+    public function __construct($widget, $parent)
     {
         $this->widget = $widget;
+        $this->parent = $parent;
     }
 
     /**
@@ -47,7 +61,7 @@ class Select2Type extends AbstractType
         // Adds a custom block prefix
         array_splice(
             $view->vars['block_prefixes'],
-            array_search($this->getName(), $view->vars['block_prefixes']),
+            array_search($this->getBlockPrefix(), $view->vars['block_prefixes']),
             0,
             's2a_select2'
         );
@@ -56,7 +70,7 @@ class Select2Type extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $defaults = array(
             'allowClear'         => false,
@@ -70,11 +84,11 @@ class Select2Type extends AbstractType
                 'configs'       => $defaults,
                 'transformer'   => null,
             ))
-            ->setNormalizers(array(
-                'configs' => function (Options $options, $configs) use ($defaults) {
+            ->setNormalizer(
+                'configs', function (Options $options, $configs) use ($defaults) {
                     return array_merge($defaults, $configs);
-                },
-            ))
+                }
+            )
         ;
     }
 
@@ -83,13 +97,13 @@ class Select2Type extends AbstractType
      */
     public function getParent()
     {
-        return $this->widget;
+        return $this->parent;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_select2_' . $this->widget;
     }

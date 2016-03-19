@@ -3,7 +3,7 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
@@ -53,7 +53,7 @@ class KnobType extends AbstractType
         );
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'width'           => 200,
@@ -74,37 +74,53 @@ class KnobType extends AbstractType
             'hide_box_shadow' => true,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'width'           => array('integer'),
-            'height'          => array('integer'),
-            'displayInput'    => array('bool'),
-            'displayPrevious' => array('bool'),
-            'angleArc'        => array('numeric'),
-            'angleOffset'     => array('numeric'),
-            'cursor'          => array('numeric', 'bool'),
-            'readOnly'        => array('bool'),
-            'thickness'       => array('numeric'),
-            'fgColor'         => array('string'),
-            'bgColor'         => array('string'),
-            'step'            => array('numeric'),
-            'min'             => array('numeric'),
-            'max'             => array('numeric'),
-            'hide_box_shadow' => array('bool'),
-        ));
+        $resolver->setAllowedTypes(
+            'width', array('integer')
+        )->setAllowedTypes(
+            'height', array('integer')
+        )->setAllowedTypes(
+            'displayInput', array('bool')
+        )->setAllowedTypes(
+            'displayPrevious', array('bool')
+        )->setAllowedTypes(
+            'angleArc', array('numeric')
+        )->setAllowedTypes(
+            'angleOffset', array('numeric')
+        )->setAllowedTypes(
+            'cursor', array('numeric', 'bool')
+        )->setAllowedTypes(
+            'readOnly', array('bool')
+        )->setAllowedTypes(
+            'thickness', array('numeric')
+        )->setAllowedTypes(
+            'fgColor', array('string')
+        )->setAllowedTypes(
+            'bgColor', array('string')
+        )->setAllowedTypes(
+            'step', array('numeric')
+        )->setAllowedTypes(
+            'min', array('numeric')
+        )->setAllowedTypes(
+            'max', array('numeric')
+        )->setAllowedTypes(
+            'hide_box_shadow', array('bool')
+        );
 
-        $resolver->setAllowedValues(array(
-            'angleArc'    => range(0, 359),
-            'angleOffset' => range(0, 359),
-            'lineCap'     => array('butt', 'round'),
-        ));
+        $resolver->setAllowedValues(
+            'angleArc', range(0, 359)
+        )->setAllowedValues(
+            'angleOffset', range(0, 359)
+        )->setAllowedValues(
+            'lineCap', array('butt', 'round')
+        );
     }
 
     public function getParent()
     {
-        return 'number';
+        return 'Symfony\Component\Form\Extension\Core\Type\NumberType';
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_knob';
     }

@@ -1,0 +1,2 @@
+/* For multiple choices, make the field expand */
+.select2-container.select2-container-multi { height: 100%; }

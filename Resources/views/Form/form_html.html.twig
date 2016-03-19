@@ -3,9 +3,7 @@
     <div class="control-group control-group-{{ name }}{% if errors|length > 0 %} has-error{% endif %}">
         {{ form_label(form) }}
         {{ form_widget(form) }}
-        {% if not compound %}
-            {{ form_errors(form) }}
-        {% endif %}
+        {{ form_errors(form) }}
         {{ block('form_help') }}
     </div>
 {% endspaceless %}
@@ -29,7 +27,6 @@
 {% endif %}
 {% set attr = attr|merge({'class': 'control-group' }) %}
 <div {{ block('widget_container_attributes') }}>
-    {{ form_errors(form) }}
     <div id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed">
         {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_add.html.twig" -%}
         {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_batch_delete.html.twig" -%}
@@ -64,9 +61,6 @@
 {% endif %}
 {% set attr = attr|merge({'class': 'table table-striped' }) %}
 <table {{ block('widget_container_attributes') }}>
-    <caption>
-        {{ form_errors(form) }}
-    </caption>
     <thead>
       <tr>
         <td id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed" colspan="4">
@@ -124,37 +118,36 @@
 </tr>
 {% endblock s2a_collection_table_item %}
 
-{% block s2a_collection_upload_widget %}
+{% block s2a_upload_collection_widget %}
 {% spaceless %}
     {% set original_full_name = full_name %}
     {% set full_name = full_name ~ '[uploads][]' %}
     <div id="{{ id ~ '_widget_container' }}">
-        {{ form_errors(form) }}
         {% if allow_add or allow_delete %}
         <div class="btn-toolbar form-actions form-actions-condensed fileupload-buttonbar">
             {% if allow_add %}
             <span class="btn btn-success fileinput">
                 <i class="fa fa-fw fa-plus"></i>
-                <span> {{ 's2a_collection_upload.file.add'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                <span> {{ 's2a_upload_collection.file.add'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                 <input type="file" {{ block('widget_attributes') }} multiple/>
             </span>
             {% endif %}
             {% if not autoUpload and uploadRouteName is not empty %}
             <button type="button" class="btn btn-primary start">
                 <i class="fa fa-fw fa-upload"></i>
-                <span> {{ 's2a_collection_upload.start'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                <span> {{ 's2a_upload_collection.start'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
             </button>
             {% endif %}
             {% if allow_add %}
             <button type="reset" class="btn btn-warning cancel">
                 <i class="fa fa-fw fa-ban"></i>
-                <span> {{ 's2a_collection_upload.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                <span> {{ 's2a_upload_collection.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
             </button>
             {% endif %}
             {% if allow_delete %}
             <button type="button" class="btn btn-danger delete">
                 <i class="fa fa-fw fa-trash"></i>
-                <span> {{ 's2a_collection_upload.delete'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                <span> {{ 's2a_upload_collection.delete'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
             </button>
             <label class="btn btn-toggle btn-link input-append">
                 <input type="checkbox" class="toggle">
@@ -165,25 +158,25 @@
             </div>
         </div>
         {% endif %}
-        {% include "AdmingeneratorFormExtensionsBundle:Form/CollectionUpload:presentation_table.html.twig" %}
-        {% include "AdmingeneratorFormExtensionsBundle:Form/CollectionUpload:template_download.html.twig" %}
+        {% include "AdmingeneratorFormExtensionsBundle:Form/UploadCollection:presentation_table.html.twig" %}
+        {% include "AdmingeneratorFormExtensionsBundle:Form/UploadCollection:template_download.html.twig" %}
         {% if allow_add %}
-            {% include "AdmingeneratorFormExtensionsBundle:Form/CollectionUpload:template_upload.html.twig" %}
+            {% include "AdmingeneratorFormExtensionsBundle:Form/UploadCollection:template_upload.html.twig" %}
         {% endif %}
     </div>
 {% endspaceless %}
-{% endblock s2a_collection_upload_widget %}
+{% endblock s2a_upload_collection_widget %}
 
 {% block s2a_double_list_prototype %}
 {% spaceless %}
     <div id="{{ id ~ '_widget_container' }}" class="double-list">
-        <div class="list-unselected dropdown open">
+        <div class="col-xs-12 col-sm-5 list-unselected dropdown open">
             {% include "AdmingeneratorFormExtensionsBundle:Form/DoubleList:unselected_list.html.twig" %}
         </div>
-        <div class="list-controls">
+        <div class="col-xs-12 col-sm-1 list-controls">
             {% include "AdmingeneratorFormExtensionsBundle:Form/DoubleList:controls.html.twig" %}
         </div>
-        <div class="list-selected dropdown open">
+        <div class="col-xs-12 col-sm-5 list-selected dropdown open">
             {% include "AdmingeneratorFormExtensionsBundle:Form/DoubleList:selected_list.html.twig" %}
         </div>
         {{ block('choice_widget') }}
@@ -244,12 +237,6 @@
 {% endif %}
 {% endblock %}
 
-{% block s2a_select2_hidden_row %}
-{% spaceless %}
-    {{ block('form_row') }}
-{% endspaceless %}
-{% endblock s2a_select2_hidden_row %}
-
 {% block s2a_select2_model_widget %}
 {% if hidden %}
     {{ block('hidden_widget') }}
@@ -261,7 +248,7 @@
 {% block s2a_datetime_family_prototype %}
 {% spaceless %}
 <input id="{{ id }}" name="{{ full_name }}" type="hidden" value="{{ value }}" />
-<div id="{{ id ~ '_widget' }}" class="s2a-date" {% if width is not null %}style="width: {{ width }}px"{% endif %}>
+<div id="{{ id ~ '_widget' }}" class="s2a-date" {% if width is defined and width is not null %}style="width: {{ width }}px"{% endif %}>
     <input {{ block('s2a_datetime_family_widget_attributes') }} />
     <a class="s2a-clear-btn">
         <i class="fa fa-fw fa-times"></i>
@@ -284,9 +271,9 @@
             {# ignore these attributes #}
         {%- elseif attrname in ['placeholder', 'title'] -%}
             {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
-        {%- elseif attrvalue is sameas(true) -%}
+        {%- elseif attrvalue is same as(true) -%}
             {{- attrname }}="{{ attrname }}"
-        {%- elseif attrvalue is not sameas(false) -%}
+        {%- elseif attrvalue is not same as(false) -%}
             {{- attrname }}="{{ attrvalue }}"
         {%- endif -%}
     {%- endfor -%}
@@ -331,7 +318,6 @@
             </span>
         </div>
         <div id="{{ id ~ '_map_canvas' }}" class="gmap s2a-gmap-map_canvas"></div>
-        <div id="{{ id ~ '_error' }}" class="s2a-gmap-error form-group has-error has-feedback"></div>
     </div>
     {% for child in form %}
         {{ form_row(child) }}
@@ -348,3 +334,12 @@
 </div>
 {% endspaceless %}
 {% endblock %}
+
+{% block s2a_daterange_picker_widget %}
+{% spaceless %}
+   <div class="input-group">
+   <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+    {{ block('form_widget_simple') }}
+</div> 
+{% endspaceless %}
+{% endblock s2a_daterange_picker_widget %}

@@ -6,7 +6,7 @@ s2a_bootstrap_collection:
         delete:           Are you sure you want to delete this element?
         batchDelete:      Are you sure you want to delete all selected elements?
 
-s2a_collection_upload:
+s2a_upload_collection:
     file.add:     "Add files..."
     start:        Start upload
     error:        Error

@@ -20,7 +20,14 @@ Add this to your `composer.json`:
 
 ```json
 "require": {
-    "symfony2admingenerator/form-extensions-bundle": "dev-master"
+    "symfony2admingenerator/form-extensions-bundle": "^2.0"
+}
+```
+
+For Symfony version lower than 2.7 or Twig lower than 1.12 add the following to your `composer.json`:
+```json
+"require": {
+    "symfony2admingenerator/form-extensions-bundle": "v2.0-beta.21"
 }
 ```
 
@@ -88,6 +95,20 @@ For others:
         {{ form_js(form) }}
     {% endif %}
 {% endblock %}
+```
+
+### Configure assetic packages (only if you use base.html.twig template)
+
+```yaml
+framework:
+    templating:
+        packages:
+            formextensions_css:
+                version: 1.0
+                version_format: "%%1$s?v%%2$s"
+            formextensions_js:
+                version: 1.0
+                version_format: "%%1$s?v%%2$s"
 ```
 
 ### Translators needed!

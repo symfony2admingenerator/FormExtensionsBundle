@@ -3,26 +3,39 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * See `Resources/doc/double-list/overview.md` for documentation
  *
  * @author Piotr Gołębiewski <loostro@gmail.com>
+ * @author Stéphane Escandell <stephane.escandell@gmail.com>
  */
-class DoubleListType extends AbstractType
+abstract class DoubleListType extends AbstractType
 {
+    /**
+     * @var string
+     */
     private $widget;
+    /**
+     * @var string
+     */
+    private $parent;
 
-    public function __construct($widget)
+    /**
+     * @param string $widget Type of the form (used as a suffix fot he blocprefix)
+     * @param string $parent Parent FQCN form
+     */
+    public function __construct($widget, $parent)
     {
         $this->widget = $widget;
+        $this->parent = $parent;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'multiple'    => true,
@@ -37,13 +50,13 @@ class DoubleListType extends AbstractType
      */
     public function getParent()
     {
-        return $this->widget;
+        return $this->parent;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_double_list_' . $this->widget;
     }

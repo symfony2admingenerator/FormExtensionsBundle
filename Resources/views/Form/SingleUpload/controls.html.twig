@@ -11,7 +11,7 @@
         {% set field = form.vars.name %}
         {% set src = image_asset(object, field) %}
         <a href="{{ src|raw }}" class="btn btn-info download" {% if form.vars.data|default is empty %}style="display: none;"{% endif %}>
-            <i class="fa fa-download"></i> {{ 's2a_collection_upload.download'|trans({}, 'AdmingeneratorFormExtensions') }}
+            <i class="fa fa-download"></i> {{ 's2a_upload_collection.download'|trans({}, 'AdmingeneratorFormExtensions') }}
         </a>
     </div>
 {% endif %}

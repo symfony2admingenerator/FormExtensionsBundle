@@ -70,14 +70,14 @@
 {% endautoescape %}
 {% endblock s2a_collection_table_js %}
 
-{% block s2a_collection_upload_js %}
+{% block s2a_upload_collection_js %}
 {% autoescape false %}
 {% spaceless %}
 <script type="text/javascript">
     $(document).ready(function(){
         var $field = $('#{{ id }}');
 
-    {% block s2a_collection_upload_js_prototype %}
+    {% block s2a_upload_collection_js_prototype %}
         $field.uploadCollection({
             autoUpload:               {{ autoUpload|e4js }},
             urlUpload:                {{ uploadRouteName is empty ? 'undefined' : path(uploadRouteName, uploadRouteParameters)|e4js }},
@@ -94,14 +94,14 @@
             previewMaxWidth:          {{ previewMaxWidth|e4js }},
             previewMaxHeight:         {{ previewMaxHeight|e4js }},
             messages: {
-                maxNumberOfFiles:   '{{ 's2a_collection_upload.errors.maxNumberOfFiles'|trans({}, 'AdmingeneratorFormExtensions') }}',
-                acceptFileTypes:    '{{ 's2a_collection_upload.errors.acceptFileTypes'|trans({}, 'AdmingeneratorFormExtensions') }}',
-                maxFileSize:        '{{ 's2a_collection_upload.errors.maxFileSize'|trans({}, 'AdmingeneratorFormExtensions') }}',
-                minFileSize:        '{{ 's2a_collection_upload.errors.minFileSize'|trans({}, 'AdmingeneratorFormExtensions') }}',
-                confirmBatchDelete: '{{ 's2a_collection_upload.confirm.batchDelete'|trans({}, 'AdmingeneratorFormExtensions') }}'
+                maxNumberOfFiles:   '{{ 's2a_upload_collection.errors.maxNumberOfFiles'|trans({}, 'AdmingeneratorFormExtensions') }}',
+                acceptFileTypes:    '{{ 's2a_upload_collection.errors.acceptFileTypes'|trans({}, 'AdmingeneratorFormExtensions') }}',
+                maxFileSize:        '{{ 's2a_upload_collection.errors.maxFileSize'|trans({}, 'AdmingeneratorFormExtensions') }}',
+                minFileSize:        '{{ 's2a_upload_collection.errors.minFileSize'|trans({}, 'AdmingeneratorFormExtensions') }}',
+                confirmBatchDelete: '{{ 's2a_upload_collection.confirm.batchDelete'|trans({}, 'AdmingeneratorFormExtensions') }}'
             }
         });
-    {% endblock s2a_collection_upload_js_prototype %}
+    {% endblock s2a_upload_collection_js_prototype %}
 
         // Create JSON array for existing files
         var files = {
@@ -121,11 +121,15 @@
                         {% endfor %}
                     {% endif %}
                     "size": {{ item.size }},
+                    {% if itemFilter %}
+                    "url": "{{ image_asset(item, 'file')|image_filter(itemFilter) }}",
+                    {% else %}
                     "url": "{{ image_asset(item, 'file') }}",
+                    {% endif %}
                     {% if item.preview and previewFilter and item.size < loadImageMaxFileSize %}
-                        "thumbnail_url": "{{ image_asset(item, 'file')|image_filter(previewFilter)|e4js }}",
+                        "thumbnail_url": "{{ image_asset(item, 'file')|image_filter(previewFilter) }}",
                     {% elseif item.preview and item.size < loadImageMaxFileSize %}
-                        "thumbnail_url": {{ image_asset(item, 'file')|e4js }},
+                        "thumbnail_url": "{{ image_asset(item, 'file') }}",
                     {% endif %}
                     "count": {{ key }},
                 }
@@ -140,7 +144,7 @@
 </script>
 {% endspaceless %}
 {% endautoescape %}
-{% endblock s2a_collection_upload_js %}
+{% endblock s2a_upload_collection_js %}
 
 {% block s2a_daterange_picker_js %}
 {% autoescape false %}
@@ -397,9 +401,10 @@
 {% autoescape false %}
 {% spaceless %}
     var $widget = $('#'+$field.attr('id')+'_widget');
-    var config = {{ config|merge({
-        'locale': app.request.locale
-    })|e4js|raw }};
+    var config = {{ {
+        'locale': app.request.locale,
+        'format': widget_format
+    }|merge(config)|e4js|raw }};
 
     $widget.datetimepicker(config);
 {% if widget_value is defined %}
@@ -492,8 +497,8 @@
             'search_action_el':     $field.find("[id$='_search_button']"),
             'search_error_el':      $field.find("[id$='_error']"),
             'current_position_el':  $field.find("[id$='_current_position']"),
-            'default_lat':          {{ (value is defined and value.lat is defined) ? value.lat|e4js : default_lat|e4js }},
-            'default_lng':          {{ (value is defined and value.lng is defined) ? value.lng|e4js : default_lng|e4js }},
+            'default_lat':          {{ (value is defined and value.lat is defined and value.lat is not null) ? value.lat|e4js : default_lat|e4js }},
+            'default_lng':          {{ (value is defined and value.lng is defined and value.lng is not null) ? value.lng|e4js : default_lng|e4js }},
             'default_zoom':         {{ (value is defined and value.lat is defined and value.lng is defined) ? 15|e4js : 5|e4js }},
             'lat_field':            $('#{{ id ~ "_" ~ lat_name }}'),
             'lng_field':            $('#{{ id ~ "_" ~ lng_name }}'),

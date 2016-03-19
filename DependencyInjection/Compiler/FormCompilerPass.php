@@ -24,8 +24,15 @@ class FormCompilerPass implements CompilerPassInterface
                             && in_array('AdmingeneratorFormExtensionsBundle:Form:form_css.html.twig', $resources);
 
             if ($twigConfiguration['use_form_resources'] && !$alreadyImported) {
-                // Insert right after form_div_layout.html.twig if exists
-                if (($key = array_search('form_div_layout.html.twig', $resources)) !== false) {
+                if (($key = array_search('bootstrap_3_layout.html.twig', $resources)) !== false) {
+                    // Insert right after bootstrap_3_layout.html.twig if exists
+                    array_splice($resources, ++$key, 0, array(
+                        'AdmingeneratorFormExtensionsBundle:Form:form_html.html.twig',
+                        'AdmingeneratorFormExtensionsBundle:Form:form_js.html.twig',
+                        'AdmingeneratorFormExtensionsBundle:Form:form_css.html.twig'
+                    ));
+                } else if (($key = array_search('form_div_layout.html.twig', $resources)) !== false) {
+                    // Insert right after form_div_layout.html.twig if exists
                     array_splice($resources, ++$key, 0, array(
                         'AdmingeneratorFormExtensionsBundle:Form:form_html.html.twig',
                         'AdmingeneratorFormExtensionsBundle:Form:form_js.html.twig',

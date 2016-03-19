@@ -1,6 +1,8 @@
 <?php
 namespace Admingenerator\FormExtensionsBundle\Storage;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 interface FileStorageInterface
 {
     /**

@@ -14,7 +14,7 @@
         {% endraw %}
             <td class="error" colspan="2">
                 <span class="label label-important">
-                {{- 's2a_collection_upload.error'|trans({}, 'AdmingeneratorFormExtensions') -}}
+                {{- 's2a_upload_collection.error'|trans({}, 'AdmingeneratorFormExtensions') -}}
                 </span> {% raw %}{%=file.error%}{% endraw %}
             </td>
         {% raw %}
@@ -32,12 +32,12 @@
                 {% if not autoUpload and uploadRouteName is not empty %}
                 <button class="btn btn-primary start">
                     <i class="fa fa-fw fa-upload"></i>
-                    <span> {{ 's2a_collection_upload.start'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                    <span> {{ 's2a_upload_collection.start'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                 </button>
                 {% endif %}
                 <button class="btn btn-warning cancel"{% if not autoUpload and uploadRouteName is empty %}style="visibility:hidden;"{% endif %}>
                     <i class="fa fa-fw fa-ban"></i>
-                    <span> {{ 's2a_collection_upload.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
+                    <span> {{ 's2a_upload_collection.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                 </button>
             </div>
         {% raw %}

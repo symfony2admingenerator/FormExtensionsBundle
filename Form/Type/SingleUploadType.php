@@ -5,7 +5,7 @@ namespace Admingenerator\FormExtensionsBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -66,9 +66,9 @@ class SingleUploadType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
             'nameable'          => false,
@@ -86,24 +86,35 @@ class SingleUploadType extends AbstractType
             'required'          => false,
         ));
 
-        $resolver->setAllowedValues(array(
-            'multipart'   => array(true),
-            'novalidate'  => array(true),
-            'required'    => array(false),
-        ));
+        $resolver->setAllowedValues(
+            'multipart', array(true)
+        )->setAllowedValues(
+            'novalidate', array(true)
+        )->setAllowedValues(
+            'required', array(false)
+        );
 
-        $resolver->setAllowedTypes(array(
-            'nameable'          => array('string', 'bool'),
-            'deleteable'        => array('string', 'bool'),
-            'downloadable'      => array('bool'),
-            'maxWidth'          => array('integer'),
-            'maxHeight'         => array('integer'),
-            'minWidth'          => array('integer'),
-            'minHeight'         => array('integer'),
-            'previewImages'     => array('bool'),
-            'previewAsCanvas'   => array('bool'),
-            'previewFilter'     => array('string', 'null'),
-        ));
+        $resolver->setAllowedTypes(
+            'nameable', array('string', 'bool')
+        )->setAllowedTypes(
+            'deleteable', array('string', 'bool')
+        )->setAllowedTypes(
+            'downloadable', array('bool')
+        )->setAllowedTypes(
+            'maxWidth', array('integer')
+        )->setAllowedTypes(
+            'maxHeight', array('integer')
+        )->setAllowedTypes(
+            'minWidth', array('integer')
+        )->setAllowedTypes(
+            'minHeight', array('integer')
+        )->setAllowedTypes(
+            'previewImages', array('bool')
+        )->setAllowedTypes(
+            'previewAsCanvas', array('bool')
+        )->setAllowedTypes(
+            'previewFilter', array('string', 'null')
+        );
     }
 
     /**
@@ -111,13 +122,13 @@ class SingleUploadType extends AbstractType
      */
     public function getParent()
     {
-        return 'file';
+        return 'Symfony\Component\Form\Extension\Core\Type\FileType';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_single_upload';
     }
@@ -152,12 +163,12 @@ class SingleUploadType extends AbstractType
         return 'unknown';
     }
 
-    private function _isAudio($file)
+    private function _isAudio(File $file)
     {
         return (preg_match('/audio\/.*/i', $file->getMimeType()));
     }
 
-    private function _isArchive($file)
+    private function _isArchive(File $file)
     {
         return (
             preg_match('/application\/.*compress.*/i', $file->getMimeType()) ||
@@ -170,17 +181,17 @@ class SingleUploadType extends AbstractType
         );
     }
 
-    private function _isHTML($file)
+    private function _isHTML(File $file)
     {
         return (preg_match('/text\/html/i', $file->getMimeType()));
     }
 
-    private function _isImage($file)
+    private function _isImage(File $file)
     {
         return (preg_match('/image\/.*/i', $file->getMimeType()));
     }
 
-    private function _isPDFDocument($file)
+    private function _isPDFDocument(File $file)
     {
         return (
             preg_match('/application\/acrobat/i', $file->getMimeType()) ||
@@ -189,12 +200,12 @@ class SingleUploadType extends AbstractType
         );
     }
 
-    private function _isPlainText($file)
+    private function _isPlainText(File $file)
     {
         return (preg_match('/text\/plain/i', $file->getMimeType()));
     }
 
-    private function _isPresentation($file)
+    private function _isPresentation(File $file)
     {
         return (
             preg_match('/application\/.*ms\-powerpoint.*/i', $file->getMimeType()) ||
@@ -203,7 +214,7 @@ class SingleUploadType extends AbstractType
         );
     }
 
-    private function _isSpreadsheet($file)
+    private function _isSpreadsheet(File $file)
     {
         return (
             preg_match('/application\/.*ms\-excel.*/i', $file->getMimeType()) ||
@@ -212,7 +223,7 @@ class SingleUploadType extends AbstractType
         );
     }
 
-    private function _isTextDocument($file)
+    private function _isTextDocument(File $file)
     {
         return (
             preg_match('/application\/.*ms\-?word.*/i', $file->getMimeType()) ||
@@ -221,7 +232,7 @@ class SingleUploadType extends AbstractType
         );
     }
 
-    private function _isVideo($file)
+    private function _isVideo(File $file)
     {
         return (preg_match('/video\/.*/i', $file->getMimeType()));
     }

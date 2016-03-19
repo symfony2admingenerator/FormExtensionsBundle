@@ -3,12 +3,10 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * See `Resources/doc/google-map/overview.md` for documentation
@@ -31,10 +29,10 @@ class GoogleMapType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'type'           => 'text',
+            'type'           => 'Symfony\Component\Form\Extension\Core\Type\TextType',
             'options'        => array(),
             'lat_options'    => array(),
             'lng_options'    => array(),
@@ -70,10 +68,10 @@ class GoogleMapType extends AbstractType
 
     public function getParent()
     {
-        return 'form';
+        return 'Symfony\Component\Form\Extension\Core\Type\FormType';
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_google_map';
     }

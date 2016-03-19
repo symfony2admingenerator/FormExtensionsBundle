@@ -32,7 +32,7 @@ class ImageAssetsExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'image_asset'   =>  new \Twig_Function_Method($this, 'asset'),
+            'image_asset'   =>  new \Twig_SimpleFunction('image_asset', array($this, 'asset')),
         );
     }
 
@@ -42,7 +42,7 @@ class ImageAssetsExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'image_filter'  =>  new \Twig_Filter_Method($this, 'filter'),
+            'image_filter'  =>  new \Twig_SimpleFilter('image_filter', array($this, 'filter')),
         );
     }
     

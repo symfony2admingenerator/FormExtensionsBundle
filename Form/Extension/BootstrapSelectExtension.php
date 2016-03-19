@@ -22,6 +22,6 @@ class BootstrapSelectExtension extends AbstractTypeExtension
 
     public function getExtendedType()
     {
-        return 'choice';
+        return 'Symfony\Component\Form\Extension\Core\Type\ChoiceType';
     }
 }

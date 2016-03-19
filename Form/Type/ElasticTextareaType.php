@@ -16,13 +16,13 @@ class ElasticTextareaType extends AbstractType
      */
     public function getParent()
     {
-        return 'textarea';
+        return 'Symfony\Component\Form\Extension\Core\Type\TextareaType';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 's2a_elastic_textarea';
     }

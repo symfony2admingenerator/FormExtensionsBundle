@@ -1,0 +1,80 @@
+s2a_bootstrap_collection:
+    add:          Dodaj
+    delete:       Obriši
+    new_label:    Stavka
+    confirm:
+        delete:           Da li ste sigurni da želite da obrišete ovaj element?
+        batchDelete:      Da li ste sigurni da želite da obrišete sve izabrane elemente?
+
+s2a_upload_collection:
+    file.add:     "Dodaj datoteke..."
+    start:        Započni prenos
+    error:        Greška
+    cancel:       Odustani
+    delete:       Obriši
+    download:     Preuzmi
+    confirm:
+        batchDelete:      Da li ste sigurni da želite da obrišete sve izabrane elemente?
+    errors:
+        maxNumberOfFiles: Premašili ste maksimalan mogući broj datoteka
+        acceptFileTypes:  Tip datoteke nije dozvoljen
+        maxFileSize:      Datoteka je prevelika
+        minFileSize:      Datoteka je premala
+
+s2a_double_list:
+    selected:           Izabrano
+    unselected:         Neizabrano
+
+s2a_daterange_picker:
+    applyLabel:         Pošalji
+    cancelLabel:        Očisti
+    fromLabel:          Od
+    toLabel:            Do
+    customRangeLabel:   Proizvoljan opseg
+    daysOfWeek:
+        Su:     Ned
+        Mo:     Pon
+        Tu:     Uto
+        We:     Sre
+        Th:     Čet
+        Fr:     Pet
+        Sa:     Sub
+    monthNames:
+        January:    Januar
+        February:   Februar
+        March:      Mart
+        April:      April
+        May:        Maj
+        June:       Jun
+        July:       Jul
+        August:     Avgust
+        September:  Septembar
+        October:    Oktobar
+        November:   Novembar
+        December:   Decembar
+    firstDay:   1
+
+s2a_single_upload:
+    button:
+        add:              Dodaj datoteku
+        replace:          Izmeni datoteku
+        cancel:           Odustani
+        delete:           Obriši
+    type:
+        inexistent:       "Bez<br />datoteke"
+        audio:            Audio
+        archive:          Arhiva
+        html:             HTML
+        image:            Slika
+        pdf-document:     "PDF<br />dokument"
+        plain-text:       "Običan<br />tekst"
+        presentation:     Prezentacija
+        spreadsheet:      Excel datoteka
+        text-document:    "Tekst<br />dokument"
+        unknown:          "Nepoznat<br />tip datoteke"
+        video:            Video
+
+s2a_google_map:
+    search:             Pretraži
+    current:            Moja lokacija
+    placeholder:        Unesite naziv lokacije...

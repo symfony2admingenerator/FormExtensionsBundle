@@ -23,6 +23,7 @@
     height: 100px;
     position: static;
     min-width: 180px;
+    width: 100%;
 }
 
 .double-list-dropdown li i {
@@ -36,4 +37,10 @@
 
 .double-list .hidden-select {
     visibility: hidden;
+    height: 0;
+}
+
+.double-list-controls-xs {
+    height: inherit;
+    text-align: center;
 }
