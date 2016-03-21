@@ -71,7 +71,7 @@ class DateRangePickerType extends AbstractType
             'minDate'               => null,
             'maxDate'               => null,
             'dateLimit'             => null,
-            'timeZone'              => '+00:00',
+            'timeZone'              => null,
             'showDropdowns'         => true,
             'showWeekNumbers'       => true,
             'timePicker'            => false,
@@ -132,7 +132,7 @@ class DateRangePickerType extends AbstractType
         )->setAllowedTypes(
             'dateLimit', array('null', 'string')
         )->setAllowedTypes(
-            'timeZone', array('string')
+            'timeZone', array('null', 'string')
         )->setAllowedTypes(
             'showDropdowns', array('bool')
         )->setAllowedTypes(
