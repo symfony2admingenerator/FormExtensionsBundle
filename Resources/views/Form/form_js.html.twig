@@ -170,7 +170,9 @@
         {% if dateLimit is not empty %}
             'dateLimit':            {{ dateLimit|e4js }},
         {% endif %}
+        {% if timeZone is not empty %}
             'timeZone':             {{ timeZone|e4js }},
+        {% endif %}
             'showDropdowns':        {{ showDropdowns|e4js }},
             'showWeekNumbers':      {{ showWeekNumbers|e4js }},
             'timePicker':           {{ timePicker|e4js }},
