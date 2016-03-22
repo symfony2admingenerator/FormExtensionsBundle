@@ -99,6 +99,7 @@ For others:
 
 ### Configure assetic packages (only if you use base.html.twig template)
 
+Symfony <2.7:
 ```yaml
 framework:
     templating:
@@ -110,6 +111,21 @@ framework:
                 version: 1.0
                 version_format: "%%1$s?v%%2$s"
 ```
+
+Symfony 2.7 or higher:
+```yaml
+framework:
+    assets:
+        packages:
+            formextensions_css:
+                version: 1.0
+                version_format: "%%1$s?v%%2$s"
+            formextensions_js:
+                version: 1.0
+                version_format: "%%1$s?v%%2$s"
+```
+
+
 
 ### Translators needed!
 
