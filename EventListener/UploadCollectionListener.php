@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
-class CollectionUploadListener implements EventSubscriberInterface
+class UploadCollectionListener implements EventSubscriberInterface
 {
     /**
      * (non-PHPdoc)

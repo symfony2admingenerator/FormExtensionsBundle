@@ -87,7 +87,7 @@ class UploadCollectionSubscriber implements EventSubscriberInterface
     public function __construct($propertyName, array $options, FileStorageInterface $storage = null)
     {
         $this->propertyName     = $propertyName;
-        $this->dataClass        = $options['options']['data_class'];
+        $this->dataClass        = $options['entry_options']['data_class'];
         $this->primaryKey      = $options['primary_key'];
         $this->nameable         = $options['nameable'];
         $this->nameableField   = $options['nameable_field'];
