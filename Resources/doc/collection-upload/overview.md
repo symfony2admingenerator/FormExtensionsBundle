@@ -191,6 +191,8 @@ images:
     label:            Images
     dbType:           collection
     formType:         s2a_collection_upload
+    # if using symfony > 2.8
+    # formType:        Admingenerator\FormExtensionsBundle\Form\Type\UploadCollectionType
     addFormOptions:
         primary_key:          id
         nameable:             true
@@ -200,10 +202,10 @@ images:
         editable:             [ description ]
         #
         ### you can create your own form type
-        # type:               \Acme\DemoBundle\Form\MyFormType
+        # entry_type:               \Acme\DemoBundle\Form\MyFormType
         #
         ### or use admin:generate-admin command and use the admingenerated form type
-        # type:               \Acme\DemoBundle\Form\Type\Image\EditType
+        # entry_type:               \Acme\DemoBundle\Form\Type\Image\EditType
         #
         maxNumberOfFiles:     5
         maxFileSize:          500000
@@ -218,7 +220,7 @@ images:
         allow_add:            true
         allow_delete:         true
         error_bubbling:       false
-        options:
+        entry_options:
             data_class:       Acme\DemoBundle\Entity\GalleryImage
 ```
 
