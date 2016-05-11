@@ -1,7 +1,7 @@
 <script id="{{ id ~ '_download_template' }}" type="text/x-tmpl">
-{% raw %}
+{% verbatim %}
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-{% endraw %}
+{% endverbatim %}
 
 {% set editables = {} %}
 {% for field in editable %}
@@ -9,62 +9,62 @@
 {% endfor %}
 
     <tr class="template-download fade">
-        {% raw %}
+        {% verbatim %}
         {% if (file.error) { %}
-        {% endraw %}
+        {% endverbatim %}
             {% if sortable %}
             <td class="sort"><icon class="handle fa fa-sort fa-2x"></i></td>
             {% endif %}
             <td></td>
-            <td class="name"><span>{% raw %}{%=file.name%}{% endraw %}</span></td>
-            <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
+            <td class="name"><span>{% verbatim %}{%=file.name%}{% endverbatim %}</span></td>
+            <td class="size"><span>{% verbatim %}{%=o.formatFileSize(file.size)%}{% endverbatim %}</span></td>
             <td class="error" colspan="2">
                 <span class="label label-important">
                 {{- 's2a_upload_collection.error'|trans({}, 'AdmingeneratorFormExtensions') -}}
-                </span> {% raw %}{%=file.error%}{% endraw %}
+                </span> {% verbatim %}{%=file.error%}{% endverbatim %}
             </td>
-        {% raw %}
+        {% verbatim %}
         {% } else { %}
-        {% endraw %}
+        {% endverbatim %}
             {% if sortable %}
             <td class="sort"><icon class="handle fa fa-sort fa-2x"></i></td>
             {% endif %}
-            {% raw %}
+            {% verbatim %}
             {% if (file.uid) { %}
-            {% endraw %}
+            {% endverbatim %}
                 <td class="preview">
                 </td>
                 <td class="form">
-                    <input type="hidden" name="{{ full_name }}" value="{% raw %}{%=file.uid%}{% endraw %}" />
-                    <input type="checkbox" name="{{ original_full_name ~ '[delete_uploads][]'}}" value="{% raw %}{%=file.uid%}{% endraw %}" class="remove"/>
+                    <input type="hidden" name="{{ full_name }}" value="{% verbatim %}{%=file.uid%}{% endverbatim %}" />
+                    <input type="checkbox" name="{{ original_full_name ~ '[delete_uploads][]'}}" value="{% verbatim %}{%=file.uid%}{% endverbatim %}" class="remove"/>
                     {% if editable %}
                     {% for field,row in editables %}
                         {{ row|replace({'__value__': '', '[__name__]': '[editable][{%=file.uid%}]', '__name__': 'editable_{%=file.uid%}'})|raw }}
                     {% endfor %}
                     {% endif %}
                 </td>
-            {% raw %}
+            {% verbatim %}
             {% } else { %}
-            {% endraw %}
+            {% endverbatim %}
                 <td class="preview">
-                {% raw %}
+                {% verbatim %}
                 {% if (file.thumbnail_url) { %}
-                {% endraw %}
+                {% endverbatim %}
                 {% if previewFilter %}
-                    {% raw %}
+                    {% verbatim %}
                     <a href="{%=file.url%}" target="_blank"><img src="{%=file.thumbnail_url%}" /></a>
-                    {% endraw %}
+                    {% endverbatim %}
                 {% else %}
-                    {% raw %}
+                    {% verbatim %}
                     <a href="{%=file.url%}" target="_blank">
-                    {% endraw %}
-                        <img src="{% raw %}{%=file.thumbnail_url%}{% endraw %}"
+                    {% endverbatim %}
+                        <img src="{% verbatim %}{%=file.thumbnail_url%}{% endverbatim %}"
                              width="{{ previewMaxWidth }}" height="{{ previewMaxHeight }}" />
                     </a>
                 {% endif %}
-                {% raw %}
+                {% verbatim %}
                 {% } %}
-                {% endraw %}
+                {% endverbatim %}
                 </td>
                 <td class="form">
                 {{ form_row(prototype[primary_key],{'value': '{%=file.'~primary_key~'%}'})|replace({'__name__': '{%=file.count%}'})|raw }}
@@ -80,28 +80,28 @@
                 {% endfor %}
                 {% endif %}
                 </td>
-            {% raw %}
+            {% verbatim %}
             {% } %}
-            {% endraw %}
-            <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
+            {% endverbatim %}
+            <td class="size"><span>{% verbatim %}{%=o.formatFileSize(file.size)%}{% endverbatim %}</span></td>
             <td colspan="2"></td>
-        {% raw %}
+        {% verbatim %}
         {% } %}
-        {% endraw %}
+        {% endverbatim %}
         <td class="actions">
             <div class="btn-toolbar">
-                {% raw %}
+                {% verbatim %}
                 {% if (file.uid) { %}
-                {% endraw %}
+                {% endverbatim %}
                     <button class="btn btn-warning remove">
                         <i class="fa fa-trash-o"></i>
                         <span> {{ 's2a_upload_collection.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                     </button>
-                {% raw %}
+                {% verbatim %}
                 {% } else { %}
-                {% endraw %}
+                {% endverbatim %}
                     {% if displayDownloadButton %}
-                    <a class="btn btn-info" target="_blank" {% raw %}href="{%=file.url%}"{% endraw %}>
+                    <a class="btn btn-info" target="_blank" {% verbatim %}href="{%=file.url%}"{% endverbatim %}>
                         <i class="fa fa-download"></i>
                         <span> {{ 's2a_upload_collection.download'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                     </a>
@@ -115,13 +115,13 @@
                         <input class="toggle" type="checkbox" name="delete" value="1">
                     </span>
                     {% endif %}
-                {% raw %}
+                {% verbatim %}
                 {% } %}
-                {% endraw %}
+                {% endverbatim %}
             </div>
         </td>
     </tr>
-{% raw %}
+{% verbatim %}
 {% } %}
-{% endraw %}
+{% endverbatim %}
 </script>
