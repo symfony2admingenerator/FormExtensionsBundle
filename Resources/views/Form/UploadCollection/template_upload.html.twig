@@ -1,33 +1,33 @@
 <script id="{{ id ~ '_upload_template' }}" type="text/x-tmpl">
-{% raw %}
+{% verbatim %}
 {% for (var i=0, file; file=o.files[i]; i++) { %}
-{% endraw %}
+{% endverbatim %}
     <tr class="template-upload fade">
         {% if sortable %}
         <td class="sort"></td>
         {% endif %}
         <td class="preview"><span class="fade"></span></td>
-        <td class="name"><span>{% raw %}{%=file.name%}{% endraw %}</span></td>
-        <td class="size"><span>{% raw %}{%=o.formatFileSize(file.size)%}{% endraw %}</span></td>
-        {% raw %}
+        <td class="name"><span>{% verbatim %}{%=file.name%}{% endverbatim %}</span></td>
+        <td class="size"><span>{% verbatim %}{%=o.formatFileSize(file.size)%}{% endverbatim %}</span></td>
+        {% verbatim %}
         {% if (file.error) { %}
-        {% endraw %}
+        {% endverbatim %}
             <td class="error" colspan="2">
                 <span class="label label-important">
                 {{- 's2a_upload_collection.error'|trans({}, 'AdmingeneratorFormExtensions') -}}
-                </span> {% raw %}{%=file.error%}{% endraw %}
+                </span> {% verbatim %}{%=file.error%}{% endverbatim %}
             </td>
-        {% raw %}
+        {% verbatim %}
         {% } else { %}
-        {% endraw %}
+        {% endverbatim %}
             <td colspan="2"></td>
-        {% raw %}
+        {% verbatim %}
         {% } %}
-        {% endraw %}
+        {% endverbatim %}
         <td class="actions">
-        {% raw %}
+        {% verbatim %}
         {% if (!i) { %}
-        {% endraw %}
+        {% endverbatim %}
             <div class="btn-toolbar">
                 {% if not autoUpload and uploadRouteName is not empty %}
                 <button class="btn btn-primary start">
@@ -40,12 +40,12 @@
                     <span> {{ 's2a_upload_collection.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
                 </button>
             </div>
-        {% raw %}
+        {% verbatim %}
         {% } %}
-        {% endraw %}
+        {% endverbatim %}
         </td>
     </tr>
-{% raw %}
+{% verbatim %}
 {% } %}
-{% endraw %}
+{% endverbatim %}
 </script>
