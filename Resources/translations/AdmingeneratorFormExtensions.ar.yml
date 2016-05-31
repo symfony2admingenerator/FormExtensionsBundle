@@ -73,3 +73,8 @@ s2a_single_upload:
         text-document:    "وثيقة نصية"
         unknown:          مجهول
         video:            فيديو
+
+s2a_google_map:
+    search:             بحث
+    current:            الموقع الحالي
+    placeholder:        أدخل إسم موقعك...
