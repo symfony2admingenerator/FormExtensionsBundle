@@ -68,9 +68,12 @@ class ImageAssetsExtension extends \Twig_Extension
         // a special method returning file's path
         $getter = "get".Container::Camelize($field)."WebPath";
 
+        $path = '';
         if (is_object($object)) {
-            return $object->$getter();
+            $path = $object->$getter();
         }
+
+        return $path;
     }
 
     /**
