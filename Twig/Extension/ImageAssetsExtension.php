@@ -67,8 +67,10 @@ class ImageAssetsExtension extends \Twig_Extension
         // In case no upload manager is used we expect object to have
         // a special method returning file's path
         $getter = "get".Container::Camelize($field)."WebPath";
-            
-        return $object->$getter();
+
+        if (is_object($object)) {
+            return $object->$getter();
+        }
     }
 
     /**
