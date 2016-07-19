@@ -1,0 +1,80 @@
+s2a_bootstrap_collection:
+    add:          إضافة
+    delete:       حذف
+    new_label:    عنصر
+    confirm:
+        delete:           هل أنت متأكد أنك تريد حذف العنصر ؟
+        batchDelete:      هل أنت متأكد أنك تريد حذف جميع العناصر ؟
+
+s2a_upload_collection:
+    file.add:     "أضف ملفات..."
+    start:        أرسل
+    error:        خطأ
+    cancel:       إلغاء
+    delete:       حذف
+    download:     تحميل
+    confirm:
+        batchDelete:      هل أنت متأكد أنك تريد حذف هاته العناصر ؟
+    errors:
+        maxNumberOfFiles: لقد بلغت الحد الاقصى في عدد الملفات
+        acceptFileTypes:  نوع الملف غير مدعوم
+        maxFileSize:      ملف كبير جدا
+        minFileSize:      ملف صغير جدا
+
+s2a_double_list:
+    selected:           تحديد
+    unselected:         غير محدد
+
+s2a_daterange_picker:
+    applyLabel:         تفعيل
+    cancelLabel:        إلغاء
+    fromLabel:          من
+    toLabel:            إلى
+    customRangeLabel:   مدة
+    daysOfWeek:
+        Su:     ح
+        Mo:     ن
+        Tu:     ث
+        We:     ر
+        Th:     خ
+        Fr:     ج
+        Sa:     س
+    monthNames:
+        January:    يناير
+        February:   فبراير
+        March:      مارس
+        April:      أبريل
+        May:        ماي
+        June:       يونيو
+        July:       يوليوز
+        August:     غشت
+        September:  شتنبر
+        October:    أكتوبر
+        November:   نونبر
+        December:   دجنبر
+    firstDay:   1
+
+s2a_single_upload:
+    button:
+        add:              أضف ملف
+        replace:          تغيير الملف
+        cancel:           إلغاء
+        delete:           حذف
+    type:
+        inexistent:       الملف غير متوفر
+        audio:            الصوت
+        archive:          الأرشيف
+        html:             HTML
+        image:            الصورة
+        pdf-document:     "PDF"
+        plain-text:       "نص عادي"
+        presentation:     عرض
+        spreadsheet:      جدول الحسابات
+        text-document:    "وثيقة نصية"
+        unknown:          مجهول
+        video:            فيديو
+
+s2a_google_map:
+    search:             بحث
+    current:            الموقع الحالي
+    placeholder:        أدخل إسم موقعك...
