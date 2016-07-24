@@ -5,7 +5,8 @@
             <span> {{ 's2a_single_upload.button.cancel'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
         </button>
     </div>
-{% if downloadable %}
+{% set object = form.parent.vars.value %}
+{% if downloadable and object is not null %}
     <div class="btn-wrapper">
         {% set object = form.parent.vars.value %}
         {% set field = form.vars.name %}
