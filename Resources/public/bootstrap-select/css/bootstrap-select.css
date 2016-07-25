@@ -27,7 +27,7 @@
 
 .bootstrap-select.btn-group.pull-right,
 .bootstrap-select.btn-group[class*="span"].pull-right,
-.row-fluid .bootstrap-select.btn-group[class*="span"].pull-right {
+.row .bootstrap-select.btn-group[class*="span"].pull-right {
     float: right;
 }
 

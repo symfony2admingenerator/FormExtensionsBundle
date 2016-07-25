@@ -20,16 +20,16 @@
         <div class="fileicon {{ fileType }}">{{ ('s2a_single_upload.type.'~fileType)|trans({}, 'AdmingeneratorFormExtensions')|raw }}</div>
     {% endif %}
     {% if nameable is not empty %}
-        <div class="row-fluid">
+        <div class="row">
             {% set nName = form.parent.vars.full_name ~ '_'~name~'[name]' %}
             {% set nValue = attribute(object, nameable) %}
             <input type="text" class="nameable" name="{{ nName }}" value="{{ nValue }}" />
         </div>
     {% else %}
-        <div class="row-fluid">{{ file.filename }}</div>
+        <div class="row">{{ file.filename }}</div>
     {% endif %}
     {% if fileType != "inexistent" %}
-        <div class="row-fluid">{{ macros.bytesToSize(file.size) }}</div>
+        <div class="row">{{ macros.bytesToSize(file.size) }}</div>
     {% endif %}
 {% endif %}
 </div>

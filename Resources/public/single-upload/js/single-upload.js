@@ -262,14 +262,14 @@
 
                     if (that.options.nameable) {
                         $activePreview.find('.nameable').attr('disabled', 'disabled');
-                        var $filelabel = $('<div/>').addClass('row-fluid').html(
+                        var $filelabel = $('<div/>').addClass('row').html(
                             $('<input/>').attr('type', 'text').addClass('nameable')
                                 .attr('name', that.options.widget_name+'[name]').val(file.name)
                         );
                     } else {
-                        var $filelabel = $('<div/>').addClass('row-fluid').text(file.name);
+                        var $filelabel = $('<div/>').addClass('row').text(file.name);
                     }
-                    var $filesize = $('<div/>').addClass('row-fluid').text(that._bytesToSize(file.size));
+                    var $filesize = $('<div/>').addClass('row').text(that._bytesToSize(file.size));
                     
                     // create and insert new preview node
                     $previewUpload.appendTo($activePreview.parent()).html(
@@ -315,15 +315,15 @@
             
             if (this.options.nameable) {
                 $activePreview.find('.nameable').attr('disabled', 'disabled');
-                var $filelabel = $('<div/>').addClass('row-fluid').html(
+                var $filelabel = $('<div/>').addClass('row').html(
                     $('<input/>').attr('type', 'text').addClass('nameable')
                         .attr('name', this.options.widget_name+'[name]').val(file.name)
                 );
             } else {
-                var $filelabel = $('<div/>').addClass('row-fluid').text(file.name);
+                var $filelabel = $('<div/>').addClass('row').text(file.name);
             }
             
-            var $filesize = $('<div/>').addClass('row-fluid').text(this._bytesToSize(file.size));
+            var $filesize = $('<div/>').addClass('row').text(this._bytesToSize(file.size));
                                    
             // create and insert new preview node
             $previewUpload.appendTo($activePreview.parent())
