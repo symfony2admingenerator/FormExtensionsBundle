@@ -31,7 +31,7 @@
         {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_add.html.twig" -%}
         {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_batch_delete.html.twig" -%}
     </div>
-    <div class="collection row-fluid">
+    <div class="collection row">
         {% for item in form %}
             {{ block('s2a_collection_fieldset_item') }}
         {% endfor %}
