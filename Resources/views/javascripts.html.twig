@@ -68,7 +68,7 @@
         'bundles/admingeneratorformextensions/google-map/js/google-map.js'
         'bundles/admingeneratorformextensions/knob/js/jquery.knob.js'
         'bundles/admingeneratorformextensions/minicolors/js/jquery.minicolors.js'
-        'bundles/admingeneratorformextensions/select2/js/select2.js'
+        'bundles/admingeneratorformextensions/select2/js/select2.full.js'
         'bundles/admingeneratorformextensions/single-upload/js/single-upload.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -76,7 +76,7 @@
 
     <!-- locale -->
     {% if app.request.locale in ['ca', 'cs', 'da', 'de', 'es', 'et', 'eu', 'fr', 'gl', 'he', 'hr', 'hu', 'is', 'it', 'ja', 'lt', 'lv', 'mk', 'nl', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sv', 'tr', 'ua', 'vi', 'zh-CN', 'zh-TW'] %}
-    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/select2/js/i18n/select2_locale_' ~ app.request.locale ~ '.js', 'formextensions_js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/admingeneratorformextensions/select2/js/i18n/' ~ app.request.locale ~ '.js', 'formextensions_js') }}"></script>
     {% endif %}
 
     {% if app.request.locale in ['cs', 'de', 'es', 'eu', 'it', 'nl', 'pl', 'pt-BR', 'ru', 'zh-CN'] %}

@@ -1,2 +1,3 @@
 /* For multiple choices, make the field expand */
 .select2-container.select2-container-multi { height: 100%; }
+.select2-container .select2-selection--single .select2-selection__rendered { margin-top: 0px; }

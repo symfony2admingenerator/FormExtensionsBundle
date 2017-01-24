@@ -76,6 +76,7 @@ abstract class Select2Type extends AbstractType
             'allowClear'         => false,
             'minimumInputLength' => 0,
             'width'              => 'resolve',
+            'theme'              => 'bootstrap',
         );
 
         $resolver
