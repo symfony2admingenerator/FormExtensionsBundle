@@ -103,6 +103,7 @@
         
         <service id="admingenerator.form.extensions.type.single_upload" class="Admingenerator\FormExtensionsBundle\Form\Type\SingleUploadType">
             <tag name="form.type" />
+            <argument type="service" id="service_container" />
         </service>
         
         <service id="admingenerator.form.extensions.type.time_picker" class="Admingenerator\FormExtensionsBundle\Form\Type\TimePickerType">
