@@ -97,6 +97,8 @@ For others:
 {% endblock %}
 ```
 
+Note that the templates above are only usable if you've configured assetic for you project (with the correct filters enabled, `uglifyjs2` and `uglifycss`). This bundle also offers a view without filters and without assetic. Simple append `_assetic_basic` or `assetic_less` to the template name.
+
 ### Configure assetic packages (only if you use base.html.twig template)
 
 Symfony <2.7:

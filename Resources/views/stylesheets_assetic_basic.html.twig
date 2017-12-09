@@ -1,0 +1,23 @@
+{% block admingenerator_form_stylesheets %}
+
+    {% stylesheets package='formextensions_css' filter='cssrewrite'
+        output='assetic/css/compiled/admingeneratorformextensions/form-extensions.min.css'
+        'bundles/admingeneratorformextensions/bootstrap-collection/css/bootstrap-collection.css'
+        'bundles/admingeneratorformextensions/datetime-picker/css/bootstrap-datetimepicker.css'
+        'bundles/admingeneratorformextensions/datetime-picker/css/customized.css'
+        'bundles/admingeneratorformextensions/daterange-picker/css/daterangepicker-bs3.css'
+        'bundles/admingeneratorformextensions/bootstrap-select/css/bootstrap-select.css'
+        'bundles/admingeneratorformextensions/upload-collection/css/upload-collection.css'
+        'bundles/admingeneratorformextensions/double-list/css/double-list.css'
+        'bundles/admingeneratorformextensions/google-map/css/google-map.css'
+        'bundles/admingeneratorformextensions/minicolors/css/jquery.minicolors.css'
+        'bundles/admingeneratorformextensions/select2/css/select2.css'
+        'bundles/admingeneratorformextensions/select2/css/bs3-validation.css'
+        'bundles/admingeneratorformextensions/select2/css/select2.custom.css'
+        'bundles/admingeneratorformextensions/single-upload/css/single-upload.css'
+        'bundles/admingeneratorformextensions/single-upload/css/filetypeicons.css'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
+    {% endstylesheets %}
+
+{% endblock admingenerator_form_stylesheets %}
