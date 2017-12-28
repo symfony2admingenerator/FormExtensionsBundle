@@ -26,7 +26,8 @@ class ArrayToStringTransformer implements DataTransformerInterface
     /**
      * Default constructor
      *
-     * @param string $glue
+     * @param string $separator
+     * @param array $keys
      */
     public function __construct($separator = ',', array $keys = array())
     {

@@ -88,7 +88,7 @@ class UploadCollectionListener implements EventSubscriberInterface
 
     /**
      * @param array $files
-     * @return array
+     * @return \stdClass
      */
     private function formatResponse(array $files)
     {
