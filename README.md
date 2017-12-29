@@ -61,7 +61,7 @@ For Admingenerator users:
 {% block stylesheets %}
     {{ parent() }}
 
-    {% include 'AdmingeneratorFormExtensionsBundle::stylesheets.html.twig' %}
+    {% include '@AdmingeneratorFormExtensions/stylesheets.html.twig' %}
     {% if form is defined and form is not empty %}
         {{ form_css(form) }}
     {% endif %}
@@ -70,7 +70,7 @@ For Admingenerator users:
 {% block javascripts %}
     {{ parent() }}
 
-    {% include 'AdmingeneratorFormExtensionsBundle::javascripts.html.twig' %}
+    {% include '@AdmingeneratorFormExtensions/javascripts.html.twig' %}
     {% if form is defined and form is not empty %}
         {{ form_js(form) }}
     {% endif %}
@@ -81,7 +81,7 @@ For others:
 
 ```html+django
 {% block stylesheets %}
-    {% include 'AdmingeneratorFormExtensionsBundle::stylesheets.html.twig' %}
+    {% include '@AdmingeneratorFormExtensions/stylesheets.html.twig' %}
     
     {% if form is defined and form is not empty %}
         {{ form_css(form) }}
@@ -89,7 +89,7 @@ For others:
 {% endblock %}
 
 {% block javascripts %}
-    {% include 'AdmingeneratorFormExtensionsBundle::javascripts.html.twig' %}
+    {% include '@AdmingeneratorFormExtensions/javascripts.html.twig' %}
     
     {% if form is defined and form is not empty %}
         {{ form_js(form) }}

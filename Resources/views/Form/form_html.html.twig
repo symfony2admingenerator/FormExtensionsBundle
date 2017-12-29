@@ -28,8 +28,8 @@
 {% set attr = attr|merge({'class': 'control-group' }) %}
 <div {{ block('widget_container_attributes') }}>
     <div id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed">
-        {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_add.html.twig" -%}
-        {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_batch_delete.html.twig" -%}
+        {%- include "@AdmingeneratorFormExtensions/Form/BootstrapCollection/collection_add.html.twig" -%}
+        {%- include "@AdmingeneratorFormExtensions/Form/BootstrapCollection/collection_batch_delete.html.twig" -%}
     </div>
     <div class="collection row">
         {% for item in form %}
@@ -48,7 +48,7 @@
         <legend><label class="control-label">{{ new_label|trans({}, translation_domain) }}</label></legend>
         {{ form_widget(item) }}
         {{ form_errors(item) }}
-        {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
+        {%- include "@AdmingeneratorFormExtensions/Form/BootstrapCollection/collection_delete.html.twig" -%}
     </fieldset>
 </div>
 {% endblock s2a_collection_fieldset_item %}
@@ -64,8 +64,8 @@
     <thead>
       <tr>
         <td id="{{ id ~ '_toolbar' }}" class="btn-toolbar form-actions form-actions-condensed" colspan="4">
-            {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_add.html.twig" -%}
-            {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_batch_delete.html.twig" -%}
+            {%- include "@AdmingeneratorFormExtensions/Form/BootstrapCollection/collection_add.html.twig" -%}
+            {%- include "@AdmingeneratorFormExtensions/Form/BootstrapCollection/collection_batch_delete.html.twig" -%}
         </td>
       </tr>
     </thead>
@@ -90,7 +90,7 @@
                         <i class="fa fa-chevron-right"></i>
                         <label class="control-label">{{ new_label|trans({}, translation_domain) }}</label>
                     </a>
-                    {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
+                    {%- include "@AdmingeneratorFormExtensions/Form/BootstrapCollection/collection_delete.html.twig" -%}
                 </div>
                 <div id="{{ 'panel_collapse_' ~ item.vars.id }}" class="panel-collapse collapse in">
                     <div class="panel-body">
@@ -103,7 +103,7 @@
     </td>
 {% else %}
     <td class="collection-item-simple">
-        {%- include "AdmingeneratorFormExtensionsBundle:Form/BootstrapCollection:collection_delete.html.twig" -%}
+        {%- include "@AdmingeneratorFormExtensions/Form/BootstrapCollection/collection_delete.html.twig" -%}
         <div class="control-group">
             <label class="control-label">{{ new_label|trans({}, translation_domain) }}</label>
             <div class="controls">
@@ -158,10 +158,10 @@
             </div>
         </div>
         {% endif %}
-        {% include "AdmingeneratorFormExtensionsBundle:Form/UploadCollection:presentation_table.html.twig" %}
-        {% include "AdmingeneratorFormExtensionsBundle:Form/UploadCollection:template_download.html.twig" %}
+        {% include "@AdmingeneratorFormExtensions/Form/UploadCollection/presentation_table.html.twig" %}
+        {% include "@AdmingeneratorFormExtensions/Form/UploadCollection/template_download.html.twig" %}
         {% if allow_add %}
-            {% include "AdmingeneratorFormExtensionsBundle:Form/UploadCollection:template_upload.html.twig" %}
+            {% include "@AdmingeneratorFormExtensions/Form/UploadCollection/template_upload.html.twig" %}
         {% endif %}
     </div>
 {% endspaceless %}
@@ -171,13 +171,13 @@
 {% spaceless %}
     <div id="{{ id ~ '_widget_container' }}" class="double-list">
         <div class="col-xs-12 col-sm-5 list-unselected dropdown open">
-            {% include "AdmingeneratorFormExtensionsBundle:Form/DoubleList:unselected_list.html.twig" %}
+            {% include "@AdmingeneratorFormExtensions/Form/DoubleList/unselected_list.html.twig" %}
         </div>
         <div class="col-xs-12 col-sm-1 list-controls">
-            {% include "AdmingeneratorFormExtensionsBundle:Form/DoubleList:controls.html.twig" %}
+            {% include "@AdmingeneratorFormExtensions/Form/DoubleList/controls.html.twig" %}
         </div>
         <div class="col-xs-12 col-sm-5 list-selected dropdown open">
-            {% include "AdmingeneratorFormExtensionsBundle:Form/DoubleList:selected_list.html.twig" %}
+            {% include "@AdmingeneratorFormExtensions/Form/DoubleList/selected_list.html.twig" %}
         </div>
         {{ block('choice_widget') }}
     </div>
@@ -201,13 +201,13 @@
     <div id="{{ id ~ '_widget_container' }}" class="single-upload">
         <div class="btn-toolbar form-actions form-actions-condensed singleupload-buttonbar">
             <span class="btn btn-success fileinput">
-                {% include "AdmingeneratorFormExtensionsBundle:Form/SingleUpload:upload.html.twig" %}
+                {% include "@AdmingeneratorFormExtensions/Form/SingleUpload/upload.html.twig" %}
                 <input type="file" id="{{ id }}" name="{{ form.parent.vars.full_name ~ '['~name~'][file]' }}" />
             </span>
-            {% include "AdmingeneratorFormExtensionsBundle:Form/SingleUpload:controls.html.twig" %}
+            {% include "@AdmingeneratorFormExtensions/Form/SingleUpload/controls.html.twig" %}
         </div>
         <div id="{{ id ~ '_preview' }}" class="single-upload-preview">
-            {% include "AdmingeneratorFormExtensionsBundle:Form/SingleUpload:preview.html.twig" %}
+            {% include "@AdmingeneratorFormExtensions/Form/SingleUpload/preview.html.twig" %}
         </div>
     </div>
 {% endspaceless %}

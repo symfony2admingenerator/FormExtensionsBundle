@@ -3,7 +3,6 @@
 namespace Admingenerator\FormExtensionsBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\Container;
 
 /**
  * This extension adds global variables based on bundles configuration.

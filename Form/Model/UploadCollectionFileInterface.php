@@ -2,6 +2,8 @@
 
 namespace Admingenerator\FormExtensionsBundle\Form\Model;
 
+use Symfony\Component\HttpFoundation\File\File;
+
 /**
  * Interface for UploadCollectionType files.
  *
@@ -19,16 +21,16 @@ interface UploadCollectionFileInterface
     /**
      * Set governing entity
      *
-     * @var $parent Governing entity
+     * @var $parent object Governing entity
      */
     public function setParent($parent);
 
     /**
      * Set uploaded file
      *
-     * @var $file Uploaded file
+     * @var $file File Uploaded file
      */
-    public function setFile(\Symfony\Component\HttpFoundation\File\File $file);
+    public function setFile(File $file);
 
     /**
      * Get file

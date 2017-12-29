@@ -1,7 +1,6 @@
 <?php
 namespace Admingenerator\FormExtensionsBundle\Storage;
 
-use Admingenerator\FormExtensionsBundle\Storage\FileStorageInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
