@@ -82,9 +82,15 @@ class ImageAssetsExtension extends \Twig_Extension
         $path = $params[0];
         
         if ('liip_imagine' === $this->getImageManipulator()) {
+          if(class_exists('\Liip\ImagineBundle\Templating\ImagineExtension')) {
             $ext = new \Liip\ImagineBundle\Templating\ImagineExtension(
                 $this->container->get('liip_imagine.cache.manager')
             );
+          } else {
+            $ext = new \Liip\ImagineBundle\Templating\FilterExtension(
+                $this->container->get('liip_imagine.cache.manager')
+            );
+          }
             
             return call_user_func_array(array($ext, "filter"), $params);
         }
