@@ -21,6 +21,13 @@ admingenerator_form_extensions:
   include_momentjs:         false
   include_blueimp:          false 
   include_gmaps:            false
+  # you can disable the form extensions if you don't want or need them
+  extensions:
+    autocomplete:           true
+    bootstrap_select:       true
+    help_message:           true
+    no_validate:            true
+    single_upload:          true
 ```
 
 ##### Bootstrap Collection family: 

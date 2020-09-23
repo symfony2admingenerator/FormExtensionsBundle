@@ -43,6 +43,16 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('include_momentjs')->defaultFalse()->end()
                 ->booleanNode('include_blueimp')->defaultFalse()->end()
                 ->booleanNode('include_gmaps')->defaultFalse()->end()
+                ->arrayNode('extensions')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->booleanNode('autocomplete')->defaultTrue()->end()
+                        ->booleanNode('bootstrap_select')->defaultTrue()->end()
+                        ->booleanNode('help_message')->defaultTrue()->end()
+                        ->booleanNode('no_validate')->defaultTrue()->end()
+                        ->booleanNode('single_upload')->defaultTrue()->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 

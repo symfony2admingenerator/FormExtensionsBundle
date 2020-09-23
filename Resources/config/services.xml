@@ -112,27 +112,6 @@
         <service id="admingenerator.form.extensions.type.hidden" class="Admingenerator\FormExtensionsBundle\Form\Type\HiddenType">
             <tag name="form.type" />
         </service>
-
-        <!-- Form extensions -->
-        <service id="form.type_extension.autocomplete" class="Admingenerator\FormExtensionsBundle\Form\Extension\AutocompleteExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
-        </service>
-
-        <service id="form.type_extension.bootstrap_select" class="Admingenerator\FormExtensionsBundle\Form\Extension\BootstrapSelectExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\ChoiceType" />
-        </service>
-
-        <service id="form.type_extension.help_message" class="Admingenerator\FormExtensionsBundle\Form\Extension\HelpMessageExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
-        </service>
-        
-        <service id="form.type_extension.novalidate" class="Admingenerator\FormExtensionsBundle\Form\Extension\NoValidateExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
-        </service>
-        
-        <service id="form.type_extension.single_upload" class="Admingenerator\FormExtensionsBundle\Form\Extension\SingleUploadExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
-        </service>
         
         <!-- Twig extensions -->
         <service id="admingenerator.twig.extension.image_assets" class="Admingenerator\FormExtensionsBundle\Twig\Extension\ImageAssetsExtension">

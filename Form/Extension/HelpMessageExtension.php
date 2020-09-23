@@ -37,6 +37,11 @@ class HelpMessageExtension extends AbstractTypeExtension
 
     public function getExtendedType()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\FormType';
+        return self::getExtendedTypes()[0];
+    }
+
+    public static function getExtendedTypes()
+    {
+        return ['Symfony\Component\Form\Extension\Core\Type\FormType'];
     }
 }
