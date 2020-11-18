@@ -7,6 +7,7 @@ use Admingenerator\FormExtensionsBundle\Form\Extension\BootstrapSelectExtension;
 use Admingenerator\FormExtensionsBundle\Form\Extension\HelpMessageExtension;
 use Admingenerator\FormExtensionsBundle\Form\Extension\NoValidateExtension;
 use Admingenerator\FormExtensionsBundle\Form\Extension\SingleUploadExtension;
+use Admingenerator\FormExtensionsBundle\Twig\Extension\ImageAssetsExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -42,6 +43,8 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         $container->setParameter('admingenerator.form.include_momentjs', $config['include_momentjs']);
         $container->setParameter('admingenerator.form.include_blueimp', $config['include_blueimp']);
         $container->setParameter('admingenerator.form.include_gmaps', $config['include_gmaps']);
+
+        $this->configureAssetsExtension($container, $config['upload_manager'], $config['image_manipulator']);
 
         $this->configureExtensions($config['extensions'], $container);
 
@@ -112,5 +115,32 @@ class AdmingeneratorFormExtensionsExtension extends Extension
             'extended-type' => $extendedTypeClass,
         ]);
         $container->setDefinition($serviceId, $extensionDefinition);
+    }
+
+    private function configureAssetsExtension(ContainerBuilder $container, string $uploadManager, string $imageManipulator) {
+        $uploaderHelperDefinition = null;
+        $imageExtensionDefinition = null;
+        if ('vich_uploader' === $uploadManager) {
+            if ($container->hasDefinition('vich_uploader.templating.helper.uploader_helper') || $container->hasAlias('vich_uploader.templating.helper.uploader_helper')) {
+                $uploaderHelperDefinition = $container->findDefinition('vich_uploader.templating.helper.uploader_helper');
+            } else {
+                $uploaderHelperDefinition = new Reference('Vich\UploaderBundle\Twig\Extension\UploaderExtension');
+            }
+        }
+        if ('liip_imagine' === $imageManipulator) {
+            if (class_exists('\Liip\ImagineBundle\Templating\ImagineExtension')) {
+                $imageExtensionDefinition = new Reference('liip_imagine.twig.extension');
+            } else {
+                $imageExtensionDefinition = new Reference('liip_imagine.templating.filter_extension');
+            }
+        } else if ('avalanche_imagine' === $imageManipulator) {
+            $imageExtensionDefinition = new Reference('imagine.twig.extension');
+        }
+
+        $assetsExtensionDefinition = new Definition(ImageAssetsExtension::class);
+        $assetsExtensionDefinition->setArgument('$uploaderExtension', $uploaderHelperDefinition);
+        $assetsExtensionDefinition->setArgument('$filterExtension', $imageExtensionDefinition);
+        $assetsExtensionDefinition->addTag('twig.extension');
+        $container->setDefinition('admingenerator.twig.extension.image_assets', $assetsExtensionDefinition);
     }
 }
