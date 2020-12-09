@@ -1,8 +1,8 @@
 {% if allow_add %}
-{% spaceless %}
+{% apply spaceless %}
 <a class="btn btn-primary new">
     <i class="fa fa-plus"></i>
     {{- ' ' ~ 's2a_bootstrap_collection.add'|trans({}, 'AdmingeneratorFormExtensions') -}}
 </a>
-{% endspaceless %}
+{% endapply %}
 {% endif %}

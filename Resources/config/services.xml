@@ -109,7 +109,7 @@
             <tag name="form.type" />
         </service>
 
-        <service id="admingenerator.form.extensions.type.hidden" class="Admingenerator\FormExtensionsBundle\Form\Type\HiddenType">
+        <service id="admingenerator.form.extensions.type.select2_hidden" class="Admingenerator\FormExtensionsBundle\Form\Type\Select2HiddenType">
             <tag name="form.type" />
         </service>
         

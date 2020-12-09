@@ -3,13 +3,15 @@
 namespace Admingenerator\FormExtensionsBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 
 /**
  * This extension adds global variables based on bundles configuration.
  *
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
-class IncludeGlobalsExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+class IncludeGlobalsExtension extends AbstractExtension implements GlobalsInterface
 {
     protected $container;
 
