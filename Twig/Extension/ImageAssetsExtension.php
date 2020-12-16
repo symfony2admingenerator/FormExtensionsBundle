@@ -2,31 +2,32 @@
 
 namespace Admingenerator\FormExtensionsBundle\Twig\Extension;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\Container;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 /**
- * This extension adds common twig function for various upload manager 
- * bundles and common twig filter image manipulation bundles. 
- * 
- * Depending on %admingenerator.form.upload_manager% setting a diffrent 
+ * This extension adds common twig function for various upload manager
+ * bundles and common twig filter image manipulation bundles.
+ *
+ * Depending on %admingenerator.form.upload_manager% setting a diffrent
  * upload manager bundle is used.
- * 
- * Depending on %admingenerator.form.image_manipulator% setting a diffrent 
+ *
+ * Depending on %admingenerator.form.image_manipulator% setting a diffrent
  * image manipulation bundle is used.
- * 
+ *
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class ImageAssetsExtension extends AbstractExtension
 {
-    protected $container;
+    protected $uploaderExtension;
 
-    public function __construct(ContainerInterface $container)
+    protected $filterExtension;
+
+    public function __construct($uploaderExtension, $filterExtension)
     {
-        $this->container = $container;
+        $this->uploaderExtension = $uploaderExtension;
+        $this->filterExtension = $filterExtension;
     }
 
     /**
@@ -48,7 +49,7 @@ class ImageAssetsExtension extends AbstractExtension
             'image_filter'  =>  new TwigFilter('image_filter', array($this, 'filter')),
         );
     }
-    
+
     /**
      * Gets the browser path for the image and filter to apply.
      *
@@ -57,20 +58,16 @@ class ImageAssetsExtension extends AbstractExtension
     public function asset($object, $field)
     {
         $params = func_get_args();
-        
-        if ('vich_uploader' === $this->getUploadManager()) {
-            // Note: requires v0.13.0 or higher
-            $ext = new \Vich\UploaderBundle\Twig\Extension\UploaderExtension(
-                $this->container->get('vich_uploader.templating.helper.uploader_helper')  
-            );
-            
-            return call_user_func_array(array($ext, "asset"), $params);
+
+        if ($this->uploaderExtension instanceof \Vich\UploaderBundle\Templating\Helper\UploaderHelper
+            || $this->uploaderExtension instanceof \Vich\UploaderBundle\Twig\Extension\UploaderExtension) {
+            return call_user_func_array(array($this->uploaderExtension, "asset"), $params);
         }
-        
+
         // In case no upload manager is used we expect object to have
         // a special method returning file's path
         $getter = "get".Container::Camelize($field)."WebPath";
-            
+
         return $object->$getter();
     }
 
@@ -83,52 +80,21 @@ class ImageAssetsExtension extends AbstractExtension
     {
         $params = func_get_args();
         $path = $params[0];
-        
-        if ('liip_imagine' === $this->getImageManipulator()) {
-          if(class_exists('\Liip\ImagineBundle\Templating\ImagineExtension')) {
-            $ext = new \Liip\ImagineBundle\Templating\ImagineExtension(
-                $this->container->get('liip_imagine.cache.manager')
-            );
-          } else {
-            $ext = new \Liip\ImagineBundle\Templating\FilterExtension(
-                $this->container->get('liip_imagine.cache.manager')
-            );
-          }
-            
-            return call_user_func_array(array($ext, "filter"), $params);
+
+        if (($this->filterExtension instanceof \Liip\ImagineBundle\Templating\ImagineExtension)
+            || ($this->filterExtension instanceof \Liip\ImagineBundle\Templating\FilterExtension)) {
+
+            return call_user_func_array(array($this->filterExtension, "filter"), $params);
         }
-        
-        if ('avalanche_imagine' === $this->getImageManipulator()) {
-            $ext = new \Avalanche\Bundle\ImagineBundle\Templating\ImagineExtension(
-                $this->container->get('imagine.cache.path.resolver')
-            );
-            
-            return call_user_func_array(array($ext, "applyFilter"), $params);
+
+        if ($this->filterExtension instanceof \Avalanche\Bundle\ImagineBundle\Templating\ImagineExtension) {
+
+            return call_user_func_array(array($this->filterExtension, "applyFilter"), $params);
         }
-        
+
         // In case no image manipulator is used we
         // return the unmodified path
         return $path;
-    }
-
-    /**
-     * Get upload manager name
-     *
-     * @return string|null Parameter value
-     */
-    public function getUploadManager()
-    {
-        return $this->container->getParameter('admingenerator.form.upload_manager');
-    }
-
-    /**
-     * Get image manipulator name
-     *
-     * @return string|null Parameter value
-     */
-    public function getImageManipulator()
-    {
-        return $this->container->getParameter('admingenerator.form.image_manipulator');
     }
 
     /**
