@@ -2,6 +2,10 @@
 
 namespace Admingenerator\FormExtensionsBundle\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
+
 /**
  * This extension adds common twig function for various upload manager
  * bundles and common twig filter image manipulation bundles.
@@ -14,7 +18,7 @@ namespace Admingenerator\FormExtensionsBundle\Twig\Extension;
  *
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
-class ImageAssetsExtension extends \Twig_Extension
+class ImageAssetsExtension extends AbstractExtension
 {
     protected $uploaderExtension;
 
@@ -32,7 +36,7 @@ class ImageAssetsExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'image_asset'   =>  new \Twig_SimpleFunction('image_asset', array($this, 'asset')),
+            'image_asset'   =>  new TwigFunction('image_asset', array($this, 'asset')),
         );
     }
 
@@ -42,7 +46,7 @@ class ImageAssetsExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            'image_filter'  =>  new \Twig_SimpleFilter('image_filter', array($this, 'filter')),
+            'image_filter'  =>  new TwigFilter('image_filter', array($this, 'filter')),
         );
     }
 
