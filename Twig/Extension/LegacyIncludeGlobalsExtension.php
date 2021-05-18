@@ -7,11 +7,11 @@ use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 
 /**
- * This extension adds global variables based on bundles configuration. For Twig 3 and higher.
+ * This extension adds global variables based on bundles configuration. Only for Twig 1 and 2.
  *
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
-class IncludeGlobalsExtension extends AbstractExtension implements GlobalsInterface
+class LegacyIncludeGlobalsExtension extends AbstractExtension implements GlobalsInterface
 {
     protected $container;
 
@@ -23,7 +23,7 @@ class IncludeGlobalsExtension extends AbstractExtension implements GlobalsInterf
     /**
      * {@inheritdoc}
      */
-    public function getGlobals(): array
+    public function getGlobals()
     {
         return array(
             's2a_formextensions_include_jquery'     => $this->container->getParameter('admingenerator.form.include_jquery'),

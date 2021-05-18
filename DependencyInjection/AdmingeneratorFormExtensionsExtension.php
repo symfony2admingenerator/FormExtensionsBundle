@@ -8,6 +8,8 @@ use Admingenerator\FormExtensionsBundle\Form\Extension\HelpMessageExtension;
 use Admingenerator\FormExtensionsBundle\Form\Extension\NoValidateExtension;
 use Admingenerator\FormExtensionsBundle\Form\Extension\SingleUploadExtension;
 use Admingenerator\FormExtensionsBundle\Twig\Extension\ImageAssetsExtension;
+use Admingenerator\FormExtensionsBundle\Twig\Extension\IncludeGlobalsExtension;
+use Admingenerator\FormExtensionsBundle\Twig\Extension\LegacyIncludeGlobalsExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -16,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
+use Twig\Environment;
 
 /**
  * Loads FormExtensions configuration
@@ -46,9 +49,11 @@ class AdmingeneratorFormExtensionsExtension extends Extension
 
         $this->configureAssetsExtension($container, $config['upload_manager'], $config['image_manipulator']);
 
-        $this->configureExtensions($config['extensions'], $container);
+        $this->configureFormExtensions($config['extensions'], $container);
 
         $this->loadUploadCollectionListener($config['upload_collection'], $container);
+
+        $this->loadGlobalsExtension($container);
     }
 
     /**
@@ -57,7 +62,7 @@ class AdmingeneratorFormExtensionsExtension extends Extension
      * @param array            $config
      * @param ContainerBuilder $container
      */
-    private function configureExtensions(array $config, ContainerBuilder $container) {
+    private function configureFormExtensions(array $config, ContainerBuilder $container) {
         if ($config['autocomplete']) {
             $this->registerExtension($container, 'form.type_extension.autocomplete', AutocompleteExtension::class);
         }
@@ -142,5 +147,12 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         $assetsExtensionDefinition->setArgument('$filterExtension', $imageExtensionDefinition);
         $assetsExtensionDefinition->addTag('twig.extension');
         $container->setDefinition('admingenerator.twig.extension.image_assets', $assetsExtensionDefinition);
+    }
+
+    private function loadGlobalsExtension(ContainerBuilder $container) {
+        $globalsExtensionDefinition = Environment::MAJOR_VERSION > 2 ? new Definition(IncludeGlobalsExtension::class) : new Definition(LegacyIncludeGlobalsExtension::class);
+        $globalsExtensionDefinition->setArgument('$container', new Reference('service_container'));
+        $globalsExtensionDefinition->addTag('twig.extension');
+        $container->setDefinition('admingenerator.twig.extension.include_globals', $globalsExtensionDefinition);
     }
 }
