@@ -32,7 +32,7 @@ class SingleUploadExtension extends AbstractTypeExtension
         return self::getExtendedTypes()[0];
     }
 
-    public static function getExtendedTypes()
+    public static function getExtendedTypes(): iterable
     {
         return ['Symfony\Component\Form\Extension\Core\Type\FormType'];
     }
