@@ -2,6 +2,7 @@
 
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -16,6 +17,23 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class SingleUploadType extends AbstractType
 {
+
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * SingleUploadType constructor.
+     *
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+
     /**
      * {@inheritdoc}
      */
@@ -139,7 +157,13 @@ class SingleUploadType extends AbstractType
      */
     private function _is_file($file)
     {
-        return $file instanceof File && file_exists($file->getPathName()) && !is_dir($file->getPathName());
+        if ($file instanceof File) {
+            if ($this->container->getParameter('admingenerator.form.image_manipulator') !== null) {
+                return true;
+            }
+            return $this->_fileExists($file);
+        }
+        return false;
     }
 
     /**
@@ -148,7 +172,7 @@ class SingleUploadType extends AbstractType
     private function _checkFileType($file)
     {
         // sanity check
-        if (!$this->_is_file($file))        return 'inexistent';
+        if (!$this->_fileExists($file))     return 'inexistent';
         if ($this->_isAudio($file))         return 'audio';
         if ($this->_isArchive($file))       return 'archive';
         if ($this->_isHTML($file))          return 'html';
@@ -235,5 +259,15 @@ class SingleUploadType extends AbstractType
     private function _isVideo(File $file)
     {
         return (preg_match('/video\/.*/i', $file->getMimeType()));
+    }
+
+    /**
+     * @param $file
+     *
+     * @return bool
+     */
+    private function _fileExists($file)
+    {
+        return file_exists($file->getPathName()) && !is_dir($file->getPathName());
     }
 }
