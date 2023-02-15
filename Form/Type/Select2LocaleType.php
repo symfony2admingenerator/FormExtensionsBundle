@@ -2,6 +2,8 @@
 
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\LocaleType;
+
 /**
  * See `Resources/doc/select2/overview.md` for documentation
  *
@@ -11,6 +13,6 @@ class Select2LocaleType extends Select2Type
 {
     public function __construct()
     {
-        parent::__construct('locale', 'Symfony\Component\Form\Extension\Core\Type\LocaleType');
+        parent::__construct('locale', LocaleType::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,10 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TimePickerType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['width'] = $options['width'];
         $view->vars['config'] = $options['config'];
@@ -38,47 +36,38 @@ class TimePickerType extends AbstractType
         
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'widget'        => 'single_text',
             'width'     => null,
-            'config'        => array(
-                'icons'         => array(
+            'config'        => [
+                'icons'         => [
                     'time'  => "fa fa-clock-o",
                     'date'  => "fa fa-calendar",
                     'up'    => "fa fa-arrow-up",
                     'down'  => "fa fa-arrow-down"
-                )
-            )
-        ));
+                ]
+            ]
+        ]);
 
         $resolver->setAllowedTypes(
-            'width', array('null', 'integer')
+            'width', ['null', 'integer']
         )->setAllowedTypes(
-            'config', array('array')
+            'config', ['array']
         );
 
         $resolver->setAllowedValues(
-            'widget', array('single_text')
+            'widget', ['single_text']
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): string
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\TimeType';
+        return TimeType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_time_picker';
     }

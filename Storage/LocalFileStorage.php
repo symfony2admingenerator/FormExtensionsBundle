@@ -1,6 +1,7 @@
 <?php
 namespace Admingenerator\FormExtensionsBundle\Storage;
 
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -13,33 +14,20 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class LocalFileStorage implements FileStorageInterface
 {
-    /**
-     * @var SessionInterface
-     */
-    private $session;
+    private string $temporaryDirectory;
 
-    /**
-     * @var string
-     */
-    private $temporaryDirectory;
+    private SessionInterface $session;
 
-    /**
-     * @param SessionInterface $session
-     */
-    public function __construct(SessionInterface $session, $tempDir = null)
+    public function __construct(RequestStack $requestStack, string $tempDir = null)
     {
-        $this->session = $session;
+        $this->session = $requestStack->getSession();
         $this->temporaryDirectory = $tempDir ?: sys_get_temp_dir() . DIRECTORY_SEPARATOR . 's2a' . DIRECTORY_SEPARATOR . 'collectionupload';
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see \Admingenerator\FormExtensionsBundle\Storage\FileStorageInterface::storeFiles()
-     */
-    public function storeFiles(array $files)
+    public function storeFiles(array $files): array
     {
-        $handledFiles = array();
-        $sessionFiles = $this->session->get('s2a_collectionUpload_files', array());
+        $handledFiles = [];
+        $sessionFiles = $this->session->get('s2a_collectionUpload_files', []);
 
         foreach ($files as $file) {
             $uid = uniqid();
@@ -65,11 +53,7 @@ class LocalFileStorage implements FileStorageInterface
         return $handledFiles;
     }
 
-    /**
-     * (non-PHPdoc)
-     * @see \Admingenerator\FormExtensionsBundle\Storage\FileStorageInterface::getFile()
-     */
-    public function getFile($fileId = null)
+    public function getFile(string $fileId = null): ?UploadedFile
     {
         if (is_null($fileId)) {
             return null;
@@ -88,7 +72,6 @@ class LocalFileStorage implements FileStorageInterface
                 $filePath,
                 $fileDescriptor->originalName,
                 $fileDescriptor->type,
-                $fileDescriptor->size,
                 null,
                 true
             );

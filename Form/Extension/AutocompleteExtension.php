@@ -3,6 +3,7 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,39 +14,34 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class AutocompleteExtension extends AbstractTypeExtension
 {
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         // It doesn't hurt even if it will be left empty.
         if (empty($view->vars['attr'])) {
-            $view->vars['attr'] = array();
+            $view->vars['attr'] = [];
         }
 
         if (false === $options['autocomplete']) {
-            $view->vars['attr'] = array_merge($view->vars['attr'], array(
+            $view->vars['attr'] = array_merge($view->vars['attr'], [
                 'autocomplete'        => 'off',
                 'x-autocompletetype'  => 'off',
-            ));
+            ]);
         }
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'autocomplete' => true,
-        ));
+        ]);
         
         $resolver->setAllowedTypes(
-            'autocomplete', array('bool')
+            'autocomplete', ['bool']
         );
-    }
-
-    public function getExtendedType()
-    {
-        return self::getExtendedTypes()[0];
     }
 
     public static function getExtendedTypes(): iterable
     {
-        return ['Symfony\Component\Form\Extension\Core\Type\FormType'];
+        return [FormType::class];
     }
 }

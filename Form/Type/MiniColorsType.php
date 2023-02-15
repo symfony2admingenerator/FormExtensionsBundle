@@ -3,6 +3,7 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,15 +15,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class MiniColorsType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars = array_merge(
             $view->vars,
-            array(
-                'configs' => array(
+            [
+                'configs' => [
                     'animationSpeed'  => $options['animationSpeed'],
                     'animationEasing' => $options['animationEasing'],
                     'changeDelay'     => $options['changeDelay'],
@@ -36,17 +34,14 @@ class MiniColorsType extends AbstractType
                     'swatchPosition'  => $options['swatchPosition'],
                     'textfield'       => $options['textfield'],
                     'theme'           => $options['theme'],
-                )
-            )
+                ]
+            ]
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'animationSpeed'  => 100,
             'animationEasing' => 'swing',
             'changeDelay'     => 0,
@@ -60,51 +55,45 @@ class MiniColorsType extends AbstractType
             'swatchPosition'  => 'left',
             'textfield'       => true,
             'theme'           => 'bootstrap'
-        ));
+        ]);
 
         $resolver->setAllowedValues(
-            'control', array('hue', 'brightness', 'saturation', 'wheel')
+            'control', ['hue', 'brightness', 'saturation', 'wheel']
         )->setAllowedValues(
-            'letterCase', array('lowercase', 'uppercase')
+            'letterCase', ['lowercase', 'uppercase']
         )->setAllowedValues(
-            'position', array('default', 'top', 'left', 'top left')
+            'position', ['default', 'top', 'left', 'top left']
         )->setAllowedValues(
-            'swatchPosition', array('left', 'right')
+            'swatchPosition', ['left', 'right']
         );
 
         $resolver->setAllowedTypes(
-            'animationSpeed',  array('integer')
+            'animationSpeed',  ['integer']
         )->setAllowedTypes(
-            'animationEasing', array('string')
+            'animationEasing', ['string']
         )->setAllowedTypes(
-            'changeDelay', array('integer')
+            'changeDelay', ['integer']
         )->setAllowedTypes(
-            'hideSpeed', array('integer')
+            'hideSpeed', ['integer']
         )->setAllowedTypes(
-            'inline', array('bool')
+            'inline', ['bool']
         )->setAllowedTypes(
-            'opacity', array('bool')
+            'opacity', ['bool']
         )->setAllowedTypes(
-            'showSpeed', array('integer')
+            'showSpeed', ['integer']
         )->setAllowedTypes(
-            'textfield', array('bool')
+            'textfield', ['bool']
         )->setAllowedTypes(
-            'theme', array('string')
+            'theme', ['string']
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): string
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\TextType';
+        return TextType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_mini_colors';
     }

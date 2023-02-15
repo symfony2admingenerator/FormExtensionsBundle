@@ -3,6 +3,7 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,10 +17,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class SingleUploadType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $data = array_key_exists('data', $view->vars) ? $view->vars['data'] : null;
 
@@ -27,23 +25,20 @@ class SingleUploadType extends AbstractType
         	$view->vars['data'] = $data = null;
         }
 
-        $view->vars = array_replace($view->vars, array(
+        $view->vars = array_replace($view->vars, [
             'type'  => 'file',
             'value' => '',
-        ));
+        ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $data = array_key_exists('data', $view->vars) ? $view->vars['data'] : null;
         $view->vars['data'] = $this->_is_file($data) ? $data : null;
 
         $view->vars = array_merge(
             $view->vars,
-            array(
+            [
                 'nameable'        => $options['nameable'],
                 'deleteable'      => $options['deleteable'],
                 'downloadable'    => $options['downloadable'],
@@ -59,18 +54,18 @@ class SingleUploadType extends AbstractType
                 'multipart'       => $options['multipart'],
                 'is_file'         => $this->_is_file($view->vars['data']),
                 'required'        => $options['required']
-            )
+            ]
         );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'nameable'          => false,
             'deleteable'        => false,
             'downloadable'      => true,
@@ -84,68 +79,55 @@ class SingleUploadType extends AbstractType
             'multipart'         => true,
             'novalidate'        => true,
             'required'          => false,
-        ));
+        ]);
 
         $resolver->setAllowedValues(
-            'multipart', array(true)
+            'multipart', [true]
         )->setAllowedValues(
-            'novalidate', array(true)
+            'novalidate', [true]
         )->setAllowedValues(
-            'required', array(false)
+            'required', [false]
         );
 
         $resolver->setAllowedTypes(
-            'nameable', array('string', 'bool')
+            'nameable', ['string', 'bool']
         )->setAllowedTypes(
-            'deleteable', array('string', 'bool')
+            'deleteable', ['string', 'bool']
         )->setAllowedTypes(
-            'downloadable', array('bool')
+            'downloadable', ['bool']
         )->setAllowedTypes(
-            'maxWidth', array('integer')
+            'maxWidth', ['integer']
         )->setAllowedTypes(
-            'maxHeight', array('integer')
+            'maxHeight', ['integer']
         )->setAllowedTypes(
-            'minWidth', array('integer')
+            'minWidth', ['integer']
         )->setAllowedTypes(
-            'minHeight', array('integer')
+            'minHeight', ['integer']
         )->setAllowedTypes(
-            'previewImages', array('bool')
+            'previewImages', ['bool']
         )->setAllowedTypes(
-            'previewAsCanvas', array('bool')
+            'previewAsCanvas', ['bool']
         )->setAllowedTypes(
-            'previewFilter', array('string', 'null')
+            'previewFilter', ['string', 'null']
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): string
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\FileType';
+        return FileType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_single_upload';
     }
 
-    /**
-     * @param $file
-     * @return bool
-     */
-    private function _is_file($file)
+    private function _is_file(mixed $file): bool
     {
         return $file instanceof File && file_exists($file->getPathName()) && !is_dir($file->getPathName());
     }
 
-    /**
-     * Private functions
-     */
-    private function _checkFileType($file)
+    private function _checkFileType(mixed $file): string
     {
         // sanity check
         if (!$this->_is_file($file))        return 'inexistent';
@@ -163,12 +145,12 @@ class SingleUploadType extends AbstractType
         return 'unknown';
     }
 
-    private function _isAudio(File $file)
+    private function _isAudio(File $file): int|false
     {
         return (preg_match('/audio\/.*/i', $file->getMimeType()));
     }
 
-    private function _isArchive(File $file)
+    private function _isArchive(File $file): bool
     {
         return (
             preg_match('/application\/.*compress.*/i', $file->getMimeType()) ||
@@ -181,17 +163,17 @@ class SingleUploadType extends AbstractType
         );
     }
 
-    private function _isHTML(File $file)
+    private function _isHTML(File $file): int|false
     {
         return (preg_match('/text\/html/i', $file->getMimeType()));
     }
 
-    private function _isImage(File $file)
+    private function _isImage(File $file): int|false
     {
         return (preg_match('/image\/.*/i', $file->getMimeType()));
     }
 
-    private function _isPDFDocument(File $file)
+    private function _isPDFDocument(File $file): bool
     {
         return (
             preg_match('/application\/acrobat/i', $file->getMimeType()) ||
@@ -200,12 +182,12 @@ class SingleUploadType extends AbstractType
         );
     }
 
-    private function _isPlainText(File $file)
+    private function _isPlainText(File $file): int|false
     {
         return (preg_match('/text\/plain/i', $file->getMimeType()));
     }
 
-    private function _isPresentation(File $file)
+    private function _isPresentation(File $file): bool
     {
         return (
             preg_match('/application\/.*ms\-powerpoint.*/i', $file->getMimeType()) ||
@@ -214,7 +196,7 @@ class SingleUploadType extends AbstractType
         );
     }
 
-    private function _isSpreadsheet(File $file)
+    private function _isSpreadsheet(File $file): bool
     {
         return (
             preg_match('/application\/.*ms\-excel.*/i', $file->getMimeType()) ||
@@ -223,7 +205,7 @@ class SingleUploadType extends AbstractType
         );
     }
 
-    private function _isTextDocument(File $file)
+    private function _isTextDocument(File $file): bool
     {
         return (
             preg_match('/application\/.*ms\-?word.*/i', $file->getMimeType()) ||
@@ -232,7 +214,7 @@ class SingleUploadType extends AbstractType
         );
     }
 
-    private function _isVideo(File $file)
+    private function _isVideo(File $file): int|false
     {
         return (preg_match('/video\/.*/i', $file->getMimeType()));
     }

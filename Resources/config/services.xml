@@ -115,7 +115,7 @@
         
         <!-- Custom services -->
         <service id="admingenerator.form.file_storage.local" class="Admingenerator\FormExtensionsBundle\Storage\LocalFileStorage">
-            <argument type="service" id="session" />
+            <argument type="service" id="request_stack" />
         </service>
     </services>
 

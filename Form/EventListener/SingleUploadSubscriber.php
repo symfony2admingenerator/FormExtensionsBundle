@@ -2,38 +2,32 @@
 
 namespace Admingenerator\FormExtensionsBundle\Form\EventListener;
 
+use Admingenerator\FormExtensionsBundle\Form\Type\SingleUploadType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\ResolvedFormTypeInterface;
-use Vich\UploaderBundle\Event\Events;
 
 /**
  * @author Piotr Gołębiewski <loostro@gmail.com>
  */
 class SingleUploadSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var array Single upload field configs
-     */
-    protected $configs = array();
+    protected array $configs = [];
 
-    /**
-     * @var array
-     */
-    protected $files = array();
+    protected array $files = [];
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
-        return array(
-            FormEvents::PRE_SET_DATA => array('preSetData', 0),
-            FormEvents::PRE_SUBMIT => array('preSubmit', 0),
-            FormEvents::SUBMIT => array('onSubmit', 0),
-            FormEvents::POST_SUBMIT => array('postSubmit', 0)
-        );
+        return [
+            FormEvents::PRE_SET_DATA => ['preSetData', 0],
+            FormEvents::PRE_SUBMIT => ['preSubmit', 0],
+            FormEvents::SUBMIT => ['onSubmit', 0],
+            FormEvents::POST_SUBMIT => ['postSubmit', 0]
+        ];
     }
     
-    public function preSetData(FormEvent $event)
+    public function preSetData(FormEvent $event): void
     {
         $form = $event->getForm();
         $obj = $event->getData();
@@ -52,7 +46,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function preSubmit(FormEvent $event)
+    public function preSubmit(FormEvent $event): void
     {
         $form = $event->getForm();
         $post = $event->getData();
@@ -62,10 +56,10 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                 $childPost = $post[$child->getName()];
                 $options = $child->getConfig()->getOptions();
 
-                $this->configs[$child->getName()] = array(
+                $this->configs[$child->getName()] = [
                     'nameable'   => $options['nameable'],
                     'deleteable' => $options['deleteable'],
-                );
+                ];
 
                 if ($options['nameable'] && array_key_exists('name', $childPost)) {
                     // capture name and store it for onSubmit event
@@ -86,7 +80,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function onSubmit(FormEvent $event)
+    public function onSubmit(FormEvent $event): void
     {
         $form = $event->getForm();
         $data = $form->getData();
@@ -115,7 +109,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                     $data->$setterPath(null);
                 }
 
-                if (!array_key_exists('delete', $config) || $config['delete'] == false) {
+                if (!array_key_exists('delete', $config) || !$config['delete']) {
                     $setter = 'set'.ucfirst($field);
                     $getter = 'get'.ucfirst($field);
 
@@ -129,7 +123,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function postSubmit(FormEvent $event)
+    public function postSubmit(FormEvent $event): void
     {
         if (count($this->configs) > 0) {
             $form = $event->getForm();
@@ -155,12 +149,12 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         }
     }
     
-    private function isFieldSingleUpload(ResolvedFormTypeInterface $formTypeInterface = null)
+    private function isFieldSingleUpload(ResolvedFormTypeInterface $formTypeInterface = null): bool
     {
         if ($formTypeInterface == null) {
             return false;
         }
-        if (get_class($formTypeInterface->getInnerType()) == 'Admingenerator\FormExtensionsBundle\Form\Type\SingleUploadType') {
+        if (get_class($formTypeInterface->getInnerType()) == SingleUploadType::class) {
             return true;
         }
 

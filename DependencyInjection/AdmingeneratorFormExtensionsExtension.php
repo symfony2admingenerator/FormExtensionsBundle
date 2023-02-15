@@ -30,7 +30,7 @@ class AdmingeneratorFormExtensionsExtension extends Extension
     /**
      * {@inheritDoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -58,11 +58,9 @@ class AdmingeneratorFormExtensionsExtension extends Extension
 
     /**
      * Register the form extensions if required
-     *
-     * @param array            $config
-     * @param ContainerBuilder $container
      */
-    private function configureFormExtensions(array $config, ContainerBuilder $container) {
+    private function configureFormExtensions(array $config, ContainerBuilder $container): void
+    {
         if ($config['autocomplete']) {
             $this->registerExtension($container, 'form.type_extension.autocomplete', AutocompleteExtension::class);
         }
@@ -82,12 +80,8 @@ class AdmingeneratorFormExtensionsExtension extends Extension
 
     /**
      * Add the collection upload listener if required
-     *
-     * @param array $config
-     * @param ContainerBuilder $container
-     * @throws \LogicException
      */
-    private function loadUploadCollectionListener(array $config, ContainerBuilder $container)
+    private function loadUploadCollectionListener(array $config, ContainerBuilder $container): void
     {
         if ($config['async_listener_enabled']) {
             if (!(array_key_exists('async_route_name', $config) && $routeName = $config['async_route_name'])) {
@@ -107,12 +101,6 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         }
     }
 
-    /**
-     * @param ContainerBuilder $container
-     * @param string           $serviceId
-     * @param string           $extensionClass
-     * @param string           $extendedTypeClass
-     */
     private function registerExtension(ContainerBuilder $container, string $serviceId, string $extensionClass, string $extendedTypeClass = FormType::class): void
     {
         $extensionDefinition = new Definition($extensionClass);
@@ -122,7 +110,8 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         $container->setDefinition($serviceId, $extensionDefinition);
     }
 
-    private function configureAssetsExtension(ContainerBuilder $container, string $uploadManager, string $imageManipulator) {
+    private function configureAssetsExtension(ContainerBuilder $container, string $uploadManager, string $imageManipulator): void
+    {
         $uploaderHelperDefinition = null;
         $imageExtensionDefinition = null;
         if ('vich_uploader' === $uploadManager) {
@@ -149,8 +138,9 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         $container->setDefinition('admingenerator.twig.extension.image_assets', $assetsExtensionDefinition);
     }
 
-    private function loadGlobalsExtension(ContainerBuilder $container) {
-        $globalsExtensionDefinition = Environment::MAJOR_VERSION > 2 ? new Definition(IncludeGlobalsExtension::class) : new Definition(LegacyIncludeGlobalsExtension::class);
+    private function loadGlobalsExtension(ContainerBuilder $container): void
+    {
+        $globalsExtensionDefinition = new Definition(IncludeGlobalsExtension::class);
         $globalsExtensionDefinition->setArgument('$container', new Reference('service_container'));
         $globalsExtensionDefinition->addTag('twig.extension');
         $container->setDefinition('admingenerator.twig.extension.include_globals', $globalsExtensionDefinition);

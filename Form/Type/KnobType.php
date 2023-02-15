@@ -3,6 +3,7 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -15,7 +16,7 @@ use Symfony\Component\Form\FormView;
  */
 class KnobType extends AbstractType
 {
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $class = 'knob';
         if (array_key_exists('attr', $options) && array_key_exists('class', $options['attr'])) {
@@ -29,7 +30,7 @@ class KnobType extends AbstractType
 
         $view->vars = array_merge(
             $view->vars,
-            array(
+            [
                 'width'           => $options['width'],
                 'height'          => $options['height'],
                 'displayInput'    => $options['displayInput'],
@@ -45,17 +46,17 @@ class KnobType extends AbstractType
                 'step'            => $options['step'],
                 'min'             => $options['min'],
                 'max'             => $options['max'],
-                'attr'            => array(
+                'attr'            => [
                     'class' => $class,
                     'style' => $style,
-                )
-            )
+                ]
+            ]
         );
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'width'           => 200,
             'height'          => 200,
             'displayInput'    => true,
@@ -72,38 +73,38 @@ class KnobType extends AbstractType
             'min'             => 0,
             'max'             => 100,
             'hide_box_shadow' => true,
-        ));
+        ]);
 
         $resolver->setAllowedTypes(
-            'width', array('integer')
+            'width', ['integer']
         )->setAllowedTypes(
-            'height', array('integer')
+            'height', ['integer']
         )->setAllowedTypes(
-            'displayInput', array('bool')
+            'displayInput', ['bool']
         )->setAllowedTypes(
-            'displayPrevious', array('bool')
+            'displayPrevious', ['bool']
         )->setAllowedTypes(
-            'angleArc', array('numeric')
+            'angleArc', ['numeric']
         )->setAllowedTypes(
-            'angleOffset', array('numeric')
+            'angleOffset', ['numeric']
         )->setAllowedTypes(
-            'cursor', array('numeric', 'bool')
+            'cursor', ['numeric', 'bool']
         )->setAllowedTypes(
-            'readOnly', array('bool')
+            'readOnly', ['bool']
         )->setAllowedTypes(
-            'thickness', array('numeric')
+            'thickness', ['numeric']
         )->setAllowedTypes(
-            'fgColor', array('string')
+            'fgColor', ['string']
         )->setAllowedTypes(
-            'bgColor', array('string')
+            'bgColor', ['string']
         )->setAllowedTypes(
-            'step', array('numeric')
+            'step', ['numeric']
         )->setAllowedTypes(
-            'min', array('numeric')
+            'min', ['numeric']
         )->setAllowedTypes(
-            'max', array('numeric')
+            'max', ['numeric']
         )->setAllowedTypes(
-            'hide_box_shadow', array('bool')
+            'hide_box_shadow', ['bool']
         );
 
         $resolver->setAllowedValues(
@@ -111,16 +112,16 @@ class KnobType extends AbstractType
         )->setAllowedValues(
             'angleOffset', range(0, 359)
         )->setAllowedValues(
-            'lineCap', array('butt', 'round')
+            'lineCap', ['butt', 'round']
         );
     }
 
-    public function getParent()
+    public function getParent(): string
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\NumberType';
+        return NumberType::class;
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_knob';
     }

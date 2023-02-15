@@ -2,6 +2,8 @@
 
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
 /**
  * See `Resources/doc/select2/overview.md` for documentation
  *
@@ -11,6 +13,6 @@ class Select2HiddenType extends Select2Type
 {
     public function __construct()
     {
-        parent::__construct('hidden', 'Symfony\Component\Form\Extension\Core\Type\HiddenType');
+        parent::__construct('hidden', HiddenType::class);
     }
 }

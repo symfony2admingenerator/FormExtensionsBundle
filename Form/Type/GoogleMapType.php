@@ -3,6 +3,8 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
@@ -15,10 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class GoogleMapType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add($options['lat_name'], $options['type'], array_merge($options['options'], $options['lat_options']))
@@ -26,16 +25,13 @@ class GoogleMapType extends AbstractType
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(array(
-            'type'           => 'Symfony\Component\Form\Extension\Core\Type\TextType',
-            'options'        => array(),
-            'lat_options'    => array(),
-            'lng_options'    => array(),
+        $resolver->setDefaults([
+            'type'           => TextType::class,
+            'options'        => [],
+            'lat_options'    => [],
+            'lng_options'    => [],
             'lat_name'       => 'latitude',
             'lng_name'       => 'longitude',
             'error_bubbling' => false,
@@ -46,13 +42,10 @@ class GoogleMapType extends AbstractType
             'default_lng'    => -0.1245,
             'callback'       => 'function (location, gmap) {}',
             'error_handler'  => 'function (elem, status) {}'
-        ));
+        ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars = array_merge($view->vars, array(
             'lat_name'      => $options['lat_name'],
@@ -66,12 +59,12 @@ class GoogleMapType extends AbstractType
         ));
     }
 
-    public function getParent()
+    public function getParent(): string
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\FormType';
+        return FormType::class;
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_google_map';
     }

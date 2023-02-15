@@ -20,34 +20,23 @@ use Twig\TwigFunction;
  */
 class ImageAssetsExtension extends AbstractExtension
 {
-    protected $uploaderExtension;
 
-    protected $filterExtension;
-
-    public function __construct($uploaderExtension, $filterExtension)
+    public function __construct(protected readonly mixed $uploaderExtension, protected readonly mixed $filterExtension)
     {
-        $this->uploaderExtension = $uploaderExtension;
-        $this->filterExtension = $filterExtension;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFunctions()
+    public function getFunctions(): array
     {
-        return array(
-            'image_asset'   =>  new TwigFunction('image_asset', array($this, 'asset')),
-        );
+        return [
+            'image_asset'   =>  new TwigFunction('image_asset', $this->asset(...)),
+        ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getFilters()
+    public function getFilters(): array
     {
-        return array(
-            'image_filter'  =>  new TwigFilter('image_filter', array($this, 'filter')),
-        );
+        return [
+            'image_filter'  =>  new TwigFilter('image_filter', $this->filter(...)),
+        ];
     }
 
     /**
@@ -55,7 +44,7 @@ class ImageAssetsExtension extends AbstractExtension
      *
      * @return string The public path.
      */
-    public function asset($object, $field)
+    public function asset(object $object, string $field): string
     {
         $params = func_get_args();
 
@@ -73,10 +62,8 @@ class ImageAssetsExtension extends AbstractExtension
 
     /**
      * Gets the browser path for the image and filter to apply
-     *
-     * @return string
      */
-    public function filter()
+    public function filter(): string
     {
         $params = func_get_args();
         $path = $params[0];
@@ -97,12 +84,7 @@ class ImageAssetsExtension extends AbstractExtension
         return $path;
     }
 
-    /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
-     */
-    public function getName()
+    public function getName(): string
     {
         return 'admingenerator.twig.extension.image_filter';
     }

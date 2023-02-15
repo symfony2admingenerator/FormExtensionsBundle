@@ -13,10 +13,7 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class FormCompilerPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         // Used templates
         $templates = ['@AdmingeneratorFormExtensions/Form/form_html.html.twig',

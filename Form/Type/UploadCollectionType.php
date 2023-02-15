@@ -5,6 +5,7 @@ namespace Admingenerator\FormExtensionsBundle\Form\Type;
 use Admingenerator\FormExtensionsBundle\Form\EventListener\UploadCollectionSubscriber;
 use Admingenerator\FormExtensionsBundle\Storage\FileStorageInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -18,23 +19,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class UploadCollectionType extends AbstractType
 {
-    /**
-     * @var FileStorageInterface
-     */
-    protected $storage = null;
+    protected ?FileStorageInterface $storage = null;
 
-    /**
-     * @param FileStorageInterface $storage
-     */
-    public function setFileStorage(FileStorageInterface $storage)
+    public function setFileStorage(FileStorageInterface $storage): void
     {
         $this->storage = $storage;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->addEventSubscriber(new UploadCollectionSubscriber(
             $builder->getName(),
@@ -43,21 +35,18 @@ class UploadCollectionType extends AbstractType
         ));
 
         if (!$builder->hasAttribute('prototype')) {
-            $prototype = $builder->create($options['prototype_name'], $options['type'], array_replace(array(
+            $prototype = $builder->create($options['prototype_name'], $options['type'], array_replace([
                 'label' => $options['prototype_name'].'label__',
-            ), $options['options']));
+            ], $options['options']));
             $builder->setAttribute('prototype', $prototype->getForm());
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars = array_merge(
             $view->vars,
-            array(
+            [
                 'acceptFileTypes'           => $options['acceptFileTypes'],
                 'autoUpload'                => $options['autoUpload'],
                 'editable'                  => $options['editable'],
@@ -84,21 +73,18 @@ class UploadCollectionType extends AbstractType
                 'sortable_field'            => $options['sortable_field'],
                 'uploadRouteName'           => $options['uploadRouteName'],
                 'uploadRouteParameters'     => $options['uploadRouteParameters']
-            )
+            ]
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'acceptFileTypes'           => '/.*$/i',
             'autoUpload'                => false,
-            'editable'                  => array(),
+            'editable'                  => [],
             'displayDownloadButton'     => true,
             'loadImageFileTypes'        => '/^image\/(gif|jpe?g|png)$/i',
             'loadImageMaxFileSize'      => 5000000,
@@ -121,88 +107,82 @@ class UploadCollectionType extends AbstractType
             'sortable'                  => false,
             'sortable_field'            => 'position',
             'uploadRouteName'           => null,
-            'uploadRouteParameters'     => array()
-        ));
+            'uploadRouteParameters'     => []
+        ]);
 
         // This seems weird... why to we accept it as option if we force
         // its value?
         $resolver->setAllowedValues(
-            'novalidate', array(true)
+            'novalidate', [true]
         )->setAllowedValues(
-            'multipart', array(true)
+            'multipart', [true]
         )->addAllowedValues(
-            'multiple', array(true)
+            'multiple', [true]
         )->setAllowedValues(
-            'required', array(false)
+            'required', [false]
         );
 
         $resolver->setAllowedTypes(
-            'acceptFileTypes', array('string')
+            'acceptFileTypes', ['string']
         )->setAllowedTypes(
-            'autoUpload', array('bool')
+            'autoUpload', ['bool']
         )->setAllowedTypes(
-            'editable', array('array')
+            'editable', ['array']
         )->setAllowedTypes(
-            'displayDownloadButton', array('bool')
+            'displayDownloadButton', ['bool']
         )->setAllowedTypes(
-            'loadImageFileTypes', array('string')
+            'loadImageFileTypes', ['string']
         )->setAllowedTypes(
-            'loadImageMaxFileSize', array('integer')
+            'loadImageMaxFileSize', ['integer']
         )->setAllowedTypes(
-            'maxNumberOfFiles', array('integer', 'null')
+            'maxNumberOfFiles', ['integer', 'null']
         )->setAllowedTypes(
-            'maxFileSize', array('integer', 'null')
+            'maxFileSize', ['integer', 'null']
         )->setAllowedTypes(
-            'minFileSize', array('integer', 'null')
+            'minFileSize', ['integer', 'null']
         )->setAllowedTypes(
-            'multipart', array('bool')
+            'multipart', ['bool']
         )->setAllowedTypes(
-            'multiple', array('bool')
+            'multiple', ['bool']
         )->setAllowedTypes(
-            'nameable', array('bool')
+            'nameable', ['bool']
         )->setAllowedTypes(
-            'nameable_field', array('string', 'null')
+            'nameable_field', ['string', 'null']
         )->setAllowedTypes(
-            'novalidate' , array('bool')
+            'novalidate' , ['bool']
         )->setAllowedTypes(
-            'prependFiles', array('bool')
+            'prependFiles', ['bool']
         )->setAllowedTypes(
-            'previewAsCanvas', array('bool')
+            'previewAsCanvas', ['bool']
         )->setAllowedTypes(
-            'previewFilter', array('string', 'null')
+            'previewFilter', ['string', 'null']
         )->setAllowedTypes(
-            'itemFilter', array('string', 'null')
+            'itemFilter', ['string', 'null']
         )->setAllowedTypes(
-            'previewMaxWidth', array('integer')
+            'previewMaxWidth', ['integer']
         )->setAllowedTypes(
-            'previewMaxHeight', array('integer')
+            'previewMaxHeight', ['integer']
         )->setAllowedTypes(
-            'primary_key', array('string')
+            'primary_key', ['string']
         )->setAllowedTypes(
-            'required', array('bool')
+            'required', ['bool']
         )->setAllowedTypes(
-            'sortable', array('bool')
+            'sortable', ['bool']
         )->setAllowedTypes(
-            'sortable_field', array('string')
+            'sortable_field', ['string']
         )->setAllowedTypes(
-            'uploadRouteName', array('string', 'null')
+            'uploadRouteName', ['string', 'null']
         )->setAllowedTypes(
-            'uploadRouteParameters', array('array')
+            'uploadRouteParameters', ['array']
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): string
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\CollectionType';
+        return CollectionType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_upload_collection';
     }

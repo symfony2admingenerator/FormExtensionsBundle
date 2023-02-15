@@ -14,49 +14,29 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 abstract class DoubleListType extends AbstractType
 {
     /**
-     * @var string
-     */
-    private $widget;
-    /**
-     * @var string
-     */
-    private $parent;
-
-    /**
-     * @param string $widget Type of the form (used as a suffix fot he blocprefix)
+     * @param string $widget Type of the form (used as a suffix for the blockprefix)
      * @param string $parent Parent FQCN form
      */
-    public function __construct($widget, $parent)
+    public function __construct(private readonly string $widget, private readonly string $parent)
     {
-        $this->widget = $widget;
-        $this->parent = $parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'multiple'    => true,
-            'attr'        => array(
+            'attr'        => [
                 'class' => 'hidden-select',
-            ),
-        ));
+            ],
+        ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): string
     {
         return $this->parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_double_list_' . $this->widget;
     }

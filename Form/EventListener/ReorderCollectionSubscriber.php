@@ -11,17 +11,14 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class ReorderCollectionSubscriber implements EventSubscriberInterface
 {
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
-        return array(
-            FormEvents::PRE_SUBMIT => array('preSubmit', 140),
-        );
+        return [
+            FormEvents::PRE_SUBMIT => ['preSubmit', 140],
+        ];
     }
 
-    /**
-     * @param FormEvent $event
-     */
-    public function preSubmit(FormEvent $event)
+    public function preSubmit(FormEvent $event): void
     {
         $data = $event->getData();
 

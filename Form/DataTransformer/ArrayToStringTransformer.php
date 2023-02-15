@@ -13,64 +13,45 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  */
 class ArrayToStringTransformer implements DataTransformerInterface
 {
-    /**
-     * @var string
-     */
-    private $separator;
-
-    /**
-     * @var array
-     */
-    private $keys;
-
-    /**
-     * Default constructor
-     *
-     * @param string $separator
-     * @param array $keys
-     */
-    public function __construct($separator = ',', array $keys = array())
+    public function __construct(
+        private readonly string $separator = ',',
+        private readonly array $keys = []
+    )
     {
-        $this->separator = $separator;
-        $this->keys = $keys;
     }
 
     /**
      * Transforms an array to a string
-     *
-     * {@inheritdoc}
      */
-    public function transform($array)
+    public function transform(mixed $value): string
     {
-        if (null === $array) {
+        if (null === $value) {
             return '';
         }
 
-        if (!is_array($array)) {
+        if (!is_array($value)) {
             throw new TransformationFailedException('Expected an array');
         }
 
-        $array = array_filter(array_values($array), 'strlen');
+        $value = array_filter(array_values($value), 'strlen');
 
-        return empty($array) ? '' : implode($this->separator, $array);
+        return empty($value) ? '' : implode($this->separator, $value);
     }
 
     /**
      * Transforms a string to an array
-     *
-     * {@inheritdoc}
      */
-    public function reverseTransform($string)
+    public function reverseTransform(mixed $value): array
     {
-        if (!is_string($string)) {
+        if (!is_string($value)) {
             throw new TransformationFailedException('Expected a string');
         }
 
-        if ( 0 === strlen($string)) {
-            return array();
+        if ( 0 === strlen($value)) {
+            return [];
         }
 
-        $transformedString = explode($this->separator, $string);
+        $transformedString = explode($this->separator, $value);
 
         if (!empty($this->keys)) {
             if (count($this->keys) != count($transformedString)) {

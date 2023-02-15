@@ -3,6 +3,7 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,25 +16,16 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class DateRangePickerType extends AbstractType
 {
-    /**
-     * @var \Symfony\Component\Translation\TranslatorInterface
-     */
-    protected $translator;
-    
-    /**
-     * @param \Symfony\Component\Translation\TranslatorInterface $translator
-     */
-    public function setTranslator(TranslatorInterface $translator)
+    protected TranslatorInterface $translator;
+
+    public function setTranslator(TranslatorInterface $translator): void
     {
         $this->translator = $translator;
     }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
-        $view->vars = array_merge($view->vars, array(
+        $view->vars = array_merge($view->vars, [
             'startDate'             => $options['startDate'],
             'endDate'               => $options['endDate'],
             'minDate'               => $options['minDate'],
@@ -57,15 +49,12 @@ class DateRangePickerType extends AbstractType
             'singleDatePicker'      => $options['singleDatePicker'],
             'parentEl'              => $options['parentEl'],
             'callback'              => $options['callback']
-        ));
+        ]);
     }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'startDate'             => null,
             'endDate'               => null,
             'minDate'               => null,
@@ -78,105 +67,102 @@ class DateRangePickerType extends AbstractType
             'timePickerIncrement'   => 1,
             'timePicker12Hour'      => false,
             'timePickerSeconds'     => false,
-            'ranges'                => array(),
+            'ranges'                => [],
             'opens'                 => 'right',
-            'buttonClasses'         => array('btn', 'btn-sm'),
+            'buttonClasses'         => ['btn', 'btn-sm'],
             'applyClass'            => 'btn-success',
             'cancelClass'           => 'btn-default',
             'format'                => 'YYYY-MM-DD',
             'separator'             => ' - ',
-            'locale'                => array(
-                'applyLabel'            => $this->translator->trans('s2a_daterange_picker.applyLabel', array(), 'AdmingeneratorFormExtensions'),
-                'cancelLabel'           => $this->translator->trans('s2a_daterange_picker.cancelLabel', array(), 'AdmingeneratorFormExtensions'),
-                'fromLabel'             => $this->translator->trans('s2a_daterange_picker.fromLabel', array(), 'AdmingeneratorFormExtensions'),
-                'toLabel'               => $this->translator->trans('s2a_daterange_picker.toLabel', array(), 'AdmingeneratorFormExtensions'),
-                'customRangeLabel'      => $this->translator->trans('s2a_daterange_picker.customRangeLabel', array(), 'AdmingeneratorFormExtensions'),
-                'daysOfWeek'            => array(
-                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Su', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Mo', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Tu', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.We', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Th', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Fr', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Sa', array(), 'AdmingeneratorFormExtensions'),
-                ),
-                'monthNames'            => array(
-                    $this->translator->trans('s2a_daterange_picker.monthNames.January', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.February', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.March', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.April', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.May', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.June', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.July', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.August', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.September', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.October', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.November', array(), 'AdmingeneratorFormExtensions'),
-                    $this->translator->trans('s2a_daterange_picker.monthNames.December', array(), 'AdmingeneratorFormExtensions'),
-                ),
-                'firstDay'              => intval($this->translator->trans('s2a_daterange_picker.firstDay', array(), 'AdmingeneratorFormExtensions')),
-            ),
+            'locale'                => [
+                'applyLabel'            => $this->translator->trans('s2a_daterange_picker.applyLabel', [], 'AdmingeneratorFormExtensions'),
+                'cancelLabel'           => $this->translator->trans('s2a_daterange_picker.cancelLabel', [], 'AdmingeneratorFormExtensions'),
+                'fromLabel'             => $this->translator->trans('s2a_daterange_picker.fromLabel', [], 'AdmingeneratorFormExtensions'),
+                'toLabel'               => $this->translator->trans('s2a_daterange_picker.toLabel', [], 'AdmingeneratorFormExtensions'),
+                'customRangeLabel'      => $this->translator->trans('s2a_daterange_picker.customRangeLabel', [], 'AdmingeneratorFormExtensions'),
+                'daysOfWeek'            => [
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Su', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Mo', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Tu', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.We', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Th', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Fr', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.daysOfWeek.Sa', [], 'AdmingeneratorFormExtensions'),
+                ],
+                'monthNames'            => [
+                    $this->translator->trans('s2a_daterange_picker.monthNames.January', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.February', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.March', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.April', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.May', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.June', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.July', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.August', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.September', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.October', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.November', [], 'AdmingeneratorFormExtensions'),
+                    $this->translator->trans('s2a_daterange_picker.monthNames.December', [], 'AdmingeneratorFormExtensions'),
+                ],
+                'firstDay'              => intval($this->translator->trans('s2a_daterange_picker.firstDay', [], 'AdmingeneratorFormExtensions')),
+            ],
             'singleDatePicker'      => false,
             'parentEl'              => 'body',
             'callback'              => 'function(start, end, label) {}'
-        ));
+        ]);
         
         $resolver->setAllowedTypes(
-            'startDate', array('null', 'string')
+            'startDate', ['null', 'string']
         )->setAllowedTypes(
-            'endDate', array('null', 'string')
+            'endDate', ['null', 'string']
         )->setAllowedTypes(
-            'minDate', array('null', 'string')
+            'minDate', ['null', 'string']
         )->setAllowedTypes(
-            'maxDate', array('null', 'string')
+            'maxDate', ['null', 'string']
         )->setAllowedTypes(
-            'dateLimit', array('null', 'string')
+            'dateLimit', ['null', 'string']
         )->setAllowedTypes(
-            'timeZone', array('null','string')
+            'timeZone', ['null','string']
         )->setAllowedTypes(
-            'showDropdowns', array('bool')
+            'showDropdowns', ['bool']
         )->setAllowedTypes(
-            'showWeekNumbers', array('bool')
+            'showWeekNumbers', ['bool']
         )->setAllowedTypes(
-            'timePicker', array('bool')
+            'timePicker', ['bool']
         )->setAllowedTypes(
-            'timePickerIncrement', array('integer')
+            'timePickerIncrement', ['integer']
         )->setAllowedTypes(
-            'timePicker12Hour', array('bool')
+            'timePicker12Hour', ['bool']
         )->setAllowedTypes(
-            'timePickerSeconds', array('bool')
+            'timePickerSeconds', ['bool']
         )->setAllowedTypes(
-            'ranges', array('array')
+            'ranges', ['array']
         )->setAllowedTypes(
-            'buttonClasses', array('array')
+            'buttonClasses', ['array']
         )->setAllowedTypes(
-            'applyClass', array('string')
+            'applyClass', ['string']
         )->setAllowedTypes(
-            'cancelClass', array('string')
+            'cancelClass', ['string']
         )->setAllowedTypes(
-            'format', array('string')
+            'format', ['string']
         )->setAllowedTypes(
-            'separator', array('string')
+            'separator', ['string']
         )->setAllowedTypes(
-            'locale', array('array')
+            'locale', ['array']
         )->setAllowedTypes(
-            'singleDatePicker', array('bool')
+            'singleDatePicker', ['bool']
         )->setAllowedTypes(
-            'parentEl', array('string')
+            'parentEl', ['string']
         )->setAllowedTypes(
-            'callback', array('string')
+            'callback', ['string']
         );
     }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+
+    public function getParent(): string
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\TextType';
+        return TextType::class;
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_daterange_picker';
     }

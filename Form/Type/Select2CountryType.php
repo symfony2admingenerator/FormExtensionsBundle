@@ -2,6 +2,8 @@
 
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
+
 /**
  * See `Resources/doc/select2/overview.md` for documentation
  *
@@ -11,6 +13,6 @@ class Select2CountryType extends Select2Type
 {
     public function __construct()
     {
-        parent::__construct('country', 'Symfony\Component\Form\Extension\Core\Type\CountryType');
+        parent::__construct('country', CountryType::class);
     }
 }

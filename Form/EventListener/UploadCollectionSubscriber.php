@@ -16,102 +16,59 @@ use Symfony\Component\Form\FormEvents;
  */
 class UploadCollectionSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var string Name of property holding collection
-     */
-    protected $propertyName;
 
-    /**
-     * @var string Collection data class
-     */
-    protected $dataClass;
+    protected string $dataClass;
 
-    /**
-     * @var boolean Primary Key field
-     */
-    protected $primaryKey;
+    protected bool $primaryKey;
 
-    /**
-     * @var boolean Is file nameable
-     */
-    protected $nameable;
+    protected bool $nameable;
 
-    /**
-     * @var string Nameable field name
-     */
-    protected $nameableField;
+    protected string $nameableField;
 
     /**
      * Used to revert changes if form is not valid.
      * @var Doctrine\Common\Collections\Collection Original collection
      */
-    protected $originalFiles;
+    protected mixed $originalFiles;
 
-    /**
-     * @var array Captured upload
-     */
-    protected $uploads;
+    protected array $uploads = [];
 
-    /**
-     * @var array Captured editable
-     */
-    protected $editable;
+    protected array $editable = [];
 
-    /**
-     * @var array Submitted primary keys
-     */
-    protected $submittedPk;
+    protected array $submittedPk = [];
 
-    /**
-     * @var boolean
-     */
-    protected $allowAdd;
+    protected bool $allowAdd;
 
-    /**
-     * @var boolean
-     */
-    protected $allowDelete;
+    protected bool $allowDelete;
 
-    /**
-     * @var FileStorageInterface
-     */
-    protected $storage;
-
-    /**
-     * Default constructor
-     *
-     * @param string $propertyName
-     * @param array $options
-     */
-    public function __construct($propertyName, array $options, FileStorageInterface $storage = null)
+    public function __construct(
+        protected readonly string $propertyName,
+        array $options,
+        protected readonly ?FileStorageInterface $storage = null
+    )
     {
-        $this->propertyName     = $propertyName;
-        $this->dataClass        = $options['entry_options']['data_class'];
-        $this->primaryKey      = $options['primary_key'];
-        $this->nameable         = $options['nameable'];
-        $this->nameableField   = $options['nameable_field'];
-        $this->uploads          = array();
-        $this->editable         = array();
-        $this->submittedPk     = array();
-        $this->allowAdd        = $options['allow_add'];
-        $this->allowDelete     = $options['allow_delete'];
-        $this->storage          = $storage;
+        $this->dataClass     = $options['entry_options']['data_class'];
+        $this->primaryKey    = $options['primary_key'];
+        $this->nameable      = $options['nameable'];
+        $this->nameableField = $options['nameable_field'];
+        $this->allowAdd      = $options['allow_add'];
+        $this->allowDelete   = $options['allow_delete'];
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
-        return array(
-            FormEvents::PRE_SUBMIT => array('preSubmit', 127),
-            FormEvents::SUBMIT => array('onSubmit', 0),
-            FormEvents::POST_SUBMIT => array('postSubmit', 0),
-        );
+        return [
+            FormEvents::PRE_SUBMIT => ['preSubmit', 127],
+            FormEvents::SUBMIT => ['onSubmit', 0],
+            FormEvents::POST_SUBMIT => ['postSubmit', 0],
+        ];
     }
 
-    public function preSubmit(FormEvent $event)
+    public function preSubmit(FormEvent $event): void
     {
         $data = $event->getData();
 
-        $data = $data ?: array();
+        $data = $data ?: [];
         if (array_key_exists('uploads', $data)) {
             // capture uploads and store them for onSubmit event
             $this->uploads = $data['uploads'];
@@ -148,7 +105,7 @@ class UploadCollectionSubscriber implements EventSubscriberInterface
         $event->setData($data);
     }
 
-    public function onSubmit(FormEvent $event)
+    public function onSubmit(FormEvent $event): void
     {
         $form = $event->getForm();
         $data = $form->getParent()->getData();
@@ -172,7 +129,7 @@ class UploadCollectionSubscriber implements EventSubscriberInterface
             foreach ($this->uploads as $upload) {
                 if (!is_object($upload) && !is_null($this->storage)) {
                     // read submitted editable
-                    $editable = array_key_exists($upload, $this->editable) ? $this->editable[$upload] : array();
+                    $editable = array_key_exists($upload, $this->editable) ? $this->editable[$upload] : [];
                     $upload = $this->storage->getFile($upload);
                 }
 
@@ -182,7 +139,7 @@ class UploadCollectionSubscriber implements EventSubscriberInterface
 
                 $file = new $this->dataClass();
                 if (!$file instanceof UploadCollectionFileInterface) {
-                    throw new UnexpectedTypeException($file, '\Admingenerator\FormExtensionsBundle\Form\Model\UploadCollectionFileInterface');
+                    throw new UnexpectedTypeException($file, UploadCollectionFileInterface::class);
                 }
 
                 $file->setFile($upload);
@@ -212,7 +169,7 @@ class UploadCollectionSubscriber implements EventSubscriberInterface
         $event->setData($data->$getter());
     }
 
-    public function postSubmit(FormEvent $event)
+    public function postSubmit(FormEvent $event): void
     {
         $form = $event->getForm();
         $data = $form->getParent()->getData();
@@ -230,7 +187,7 @@ class UploadCollectionSubscriber implements EventSubscriberInterface
         }
     }
 
-    private function normalizeUtf8String($s)
+    private function normalizeUtf8String(string $s): string
     {
         // save original string
         $originalString = $s;

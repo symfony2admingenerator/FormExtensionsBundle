@@ -3,6 +3,7 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType as SymfonyMoneyType;
 
 /**
  * See `Resources/doc/bootstrap-money/overview.md` for documentation
@@ -11,18 +12,12 @@ use Symfony\Component\Form\AbstractType;
  */
 class MoneyType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\MoneyType';
+        return SymfonyMoneyType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_money';
     }

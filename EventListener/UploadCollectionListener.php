@@ -3,6 +3,7 @@ namespace Admingenerator\FormExtensionsBundle\EventListener;
 
 use Admingenerator\FormExtensionsBundle\Storage\FileStorageInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,47 +12,20 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class UploadCollectionListener implements EventSubscriberInterface
 {
-    /**
-     * (non-PHPdoc)
-     * @see \Symfony\Component\EventDispatcher\EventSubscriberInterface::getSubscribedEvents()
-     */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
-        return array(KernelEvents::REQUEST => 'onRequestHandler');
+        return [KernelEvents::REQUEST => 'onRequestHandler'];
     }
 
-    /**
-     * @var FileStorageInterface
-     */
-    protected $storage;
-
-    /**
-     * @var string
-     */
-    protected $routeName;
-
-    /**
-     * @var PropertyAccessorInterface
-     */
-    protected $propertyAccessor;
-
-    /**
-     * @param FileStorageInterface      $storage
-     * @param string                    $routeName
-     * @param PropertyAccessorInterface $propertyAccessor
-     */
-    public function __construct(FileStorageInterface $storage, $routeName, PropertyAccessorInterface $propertyAccessor)
+    public function __construct(
+        protected readonly FileStorageInterface $storage,
+        protected readonly string $routeName,
+        protected readonly PropertyAccessorInterface $propertyAccessor
+    )
     {
-        $this->storage = $storage;
-        $this->routeName = $routeName;
-        $this->propertyAccessor = $propertyAccessor;
     }
 
-    /**
-     * @param GetResponseEvent $event
-     * @return GetResponseEvent
-     */
-    public function onRequestHandler(GetResponseEvent $event)
+    public function onRequestHandler(RequestEvent $event): RequestEvent
     {
         $request = $event->getRequest();
 
@@ -73,11 +47,7 @@ class UploadCollectionListener implements EventSubscriberInterface
         return $event;
     }
 
-    /**
-     * @param string $propertyPath
-     * @return string
-     */
-    private function fixPropertyPath($propertyPath)
+    private function fixPropertyPath(string $propertyPath): string
     {
         if ($propertyPath[0] != '[') {
             $propertyPath = '[' . substr_replace($propertyPath, ']', strpos($propertyPath, '[')?:strlen($propertyPath), 0);
@@ -86,15 +56,11 @@ class UploadCollectionListener implements EventSubscriberInterface
         return str_replace('[]', '', $propertyPath);
     }
 
-    /**
-     * @param array $files
-     * @return \stdClass
-     */
-    private function formatResponse(array $files)
+    private function formatResponse(array $files): \stdClass
     {
-        $formatedResponse = new \stdClass();
-        $formatedResponse->files = $files;
+        $formattedResponse = new \stdClass();
+        $formattedResponse->files = $files;
 
-        return $formatedResponse;
+        return $formattedResponse;
     }
 }

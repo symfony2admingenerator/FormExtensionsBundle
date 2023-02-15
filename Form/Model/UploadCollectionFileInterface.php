@@ -13,36 +13,30 @@ interface UploadCollectionFileInterface
 {
     /**
      * Return file size in bytes
-     *
-     * @return integer
      */
-    public function getSize();
+    public function getSize(): int;
 
     /**
      * Set governing entity
      *
      * @var $parent object Governing entity
      */
-    public function setParent($parent);
+    public function setParent(object $parent): void;
 
     /**
      * Set uploaded file
      *
      * @var $file File Uploaded file
      */
-    public function setFile(File $file);
+    public function setFile(File $file): void;
 
     /**
      * Get file
-     *
-     * @return \Symfony\Component\HttpFoundation\File\File
      */
-    public function getFile();
+    public function getFile(): File;
 
     /**
      * Return true if file thumbnail should be generated
-     *
-     * @return boolean
      */
-    public function getPreview();
+    public function getPreview(): bool;
 }

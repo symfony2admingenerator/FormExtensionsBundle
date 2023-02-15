@@ -13,11 +13,8 @@ use Twig\Extension\GlobalsInterface;
  */
 class IncludeGlobalsExtension extends AbstractExtension implements GlobalsInterface
 {
-    protected $container;
-
-    public function __construct(ContainerInterface $container)
+    public function __construct(protected readonly ContainerInterface $container)
     {
-        $this->container = $container;
     }
 
     /**
@@ -25,21 +22,16 @@ class IncludeGlobalsExtension extends AbstractExtension implements GlobalsInterf
      */
     public function getGlobals(): array
     {
-        return array(
-            's2a_formextensions_include_jquery'     => $this->container->getParameter('admingenerator.form.include_jquery'),
-            's2a_formextensions_include_jqueryui'   => $this->container->getParameter('admingenerator.form.include_jqueryui'),
-            's2a_formextensions_include_momentjs'   => $this->container->getParameter('admingenerator.form.include_momentjs'),
-            's2a_formextensions_include_blueimp'    => $this->container->getParameter('admingenerator.form.include_blueimp'),
-            's2a_formextensions_include_gmaps'      => $this->container->getParameter('admingenerator.form.include_gmaps'),
-        );
+        return [
+            's2a_formextensions_include_jquery'   => $this->container->getParameter('admingenerator.form.include_jquery'),
+            's2a_formextensions_include_jqueryui' => $this->container->getParameter('admingenerator.form.include_jqueryui'),
+            's2a_formextensions_include_momentjs' => $this->container->getParameter('admingenerator.form.include_momentjs'),
+            's2a_formextensions_include_blueimp'  => $this->container->getParameter('admingenerator.form.include_blueimp'),
+            's2a_formextensions_include_gmaps'    => $this->container->getParameter('admingenerator.form.include_gmaps'),
+        ];
     }
 
-    /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
-     */
-    public function getName()
+    public function getName(): string
     {
         return 'admingenerator.twig.extension.include_globals';
     }

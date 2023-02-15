@@ -15,10 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
  */
 class DateTimePickerType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['width'] = $options['width'];
         $view->vars['config'] = array_replace($options['config'], array(
@@ -38,51 +35,42 @@ class DateTimePickerType extends AbstractType
         $view->vars['widget_format'] = 'YYYY-MM-DDTHH:mm:ssZ';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'widget'    => 'single_text',
             'format'    => DateTimeType::HTML5_FORMAT,
             'width'     => null,
-            'config'    => array(
+            'config'    => [
                 'sideBySide'    => false,
-                'icons'     => array(
+                'icons'     => [
                     'time'  => "fa fa-clock-o",
                     'date'  => "fa fa-calendar",
                     'up'    => "fa fa-arrow-up",
                     'down'  => "fa fa-arrow-down"
-                )
-            )
-        ));
+                ]
+            ]
+        ]);
 
         $resolver->setAllowedTypes(
-            'width', array('null', 'integer')
+            'width', ['null', 'integer']
         )->setAllowedTypes(
-            'config', array('array')
+            'config', ['array']
         );
 
         $resolver->setAllowedValues(
-            'widget', array('single_text')
+            'widget', ['single_text']
         )->setAllowedValues(
-            'format', array(DateTimeType::HTML5_FORMAT)
+            'format', [DateTimeType::HTML5_FORMAT]
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): string
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\DateTimeType';
+        return DateTimeType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_datetime_picker';
     }

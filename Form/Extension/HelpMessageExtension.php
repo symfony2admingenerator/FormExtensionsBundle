@@ -3,6 +3,7 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,34 +15,29 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class HelpMessageExtension extends AbstractTypeExtension
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->setAttribute('help', $options['help']);
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['help'] = $form->getConfig()->getAttribute('help');
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'help' => null,
-        ));
+        ]);
         
         $resolver->setAllowedTypes(
-            'help', array('null', 'string')
+            'help', ['null', 'string']
         );
-    }
-
-    public function getExtendedType()
-    {
-        return self::getExtendedTypes()[0];
     }
 
     public static function getExtendedTypes(): iterable
     {
-        return ['Symfony\Component\Form\Extension\Core\Type\FormType'];
+        return [FormType::class];
     }
 }

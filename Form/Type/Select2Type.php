@@ -19,29 +19,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class Select2Type extends AbstractType
 {
-    /**
-     * @var string
-     */
-    private $widget;
-    /**
-     * @var string
-     */
-    private $parent;
 
     /**
-     * @param string $widget Type of the form (used as a suffix fot he blocprefix)
+     * @param string $widget Type of the form (used as a suffix for the blockprefix)
      * @param string $parent Parent FQCN form
      */
-    public function __construct($widget, $parent)
+    public function __construct(private readonly string $widget, private readonly string $parent)
     {
-        $this->widget = $widget;
-        $this->parent = $parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         if ('hidden' === $this->widget && !empty($options['configs']['multiple'])) {
             $builder->addViewTransformer(new ArrayToStringTransformer());
@@ -50,10 +37,7 @@ abstract class Select2Type extends AbstractType
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['configs'] = $options['configs'];
         $view->vars['hidden'] = $options['hidden'];
@@ -67,23 +51,20 @@ abstract class Select2Type extends AbstractType
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
-        $defaults = array(
+        $defaults = [
             'allowClear'         => false,
             'minimumInputLength' => 0,
             'width'              => 'resolve',
-        );
+        ];
 
         $resolver
-            ->setDefaults(array(
+            ->setDefaults([
                 'hidden'        => false,
                 'configs'       => $defaults,
                 'transformer'   => null,
-            ))
+            ])
             ->setNormalizer(
                 'configs', function (Options $options, $configs) use ($defaults) {
                     return array_merge($defaults, $configs);
@@ -92,18 +73,12 @@ abstract class Select2Type extends AbstractType
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): string
     {
         return $this->parent;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_select2_' . $this->widget;
     }

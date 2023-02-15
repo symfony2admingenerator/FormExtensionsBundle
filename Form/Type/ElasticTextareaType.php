@@ -3,6 +3,7 @@
 namespace Admingenerator\FormExtensionsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * See `Resources/doc/elastic-textarea/overview.md` for documentation
@@ -11,18 +12,12 @@ use Symfony\Component\Form\AbstractType;
  */
 class ElasticTextareaType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
+    public function getParent(): string
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\TextareaType';
+        return TextareaType::class;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 's2a_elastic_textarea';
     }
