@@ -18,16 +18,15 @@ class LocalFileStorage implements FileStorageInterface
 
     private SessionInterface $session;
 
-    public function __construct(RequestStack $requestStack, string $tempDir = null)
+    public function __construct(private readonly RequestStack $requestStack, string $tempDir = null)
     {
-        $this->session = $requestStack->getSession();
         $this->temporaryDirectory = $tempDir ?: sys_get_temp_dir() . DIRECTORY_SEPARATOR . 's2a' . DIRECTORY_SEPARATOR . 'collectionupload';
     }
 
     public function storeFiles(array $files): array
     {
         $handledFiles = [];
-        $sessionFiles = $this->session->get('s2a_collectionUpload_files', []);
+        $sessionFiles = $this->getSession()->get('s2a_collectionUpload_files', []);
 
         foreach ($files as $file) {
             $uid = uniqid();
@@ -48,7 +47,7 @@ class LocalFileStorage implements FileStorageInterface
             // TODO: should we add a limit to size of files in memory?
             $sessionFiles[$uid] = $fileDescriptor;
         }
-        $this->session->set('s2a_collectionUpload_files', $sessionFiles);
+        $this->getSession()->set('s2a_collectionUpload_files', $sessionFiles);
 
         return $handledFiles;
     }
@@ -59,7 +58,7 @@ class LocalFileStorage implements FileStorageInterface
             return null;
         }
 
-        $files = $this->session->get('s2a_collectionUpload_files', array());
+        $files = $this->getSession()->get('s2a_collectionUpload_files', array());
         if (!array_key_exists($fileId, $files)) {
             return null;
         }
@@ -77,9 +76,14 @@ class LocalFileStorage implements FileStorageInterface
             );
         }
         unset($files[$fileId]);
-        $this->session->set('s2a_collectionUpload_files', $files);
+        $this->getSession()->set('s2a_collectionUpload_files', $files);
 
         return $file;
+    }
+
+    private function getSession(): SessionInterface
+    {
+        return $this->session ??= $this->requestStack->getSession();
     }
 
 }
