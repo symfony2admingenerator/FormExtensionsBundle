@@ -44,7 +44,7 @@ class ImageAssetsExtension extends AbstractExtension
      *
      * @return string The public path.
      */
-    public function asset(object $object, string $field): string
+    public function asset(object $object, string $field): ?string
     {
         $params = func_get_args();
 
