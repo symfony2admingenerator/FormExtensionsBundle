@@ -118,7 +118,7 @@ class AdmingeneratorFormExtensionsExtension extends Extension
             if ($container->hasDefinition('vich_uploader.templating.helper.uploader_helper') || $container->hasAlias('vich_uploader.templating.helper.uploader_helper')) {
                 $uploaderHelperDefinition = $container->findDefinition('vich_uploader.templating.helper.uploader_helper');
             } else {
-                $uploaderHelperDefinition = new Reference('Vich\UploaderBundle\Twig\Extension\UploaderExtension');
+                $uploaderHelperDefinition = new Reference(\Vich\UploaderBundle\Templating\Helper\UploaderHelper::class);
             }
         }
         if ('liip_imagine' === $imageManipulator) {
