@@ -22,7 +22,7 @@ class TimePickerType extends AbstractType
 
         if ($options['with_minutes'] && $options['with_seconds']) {
             $widgetFormat = 'HH:mm:ss';
-        } else if ($options['with_minutes']) {            
+        } else if ($options['with_minutes']) {
             $widgetFormat = 'HH:mm';
         } else {
             $widgetFormat = 'HH';
@@ -31,9 +31,9 @@ class TimePickerType extends AbstractType
         if ($view->vars['value']) {
             $view->vars['widget_value'] = $view->vars['value'];
         }
-        
+
         $view->vars['widget_format'] = $widgetFormat;
-        
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -43,8 +43,8 @@ class TimePickerType extends AbstractType
             'width'     => null,
             'config'        => [
                 'icons'         => [
-                    'time'  => "fa fa-clock-o",
-                    'date'  => "fa fa-calendar",
+                    'time'  => "fa fa-clock fa-regular",
+                    'date'  => "fa fa-calendar-days fa-regular",
                     'up'    => "fa fa-arrow-up",
                     'down'  => "fa fa-arrow-down"
                 ]

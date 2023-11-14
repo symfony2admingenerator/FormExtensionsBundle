@@ -20,8 +20,8 @@ class DateTimePickerType extends AbstractType
         $view->vars['width'] = $options['width'];
         $view->vars['config'] = array_replace($options['config'], array(
             'icons'         => array(
-                'time'  => "fa fa-clock-o",
-                'date'  => "fa fa-calendar",
+                'time'  => "fa fa-clock fa-regular",
+                'date'  => "fa fa-calendar-days fa-regular",
                 'up'    => "fa fa-arrow-up",
                 'down'  => "fa fa-arrow-down"
             )
@@ -44,8 +44,8 @@ class DateTimePickerType extends AbstractType
             'config'    => [
                 'sideBySide'    => false,
                 'icons'     => [
-                    'time'  => "fa fa-clock-o",
-                    'date'  => "fa fa-calendar",
+                    'time'  => "fa fa-clock fa-regular",
+                    'date'  => "fa fa-calendar-days fa-regular",
                     'up'    => "fa fa-arrow-up",
                     'down'  => "fa fa-arrow-down"
                 ]

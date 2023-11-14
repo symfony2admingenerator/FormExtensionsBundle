@@ -72,19 +72,19 @@ tr.collection-item .panel-heading .panel-toggle:focus label.control-label {
     text-decoration: underline;
 }
 
-tr.collection-item .panel-heading .panel-toggle .fa.fa-chevron-right {
+tr.collection-item .panel-heading .panel-toggle .fa-chevron-right {
     display: none;
 }
 
-tr.collection-item .panel-heading .panel-toggle .fa.fa-chevron-down {
+tr.collection-item .panel-heading .panel-toggle .fa-chevron-down {
     display: inline;
 }
 
-tr.collection-item .panel-heading .panel-toggle.collapsed .fa.fa-chevron-down {
+tr.collection-item .panel-heading .panel-toggle.collapsed .fa-chevron-down {
     display: none;
 }
 
-tr.collection-item .panel-heading .panel-toggle.collapsed .fa.fa-chevron-right {
+tr.collection-item .panel-heading .panel-toggle.collapsed .fa-chevron-right {
     display: inline;
 }
 

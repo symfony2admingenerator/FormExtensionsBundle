@@ -35,8 +35,8 @@ class DatePickerType extends AbstractType
             'width'     => null,
             'config'    => [
                 'icons'     => [
-                    'time'  => "fa fa-clock-o",
-                    'date'  => "fa fa-calendar",
+                    'time'  => "fa fa-clock fa-regular",
+                    'date'  => "fa fa-calendar-days fa-regular",
                     'up'    => "fa fa-arrow-up",
                     'down'  => "fa fa-arrow-down"
                 ]

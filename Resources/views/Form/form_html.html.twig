@@ -146,7 +146,7 @@
             {% endif %}
             {% if allow_delete %}
             <button type="button" class="btn btn-danger delete">
-                <i class="fa fa-fw fa-trash"></i>
+                <i class="fa fa-fw fa-trash-can"></i>
                 <span> {{ 's2a_upload_collection.delete'|trans({}, 'AdmingeneratorFormExtensions') }}</span>
             </button>
             <label class="btn btn-toggle btn-link input-append">
@@ -154,7 +154,7 @@
             </label>
             {% endif %}
             <div class="fileupload-progressbar">
-                <i class="fa fa-fw fa-cog fa-2x fa-spin"></i>
+                <i class="fa fa-fw fa-gear fa-2x fa-spin"></i>
             </div>
         </div>
         {% endif %}
@@ -281,21 +281,21 @@
 
 {% block s2a_datetime_picker_widget %}
 {% apply spaceless %}
-    {% set widgetIcon = 'fa fa-calendar' %}
+    {% set widgetIcon = 'fa-regular fa-calendar-days' %}
     {{ block('s2a_datetime_family_prototype') }}
 {% endapply %}
 {% endblock s2a_datetime_picker_widget %}
 
 {% block s2a_date_picker_widget %}
 {% apply spaceless %}
-    {% set widgetIcon = 'fa fa-calendar' %}
+    {% set widgetIcon = 'fa-regular fa-calendar-days' %}
     {{ block('s2a_datetime_family_prototype') }}
 {% endapply %}
 {% endblock s2a_date_picker_widget %}
 
 {% block s2a_time_picker_widget %}
 {% apply spaceless %}
-    {% set widgetIcon = 'fa fa-clock-o' %}
+    {% set widgetIcon = 'fa-regular fa-clock' %}
     {{ block('s2a_datetime_family_prototype') }}
 {% endapply %}
 {% endblock s2a_time_picker_widget %}
@@ -308,7 +308,7 @@
             <input id="{{ id ~ '_search' }}" type="text" class="s2a-gmap-input form-control" placeholder="{{ 's2a_google_map.placeholder'|trans({}, 'AdmingeneratorFormExtensions') }}">
             <span class="input-group-btn">
                 <button id="{{ id ~ '_search_button' }}" class="s2a-gmap-search_button btn btn-default" type="button">
-                    <i class="fa fa-search"></i> {{ 's2a_google_map.search'|trans({}, 'AdmingeneratorFormExtensions') }}
+                    <i class="fa fa-magnifying-glass"></i> {{ 's2a_google_map.search'|trans({}, 'AdmingeneratorFormExtensions') }}
                 </button>
             </span>
             <span class="input-group-btn">
@@ -338,7 +338,7 @@
 {% block s2a_daterange_picker_widget %}
 {% apply spaceless %}
    <div class="input-group">
-   <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+   <span class="input-group-addon"><i class="fa fa-calendar-days fa-regular fa-fw"></i></span>
     {{ block('form_widget_simple') }}
 </div> 
 {% endapply %}
