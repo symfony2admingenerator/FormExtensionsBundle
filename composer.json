@@ -25,6 +25,7 @@
         "symfony/options-resolver": "~4.4|~5.4|~6.2",
         "symfony/property-access": "~4.4|~5.4|~6.2",
         "symfony/translation": "~4.4|~5.4|~6.2",
+        "symfony/translation-contracts": "~1.0|~2.0|~3.0",
         "symfony/twig-bridge": "~4.4|~5.4|~6.2",
         "symfony/validator": "~4.4|~5.4|~6.2",
         "twig/twig": "^2.15.3||^3.4.3",
