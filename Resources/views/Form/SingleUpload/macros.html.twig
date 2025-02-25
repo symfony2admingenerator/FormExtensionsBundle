@@ -1,5 +1,4 @@
 {% macro bytesToSize(bytes) %}
-{% apply spaceless %}
     {% set kilobyte = 1000 %}
     {% set megabyte = kilobyte * 1000 %}
     {% set gigabyte = megabyte * 1000 %}
@@ -7,17 +6,16 @@
     {% set petabyte = terabyte * 1000 %}
 
     {% if bytes < kilobyte %}
-        {{ bytes ~ ' B' }}
+        {{- bytes ~ ' B' -}}
     {% elseif bytes < megabyte %}
-        {{ (bytes / kilobyte)|number_format(2, '.') ~ ' KB' }}
+        {{- (bytes / kilobyte)|number_format(2, '.') ~ ' KB' -}}
     {% elseif bytes < gigabyte %}
-        {{ (bytes / megabyte)|number_format(2, '.') ~ ' MB' }}
+        {{- (bytes / megabyte)|number_format(2, '.') ~ ' MB' -}}
     {% elseif bytes < terabyte %}
-        {{ (bytes / gigabyte)|number_format(2, '.') ~ ' GB' }}
+        {{- (bytes / gigabyte)|number_format(2, '.') ~ ' GB' -}}
     {% elseif bytes < petabyte %}
-        {{ (bytes / terabyte)|number_format(2, '.') ~ ' TB' }}
+        {{- (bytes / terabyte)|number_format(2, '.') ~ ' TB' -}}
     {% else %}
-        {{ (bytes / petabyte)|number_format(2, '.') ~ ' PB' }}
+        {{- (bytes / petabyte)|number_format(2, '.') ~ ' PB' -}}
     {% endif %}
-{% endapply %}
 {% endmacro %}

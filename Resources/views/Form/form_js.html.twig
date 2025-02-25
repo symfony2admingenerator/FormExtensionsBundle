@@ -1,6 +1,5 @@
 {% block s2a_bootstrap_collection_js_prototype %}
 {% autoescape false %}
-{% apply spaceless %}
     $field.bootstrapCollection({
         allow_add:        {{ allow_add|e4js }},
         allow_delete:     {{ allow_delete|e4js }},
@@ -26,13 +25,11 @@
         {% endif %}
         }
     });
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_bootstrap_collection_js_prototype %}
 
 {% block s2a_collection_fieldset_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -46,13 +43,11 @@
 {% for child in form %}
     {{ form_js(child) }}
 {% endfor %}
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_collection_fieldset_js %}
 
 {% block s2a_collection_table_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -66,13 +61,11 @@
 {% for child in form %}
     {{ form_js(child) }}
 {% endfor %}
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_collection_table_js %}
 
 {% block s2a_upload_collection_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     $(document).ready(function(){
         var $field = $('#{{ id }}');
@@ -142,13 +135,11 @@
         $field.uploadCollection('loadFiles', files);
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_upload_collection_js %}
 
 {% block s2a_daterange_picker_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
@@ -193,21 +184,17 @@
     {% endblock s2a_daterange_picker_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_daterange_picker_js %}
 
 {% block s2a_double_list_family_js_prototype_template %}
 {% autoescape false %}
-{% apply spaceless %}
     $field.doubleList();
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_double_list_family_js_prototype_template %}
 
 {% block s2a_double_list_document_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
@@ -217,13 +204,11 @@
     {% endblock s2a_double_list_document_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_double_list_document_js %}
 
 {% block s2a_double_list_entity_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
@@ -233,13 +218,11 @@
     {% endblock s2a_double_list_entity_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_double_list_entity_js %}
 
 {% block s2a_double_list_model_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
@@ -249,13 +232,11 @@
     {% endblock s2a_double_list_model_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_double_list_model_js %}
 
 {% block s2a_knob_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
@@ -281,12 +262,10 @@
     {% endblock s2a_knob_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_knob_js %}
 
 {% block s2a_mini_colors_js %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -305,12 +284,10 @@
     {% endblock s2a_mini_colors_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endblock s2a_mini_colors_js %}
 
 {% block s2a_select2_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         $field = $('#{{ id }}');
@@ -320,13 +297,11 @@
     {% endblock s2a_select2_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_select2_js %}
 
 {% block s2a_single_upload_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -361,13 +336,11 @@
     {% endblock s2a_single_upload_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_single_upload_js %}
 
 {% block s2a_elastic_textarea_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -377,12 +350,10 @@
     {% endblock s2a_elastic_textarea_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_elastic_textarea_js %}
 
 {% block choice_js %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -396,12 +367,10 @@
     {% endblock choice_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endblock choice_js %}
 
 {% block s2a_datetime_family_js_prototype_template %}
 {% autoescape false %}
-{% apply spaceless %}
     var $widget = $('#'+$field.attr('id')+'_widget');
     var config = {{ {
         'locale': app.request.locale,
@@ -434,13 +403,11 @@
         $widget.trigger("dp.change");
     });
     $field.closest('form').on('submit', copyValue);
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_datetime_family_js_prototype_template %}
 
 {% block s2a_datetime_picker_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -450,13 +417,11 @@
     {% endblock s2a_datetime_picker_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_datetime_picker_js %}
 
 {% block s2a_date_picker_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -466,13 +431,11 @@
     {% endblock s2a_date_picker_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_date_picker_js %}
 
 {% block s2a_time_picker_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -482,13 +445,11 @@
     {% endblock s2a_time_picker_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_time_picker_js %}
 
 {% block s2a_google_map_js %}
 {% autoescape false %}
-{% apply spaceless %}
 <script type="text/javascript">
     jQuery(document).ready(function($) {
         var $field = $('#{{ id }}');
@@ -510,6 +471,5 @@
     {% endblock s2a_google_map_js_prototype %}
     });
 </script>
-{% endapply %}
 {% endautoescape %}
 {% endblock s2a_google_map_js %}
