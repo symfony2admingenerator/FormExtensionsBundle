@@ -1,5 +1,4 @@
 {% if allow_delete %}
-{% apply spaceless %}
 <div class="collection-item-actions {{ id ~ '_actions' }}">
     <label class="btn btn-link btn-toggle input-append">
         <input type="checkbox" name="delete" value="1">
@@ -8,5 +7,4 @@
         <i class="fa fa-times"></i>
     </a>
 </div>
-{% endapply %}
 {% endif %}
