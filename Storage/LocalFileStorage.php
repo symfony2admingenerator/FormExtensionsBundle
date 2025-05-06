@@ -18,7 +18,7 @@ class LocalFileStorage implements FileStorageInterface
 
     private SessionInterface $session;
 
-    public function __construct(private readonly RequestStack $requestStack, string $tempDir = null)
+    public function __construct(private readonly RequestStack $requestStack, ?string $tempDir = null)
     {
         $this->temporaryDirectory = $tempDir ?: sys_get_temp_dir() . DIRECTORY_SEPARATOR . 's2a' . DIRECTORY_SEPARATOR . 'collectionupload';
     }
@@ -52,7 +52,7 @@ class LocalFileStorage implements FileStorageInterface
         return $handledFiles;
     }
 
-    public function getFile(string $fileId = null): ?UploadedFile
+    public function getFile(?string $fileId = null): ?UploadedFile
     {
         if (is_null($fileId)) {
             return null;
