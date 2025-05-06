@@ -149,7 +149,7 @@ class SingleUploadSubscriber implements EventSubscriberInterface
         }
     }
     
-    private function isFieldSingleUpload(ResolvedFormTypeInterface $formTypeInterface = null): bool
+    private function isFieldSingleUpload(?ResolvedFormTypeInterface $formTypeInterface = null): bool
     {
         if ($formTypeInterface == null) {
             return false;
