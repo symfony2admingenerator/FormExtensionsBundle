@@ -9,7 +9,6 @@ use Admingenerator\FormExtensionsBundle\Form\Extension\NoValidateExtension;
 use Admingenerator\FormExtensionsBundle\Form\Extension\SingleUploadExtension;
 use Admingenerator\FormExtensionsBundle\Twig\Extension\ImageAssetsExtension;
 use Admingenerator\FormExtensionsBundle\Twig\Extension\IncludeGlobalsExtension;
-use Admingenerator\FormExtensionsBundle\Twig\Extension\LegacyIncludeGlobalsExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -18,7 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
-use Twig\Environment;
 
 /**
  * Loads FormExtensions configuration
@@ -35,8 +33,8 @@ class AdmingeneratorFormExtensionsExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.xml');
+        $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('services.php');
 
         $container->setParameter('admingenerator.form.upload_manager', $config['upload_manager']);
         $container->setParameter('admingenerator.form.image_manipulator', $config['image_manipulator']);
@@ -89,15 +87,15 @@ class AdmingeneratorFormExtensionsExtension extends Extension
             }
 
             $collectionUploadListenerDefinition = new Definition('%admingenerator.form.upload_collection_listener.class%');
-            $collectionUploadListenerDefinition->setArguments(array(
+            $collectionUploadListenerDefinition->setArguments([
                     new Reference($config['file_storage']),
                     $routeName,
                     new Reference('property_accessor')
-            ));
+            ]);
             $collectionUploadListenerDefinition->addTag('kernel.event_subscriber');
             $container->setDefinition('admingenerator.form.upload_collection_listener', $collectionUploadListenerDefinition);
 
-            $container->getDefinition('admingenerator.form.extensions.type.upload_collection')->addMethodCall('setFileStorage', array(new Reference($config['file_storage'])));
+            $container->getDefinition('admingenerator.form.extensions.type.upload_collection')->addMethodCall('setFileStorage', [new Reference($config['file_storage'])]);
         }
     }
 

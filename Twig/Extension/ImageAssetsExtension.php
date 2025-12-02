@@ -42,7 +42,7 @@ class ImageAssetsExtension extends AbstractExtension
     /**
      * Gets the browser path for the image and filter to apply.
      *
-     * @return string The public path.
+     * @return string|null The public path.
      */
     public function asset(object $object, string $field): ?string
     {
