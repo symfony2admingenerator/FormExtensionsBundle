@@ -182,8 +182,6 @@ class UploadCollectionSubscriber implements EventSubscriberInterface
             foreach ($this->originalFiles as $file) {
                 $data->$getter()->add($file);
             }
-
-            $event->setData($data->$getter());
         }
     }
 
