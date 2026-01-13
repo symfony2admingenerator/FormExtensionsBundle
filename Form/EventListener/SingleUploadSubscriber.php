@@ -143,8 +143,6 @@ class SingleUploadSubscriber implements EventSubscriberInterface
                         $data->$setterPath($config['original_path']);
                     }
                 }
-
-                $event->setData($data);
             }
         }
     }
